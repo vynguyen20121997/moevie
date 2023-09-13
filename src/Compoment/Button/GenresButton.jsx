@@ -27,28 +27,9 @@ export const GenresButton = (props) => {
     <>
       {genres?.genres?.map((i) => (
 
-        <div style={{ marginTop: '5%' }} >   <ButtonContainer
-          color={
-            i.name === "Action" ? "primary"
-              : i.name === "Horror" ? "error"
-                : i.name === "Adventure" ? "success"
-                  : i.name === "Comedy" ? "warning"
-                    : i.name === "Animation" ? "warning"
-                      : i.name === "Crime" ? "secondary"
-                        : i.name === "Drama" ? "success"
-                          : i.name === "Family" ? "secondary"
-                            : i.name === "Fantasy" ? "primary"
-                              : i.name === "History" ? "warning"
-                                : i.name === "Horror" ? "info"
-                                  : i.name === "Music" ? "warning"
-                                    : i.name === "Mystery" ? "warning"
-                                      : i.name === "Romance" ? "warning"
-                                        : i.name === "Science Fiction" ? "error"
-                                          : i.name === "TV Movie" ? "warning"
-                                            : i.name === "Thriller" ? "primary"
-                                              : i.name === "War" ? "primary"
-                                                : i.name === "Western" ? "warning"
-                                                  : "primary"}  genre={i} />
+        <div style={{ marginTop: '5%' }} >   
+        <ButtonContainer
+          genre={i} variant="contained" size="large"/>
         </div>
       ))}
     </>)
@@ -58,12 +39,32 @@ export default GenresButton;
 
 
 export const ButtonContainer = (props) => {
-  const { genre, color } = props;
+  const { genre,variant, size } = props;
   const { name, id : genreId } = genre;
   return (
     <>
       <Link to={`/genres/${genreId}`}>
-        <Button variant="outlined" color={color}> {name}</Button>
+        <Button size={size} variant={variant} color={
+            name === "Action" ? "primary"
+              : name === "Horror" ? "error"
+                : name === "Adventure" ? "success"
+                  : name === "Comedy" ? "warning"
+                    : name === "Animation" ? "warning"
+                      : name === "Crime" ? "secondary"
+                        : name === "Drama" ? "success"
+                          : name === "Family" ? "secondary"
+                            : name === "Fantasy" ? "primary"
+                              : name === "History" ? "warning"
+                                : name === "Horror" ? "info"
+                                  : name === "Music" ? "warning"
+                                    : name === "Mystery" ? "warning"
+                                      : name === "Romance" ? "warning"
+                                        : name === "Science Fiction" ? "error"
+                                          : name === "TV Movie" ? "warning"
+                                            : name === "Thriller" ? "primary"
+                                              : name === "War" ? "primary"
+                                                : name === "Western" ? "warning"
+                                                  : "primary" }> {name}</Button>
         </Link>
 
     </>)

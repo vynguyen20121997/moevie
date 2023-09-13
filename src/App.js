@@ -26,10 +26,8 @@ function App() {
             <Route path="/genres" element={<GenresPage />} />
             <Route path="/movies/:movieId" element={<MovieDetailPage />} />
             <Route path="/genres/:genreId" element={<GenresPageDetail />} />
-
-
             <Route path="/test" element={<OnfetchDataById />} />
-            <Route path="/button" element={<GenresButton />} />
+            {/* <Route path="/button" element={<GenresButton />} /> */}
 
           </Routes>
           <Footer />

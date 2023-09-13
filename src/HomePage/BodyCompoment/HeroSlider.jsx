@@ -34,21 +34,21 @@ function Test() {
     return (<>
         <div className="slider">
             <div className="btn1">
-                <Fab color='primary' onClick={() => swiper.slidePrev()} 
+                <Fab color='primary' onClick={() => swiper.slidePrev()}
                 ><ChevronLeftIcon fontSize="large" /></Fab></div>
 
             <Swiper
-                modules={[ Pagination, Scrollbar, A11y, Autoplay ]}
-               autoplay={{delay:2000}}
+                modules={[Pagination, Scrollbar, A11y, Autoplay]}
+                autoplay={{ delay: 2000 }}
                 slidesPerView={1}
                 pagination={{ clickable: true }}
                 scrollbar={{ draggable: true }}
-                onSwiper={(swiper) =>  setSwiper(swiper)}
+                onSwiper={(swiper) => setSwiper(swiper)}
             >
                 {popularMovies.map((i, index) => (
                     <SwiperSlide>
                         <HeroSliderContainer item={i} />
-                        </SwiperSlide>
+                    </SwiperSlide>
                 ))}
             </Swiper>
 
@@ -72,7 +72,7 @@ export const HeroSliderContainer = (props) => {
             <div className='hero-slider-container' style={{
                 backgroundImage: `url(${backgroundImg})`,
             }}>
-                <div className="content" style={{ padding: '5%', paddingRight: '-2%', height: '100%', }}>
+                <div className="content" style={{ padding: '5%', paddingRight: '-2%', height: '100%',width:'100%' }}>
 
                     <div className="poster" style={{ width: '25%', position: 'relative', borderRadius: '15px' }}>
                         <Link to={`/movies/${id}`}>
@@ -84,13 +84,14 @@ export const HeroSliderContainer = (props) => {
                         <h4 style={{ width: '55%', height: '20%' }}>{overview}</h4>
                         <div className="btn" style={{ height: '20%' }}>
 
-                            <Button onClick={() => { navigate(`/movies/${id}`) }} 
-                            style={{ borderRadius: '30px', marginLeft: '2%',
-                            width: '200px',
-                            height: '58px',
-                            padding: '0',
-                             }} 
-                              size='large'  variant='contained'>WATCH NOW</Button>
+                            <Button onClick={() => { navigate(`/movies/${id}`) }}
+                                style={{
+                                    borderRadius: '30px', marginLeft: '2%',
+                                    width: '200px',
+                                    height: '58px',
+                                    padding: '0',
+                                }}
+                                size='large' variant='contained'>WATCH NOW</Button>
 
                         </div>
                     </div>

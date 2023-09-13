@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { APIConfig } from '../../Compoment/API/APIConfig';
 import { Button } from '@mui/material';
@@ -12,14 +12,42 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import Rating from '@mui/material/Rating';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
-import { list } from '../../Compoment/API/OnfetchGenresList';
+import { ButtonContainer } from '../../Compoment/Button/GenresButton';
 const CardContainer = (props) => {
   const { movieDetail } = props;
-  const { vote_average, title, release_date, id, poster_path } = movieDetail;
+  const { vote_average, title, release_date, id, poster_path, genre_ids } = movieDetail;
   const [isHover, SetIsHover] = useState(false);
+  const [genreList, setGenreList] = useState([])
+  const [genreNames, setGenreNames] = useState([]);
 
-console.log("list", list)  
-const handleMouseEnter = () => {
+  const OnFetchGenreist = () => {
+    const urlLink = `https://api.themoviedb.org/3/genre/movie/list?api_key=${APIConfig.apiKey}`
+
+    fetch(urlLink)
+      .then((response) => response.json())
+      .then((data) => {
+        setGenreList(data.genres);
+
+      })
+  };
+
+  const genreFilter = (genre_ids, genreList) => {
+    const result = []
+    for (const genreId of genre_ids) {
+      const element = genreList.find((i) => i.id == genreId);
+      if (element) {
+        result.push({ name: element.name, id: element.id });
+      };
+    }
+
+    return result;
+  };
+  useEffect(() => {
+    OnFetchGenreist();
+    setGenreNames(genreFilter(genre_ids, genreList));
+  }, [genre_ids, genreList]);
+
+  const handleMouseEnter = () => {
     SetIsHover(true);
   };
   const handleMouseLeave = () => {
@@ -32,7 +60,7 @@ const handleMouseEnter = () => {
     scale: isHover ? ('1') : null,
     boxShadow: isHover ? ("0px 10px 20px 2px rgba(0, 200, 255, 0.7)") : null,
     transform: isHover ? ('translateY(-5px)') : null,
-   
+
   }
 
   const onHoverDisplaying = {
@@ -68,8 +96,13 @@ const handleMouseEnter = () => {
           <div className='rating-content-btn-hide'>
             <Rating name="customized-10" size="small" readOnly value={ratingfixed} />
             <h5> {vote_average}/10</h5>
-          </div>
 
+          </div>
+          <div className="genre">
+            {genreNames.map((i) => {
+              return <ButtonContainer variant="contained" size="small" genre={i} />
+            })}
+          </div>
           <div className="content-btn-hide">
             <Link to={`/movies/${id}`}> <Button
               style={{ borderRadius: '5px', padding: '5%' }}
@@ -80,14 +113,8 @@ const handleMouseEnter = () => {
               <AddIcon variant="contained" fontSize="medium" />
             </Fab>
           </div>
-
-
-
         </div>
-
       </div>
-
-   
     </>
   )
 }
