@@ -1,0 +1,56 @@
+.button1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 3px 4px 8px 0px rgba(0, 200, 255, 0.7);
+    border-radius: 15px;
+}
+
+.movie-card {
+    object-fit: contain;
+    height: 270px;
+    width: 200px;
+    background: #2c2c2c;
+    border-radius: 15px;
+    margin: 20px;
+    transition: all ease 0.4s;
+    border: 1px solid #333;
+    margin-top: 15%;
+}
+.movie-card img {
+    object-fit: cover;
+    border-radius: 15px;
+    height: 100%;
+    width: 100%;
+}
+
+.carousel {
+    margin-top: 0.3%;
+}
+.hide {
+    display: none;
+    position: absolute;
+    top: 1%;
+    border-radius: 15px;
+    padding: 5%;
+    width: 100%;
+}
+.content-content-hide{
+    max-width: 70%;
+    max-height: 35%;
+}
+
+.content-content-hide :where(h4, h5){
+    padding: 0;
+    margin: 0;
+}
+
+.rating-content-btn-hide{
+    display: flex;
+    padding: 0; 
+    height: 10%;
+}
+.rating-content-btn-hide h5{
+    margin: 0;
+    padding: 0;
+}
