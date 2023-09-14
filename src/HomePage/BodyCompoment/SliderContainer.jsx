@@ -12,8 +12,8 @@ import Rating from "@mui/material/Rating";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import { ButtonContainer } from "../../Compoment/Button/GenresButton";
-
-import { useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 const CardContainer = (props) => {
   const { movieDetail } = props;
@@ -21,10 +21,19 @@ const CardContainer = (props) => {
     movieDetail;
   const [isHover, SetIsHover] = useState(false);
   // const [genreList, setGenreList] = useState([]);
-  const queryClient = useQueryClient();
 
-  const genreList = queryClient.query("genreList").data;
-  console.log("lấy về", genreList);
+  const { isLoading, error, data } = useQuery(["genreList"], () =>
+    axios.get(
+      `https://api.themoviedb.org/3/genre/movie/list?api_key=${APIConfig.apiKey}`
+    )
+  );
+  const genreList = data && data.data;
+  console.log("gi ne", genreList);
+  if (isLoading) {
+    return <p>Loading...</p>;
+  } else if (error) {
+    return <p>Error fetching genre list: {error.message}</p>;
+  }
 
   // const genreFilter = () => {
   //   const result = [];
