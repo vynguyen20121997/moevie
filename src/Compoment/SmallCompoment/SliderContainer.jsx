@@ -1,6 +1,6 @@
 import { React, useEffect, useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { APIConfig } from "../../Compoment/API/APIConfig";
+import { APIConfig } from "../API/APIConfig";
 import { Button } from "@mui/material";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -11,7 +11,7 @@ import "./style2.css";
 import Rating from "@mui/material/Rating";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
-import { ButtonContainer } from "../../Compoment/Button/GenresButton";
+import { ButtonContainer } from "../Button/GenresButton";
 import axios from "axios";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
