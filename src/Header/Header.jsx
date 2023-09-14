@@ -17,10 +17,10 @@ import { Fab } from '@mui/material';
 import ExploreIcon from '@mui/icons-material/Explore';
 import { APIConfig } from '../Compoment/API/APIConfig';
 import GenresButton from '../Compoment/Button/GenresButton';
+
 const Header = () => {
     const [genres, setGenres] = useState([])
     const [sidenav, setSideNav] = useState(false);
-
     const OnFetchDataList = () => {
         const urlLink = `https://api.themoviedb.org/3/genre/movie/list?api_key=${APIConfig.apiKey}`
         // const urlLink = `${url}?api_key=${APIConfig.apiKey}`
@@ -46,7 +46,6 @@ const Header = () => {
     const displaySidenav = {
         width: sidenav ? ('15%') : ('0'),
         padding: '0',
-
     }
     return (
         <><Typography>
@@ -60,7 +59,6 @@ const Header = () => {
                     <Link to="/"> <img width="80px" src="https://i.ibb.co/K9NfKFW/wired-gradient-62-film.png" alt="wired-gradient-62-film" border="0" /></Link>
                     <Link to="/"><Button><h3>MOVIE WORLD</h3></Button></Link>
                 </div>
-
                 <div style={{ display: "flex", border: "0", margin: "0", marginRight: "5%" }}>
                     <ButtonGroup variant="text" aria-label="text button group">
                         <Button  ><Link className='list-element' to="/">HOME</Link> </Button>
@@ -68,22 +66,16 @@ const Header = () => {
                         <Button  ><Link className='list-element' to="/">TV SHOW</Link></Button>
                     </ButtonGroup>
                 </div>
-
                 <div >
-
-
                     <IconButton style={{ marginRight: "1px" }}
                         size="large"
                         edge="end"
                         aria-label="account of current user"
                         //   aria-controls={menuId}
                         aria-haspopup="true"
-                        color="primary"
-
-                    >
+                        color="primary">
                         <AccountCircle fontSize="large" />
                     </IconButton>
-
                     <IconButton
                         size="large"
                         edge="start"
@@ -95,41 +87,42 @@ const Header = () => {
                     </IconButton>
                 </div>
 
-
                 <div id="mySidenav" classNames="sidenav"
-                    style={displaySidenav}
-                >
-                   <div id='home-mySideNav'> 
-                    <Link to={`/`}>
-                        <IconButton
+                    style={displaySidenav} >
+                    <div id='home-SideNav' className='home-sidenav'>
+                        <div className='homebutton'>
+                            <Link to={`/`}>
+                                <IconButton
+                                    size="large"
+                                    edge="start"
+                                    color="primary" >
+                                    <HomeIcon fontSize="large" />
+                                    <p>Home</p>
+                                </IconButton>
+                            </Link>
+                        </div>
+                        <div className='closebutton'>
+                            <Button
+                            size='small' variant="contained" color="primary">
+                            <CloseIcon onClick={onCloseSideNav}
+                                color="white" fontSize="small" />
+                        </Button>
+                        </div>
+                    </div>
+
+                    <div id='genre-SideNav' className='home-sidenav'>
+                        <Link to={`/genres`}><IconButton
                             size="large"
                             edge="start"
                             color="primary" >
-                            <HomeIcon fontSize="large" />
-                            <p>Home</p>
-                        </IconButton>
-                    </Link>
-                    <Button style={{ minWidth: '0', marginLeft: '45%', borderRadius: '30px' }} size='small' variant="contained" color="primary">
-                        <CloseIcon onClick={onCloseSideNav} color="white" fontSize="small" />
-                    </Button>
+                            <ExploreIcon fontSize="inherit"
+                            />
+                            <p>Discovery</p>
+                        </IconButton></Link>
+                        <div><GenresButton /></div>
+                    </div>
                 </div>
-
-
-                <div id='home-mySideNav' >
-                    <Link to={`/genres`}><IconButton
-                        size="large"
-                        edge="start"
-                        color="primary" >
-                        <ExploreIcon fontSize="inherit"
-                        />
-                        <p>Discovery</p>
-                    </IconButton></Link>
-                    <div><GenresButton /></div>
-
-                </div>
-
             </div>
-        </div>
         </Typography >  </>
     )
 }

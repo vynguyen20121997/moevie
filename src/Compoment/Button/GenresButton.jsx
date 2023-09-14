@@ -29,7 +29,7 @@ export const GenresButton = (props) => {
 
         <div style={{ marginTop: '5%' }} >   
         <ButtonContainer
-          genre={i} variant="contained" size="large"/>
+          genre={i} variant="outlined" size="large"/>
         </div>
       ))}
     </>)
@@ -39,12 +39,13 @@ export default GenresButton;
 
 
 export const ButtonContainer = (props) => {
-  const { genre,variant, size } = props;
+  const { genre,variant, size, stylebutton } = props;
   const { name, id : genreId } = genre;
   return (
     <>
       <Link to={`/genres/${genreId}`}>
-        <Button size={size} variant={variant} color={
+        <Button sx={size} 
+         variant={variant} color={
             name === "Action" ? "primary"
               : name === "Horror" ? "error"
                 : name === "Adventure" ? "success"
@@ -64,7 +65,7 @@ export const ButtonContainer = (props) => {
                                             : name === "Thriller" ? "primary"
                                               : name === "War" ? "primary"
                                                 : name === "Western" ? "warning"
-                                                  : "primary" }> {name}</Button>
+                                                  : "primary" }> <p >{name}</p> </Button>
         </Link>
 
     </>)
