@@ -1,24 +1,14 @@
 import { APIConfig } from "../Compoment/API/APIConfig";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery, useQueryClient, getQueryData } from "@tanstack/react-query";
+import React from "react";
 import tmdbAPI from "../Compoment/API/tmdbAPI";
 import axios from "axios";
+import useGenreList from "../Compoment/Data/GenresListHooks";
 
-export const Testing = () => {
-  const queryClient = useQueryClient();
+export const Testings = () => {
+  const { data } = useGenreList();
+  console.log("nhận về:", data);
 
-  const genreList = queryClient.getQueryData("genreList");
-  console.log("nhận về:", genreList);
-
-  return (
-    // <ul style={{ color: "white" }}>
-    //   {data &&
-    //     data.map((genre) => (
-    //       <li style={{ color: "white" }} key={genre.id}>
-    //         {genre.name}
-    //       </li>
-    //     ))}
-    // </ul>
-    <div></div>
-  );
+  return <div></div>;
 };
 // };

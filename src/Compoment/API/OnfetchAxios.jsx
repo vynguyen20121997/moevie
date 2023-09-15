@@ -2,8 +2,8 @@ import { APIConfig } from "./APIConfig";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-export const OnFetchAxios = (funtion, ontionalFilter) => {
-  const { isLoading, error, data } = useQuery(["list"], () =>
+export const OnFetchAxios = (funtion, ontionalFilter, key) => {
+  const { isLoading, error, data } = useQuery(["list", key], () =>
     axios.get(
       `${APIConfig.baseUrl}${funtion}${APIConfig.apiKey}${ontionalFilter}`
     )

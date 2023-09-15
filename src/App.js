@@ -8,9 +8,9 @@ import MovieDetailPage from "./DetailPage/DetailPage";
 // import { OnfetchDataById } from "./Compoment/API/OnfetchDataById";
 // import { GenresButton } from "./Compoment/Button/GenresButton";
 // import GenresPageDetail from "./Genres Page/GenresPageDetail";
-import Lists from "./Compoment/Data/GenresList";
+import Lists from "./Compoment/Data/GenresListHooks";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Testing from "./Test/TestAgain";
+import { Testings } from "./Test/TestAgain";
 
 const queryClient = new QueryClient();
 
@@ -40,7 +40,7 @@ function App() {
 
               {/* {/* <Route path="/b" element={<Home />} /> */}
               <Route path="/a" element={<Lists />} />
-              <Route path="/b" element={<Testing />} />
+              <Route path="/b" element={<Testings />} />
             </Routes>
             {/* <Footer /> */}
           </BrowserRouter>

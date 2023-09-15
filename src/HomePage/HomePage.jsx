@@ -9,20 +9,24 @@ import { MovieSlider } from "../Compoment/SmallCompoment/SliderContainer";
 const HomePage = () => {
   const { data: popularMovies } = OnFetchAxios(
     tmdbAPI.getMoviesList("popular"),
-    ontionalPageFilter
+    ontionalPageFilter,
+    "popular"
   );
 
   const { data: nowPlayingMovies } = OnFetchAxios(
     tmdbAPI.getMoviesList("now_playing"),
-    ontionalPageFilter
+    ontionalPageFilter,
+    "nowplaying"
   );
   const { data: topRatedMovies } = OnFetchAxios(
     tmdbAPI.getMoviesList("top_rated"),
-    ontionalPageFilter
+    ontionalPageFilter,
+    "top_rated"
   );
   const { data: UpComingMovies } = OnFetchAxios(
     tmdbAPI.getMoviesList("upcoming"),
-    ontionalPageFilter
+    ontionalPageFilter,
+    "upcoming"
   );
   console.log("topRatedMovies", topRatedMovies);
 
