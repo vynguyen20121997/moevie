@@ -1,25 +1,24 @@
-// import { APIConfig } from "../Compoment/API/APIConfig";
-// import { useQuery, useQueryClient } from "@tanstack/react-query";
-// import tmdbAPI from "../Compoment/API/tmdbAPI";
-// import axios from "axios";
-// import { colors } from "@mui/material";
-// import { SomeThingList } from "../Compoment/API/OnfetchAxios";
+import { APIConfig } from "../Compoment/API/APIConfig";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import tmdbAPI from "../Compoment/API/tmdbAPI";
+import axios from "axios";
 
-// export const List = () => {
-//   const { data } = SomeThingList(tmdbAPI.getMoviesList("popular"));
-//   const dataRecive = data && data.results;
-//   console.log("nhận về:", dataRecive);
+export const Testing = () => {
+  const queryClient = useQueryClient();
 
-//   return (
-//     // <ul style={{ color: "white" }}>
-//     //   {data &&
-//     //     data.map((genre) => (
-//     //       <li style={{ color: "white" }} key={genre.id}>
-//     //         {genre.name}
-//     //       </li>
-//     //     ))}
-//     // </ul>
-//     <div></div>
-//   );
+  const genreList = queryClient.getQueryData("genreList");
+  console.log("nhận về:", genreList);
+
+  return (
+    // <ul style={{ color: "white" }}>
+    //   {data &&
+    //     data.map((genre) => (
+    //       <li style={{ color: "white" }} key={genre.id}>
+    //         {genre.name}
+    //       </li>
+    //     ))}
+    // </ul>
+    <div></div>
+  );
+};
 // };
-// // };

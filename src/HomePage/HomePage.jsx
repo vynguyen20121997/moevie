@@ -24,7 +24,6 @@ const HomePage = () => {
     tmdbAPI.getMoviesList("upcoming"),
     ontionalPageFilter
   );
-  console.log("nowPlayingMovies", nowPlayingMovies);
   console.log("topRatedMovies", topRatedMovies);
 
   return (

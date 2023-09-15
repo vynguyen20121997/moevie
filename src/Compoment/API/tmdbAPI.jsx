@@ -44,7 +44,7 @@ export const tmdbAPI = {
     return url, params;
   },
   genre: (cate) => {
-    const url = "genre/" + category[cate] + "list";
+    const url = "genre/" + category[cate] + "/list";
     return url;
   },
   detail: (cate, id) => {
