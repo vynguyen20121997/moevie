@@ -22,6 +22,7 @@ import "@fontsource/roboto/700.css";
 import CardMedia from "@mui/material/CardMedia";
 import { OnFetchAxios } from "../Compoment/API/OnfetchAxios";
 import { tmdbAPI } from "../Compoment/API/tmdbAPI";
+import useGenreList from "../Compoment/Data-Hooks/GenresListHooks";
 
 const MovieDetailPage = () => {
   //   const [genreList, setGenreList] = useState([]);
@@ -30,12 +31,15 @@ const MovieDetailPage = () => {
   //   const { data: video } = OnFetchVideo(params.movieId);
   //   const [data, setData] = useState([]);xxx
   //   const [credit, setCredit] = useState([]);
+
   const idMovie = params.movieId;
   const url = tmdbAPI.detail("movie", idMovie);
-  const { data } = OnFetchAxios(tmdbAPI.detail("movie", idMovie));
-  console.log("link", data);
-  const { data: genreList } = OnFetchAxios(tmdbAPI.genre("movie", null));
-  console.log("lay gi ve", genreList);
+  console.log("link", url);
+  const { data: heehe } = OnFetchAxios(url, null, "movienowseeing");
+  console.log("DATAS", heehe);
+
+  const { data } = useGenreList();
+  console.log("lay gi ve", data);
 
   //   const OnFetchGenreist = () => {
   //     const urlLink = `https://api.themoviedb.org/3/genre/movie/list?api_key=${APIConfig.apiKey}`;
@@ -72,23 +76,23 @@ const MovieDetailPage = () => {
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const {
-    overview,
-    release_date,
-    vote_count,
-    vote_average,
-    poster_path,
-    original_title,
-    imdb_id,
-    original_language,
-    name,
-    backdrop_path,
-    runtime,
-  } = data;
-  const genresList = data.genres;
-  const countryList = data.production_countries;
-  const imgUrl = APIConfig.w500Image(poster_path);
-  const backgroundUrl = APIConfig.originalImage(backdrop_path);
+  // const {
+  //   overview,
+  //   release_date,
+  //   vote_count,
+  //   vote_average,
+  //   poster_path,
+  //   original_title,
+  //   imdb_id,
+  //   original_language,
+  //   name,
+  //   backdrop_path,
+  //   runtime,
+  // } = data;
+  // const genresList = data.genres;
+  // const countryList = data.production_countries;
+  // const imgUrl = APIConfig.w500Image(poster_path);
+  // const backgroundUrl = APIConfig.originalImage(backdrop_path);
 
   //   const videoNe = video && video[0];
   //   console.log("heheh", videoNe);
@@ -96,7 +100,7 @@ const MovieDetailPage = () => {
 
   return (
     <>
-      <Typography>
+      {/* <Typography>
         <div
           className="detailpage-body"
           style={{
@@ -230,8 +234,8 @@ const MovieDetailPage = () => {
 
             <div className="right-detail-page">
               <h2>CAST & CREW</h2>
-              <div className="cast-list">
-                {/* {credit &&
+              <div className="cast-list"> */}
+      {/* {credit &&
                   credit.map((i) => {
                     return (
                       <div className="cast-block">
@@ -249,11 +253,11 @@ const MovieDetailPage = () => {
                       </div>
                     );
                   })} */}
-              </div>
+      {/* </div>
             </div>
           </div>
         </div>
-      </Typography>
+      </Typography> */}
     </>
   );
 };

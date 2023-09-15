@@ -5,7 +5,7 @@ import axios from "axios";
 import { useState } from "react";
 
 const useGenreList = () => {
-  const urlLink = ` ${APIConfig.baseUrl}${tmdbAPI.genre("movie")}${
+  const urlLink = `${APIConfig.baseUrl}${tmdbAPI.genre("movie")}${
     APIConfig.apiKey
   }`;
 

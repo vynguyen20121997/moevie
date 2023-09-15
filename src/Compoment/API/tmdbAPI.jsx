@@ -1,8 +1,7 @@
 import React from "react";
 import { APIConfig } from "./APIConfig";
 
-export const ontionalPageFilter =
-  "&page=" + Math.floor(Math.random() * 499 + 1);
+export const ontionalPageFilter = "&page=" + Math.floor(Math.random() * 88 + 1);
 
 export const category = {
   movie: "movie",
@@ -47,10 +46,12 @@ export const tmdbAPI = {
     const url = "genre/" + category[cate] + "/list";
     return url;
   },
+
   detail: (cate, id) => {
     const url = category[cate] + "/" + id;
     return url;
   },
+
   credits: (cate, id) => {
     const url = category[cate] + "/" + id + "/credits";
     return url, { params: {} };
