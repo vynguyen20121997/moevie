@@ -1,12 +1,31 @@
 import React from "react";
-import HeroSlider from "./BodyCompoment/HeroSlider";
-import { OnfetchFunction } from "../Compoment/API/OnfetchMovieHook";
-import { MovieSlider } from "./BodyCompoment/SliderContainer";
-const Body = () => {
-  const { data: popularMovies } = OnfetchFunction("popular");
-  const { data: nowPlayingMovies } = OnfetchFunction("now_playing");
-  const { data: topRatedMovies } = OnfetchFunction("top_rated");
-  const { data: UpComingMovies } = OnfetchFunction("upcoming");
+import HeroSlider from "../Compoment/SmallCompoment/HeroSlider";
+import { APIConfig } from "../Compoment/API/APIConfig";
+import { tmdbAPI } from "../Compoment/API/tmdbAPI";
+import { OnFetchAxios } from "../Compoment/API/OnfetchAxios";
+import { ontionalPageFilter } from "../Compoment/API/tmdbAPI";
+import { MovieSlider } from "../Compoment/SmallCompoment/SliderContainer";
+
+const HomePage = () => {
+  const { data: popularMovies } = OnFetchAxios(
+    tmdbAPI.getMoviesList("popular"),
+    ontionalPageFilter
+  );
+
+  const { data: nowPlayingMovies } = OnFetchAxios(
+    tmdbAPI.getMoviesList("now_playing"),
+    ontionalPageFilter
+  );
+  const { data: topRatedMovies } = OnFetchAxios(
+    tmdbAPI.getMoviesList("top_rated"),
+    ontionalPageFilter
+  );
+  const { data: UpComingMovies } = OnFetchAxios(
+    tmdbAPI.getMoviesList("upcoming"),
+    ontionalPageFilter
+  );
+  console.log("nowPlayingMovies", nowPlayingMovies);
+  console.log("topRatedMovies", topRatedMovies);
 
   return (
     <>
@@ -38,4 +57,4 @@ const Body = () => {
   );
 };
 
-export default Body;
+export default HomePage;

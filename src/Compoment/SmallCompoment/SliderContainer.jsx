@@ -1,4 +1,4 @@
-import { React, useEffect, useState, useMemo } from "react";
+import { React, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { APIConfig } from "../API/APIConfig";
 import { Button } from "@mui/material";
@@ -11,29 +11,16 @@ import "./style2.css";
 import Rating from "@mui/material/Rating";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
-import { ButtonContainer } from "../Button/GenresButton";
-import axios from "axios";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+// import { ButtonContainer } from "../Button/GenresButton";
 
 const CardContainer = (props) => {
   const { movieDetail } = props;
   const { vote_average, title, release_date, id, poster_path, genre_ids } =
     movieDetail;
   const [isHover, SetIsHover] = useState(false);
-  // const [genreList, setGenreList] = useState([]);
 
-  const { isLoading, error, data } = useQuery(["genreList"], () =>
-    axios.get(
-      `https://api.themoviedb.org/3/genre/movie/list?api_key=${APIConfig.apiKey}`
-    )
-  );
-  const genreList = data && data.data;
-  console.log("gi ne", genreList);
-  if (isLoading) {
-    return <p>Loading...</p>;
-  } else if (error) {
-    return <p>Error fetching genre list: {error.message}</p>;
-  }
+  //   const genreList = data && data.data;
+  //   console.log("gi ne", genreList);
 
   // const genreFilter = () => {
   //   const result = [];
@@ -45,20 +32,6 @@ const CardContainer = (props) => {
   //   }
   //   return result;
   // };
-  //  const OnFetchGenreist = () => {
-  //     const urlLink = `https://api.themoviedb.org/3/genre/movie/list?api_key=${APIConfig.apiKey}`;
-
-  //     fetch(urlLink)
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         setGenreList(data.genres);
-  //       });
-  //   };
-  // useEffect(() => {
-  //
-
-  //   OnFetchGenreist();
-  // }, []);
 
   const handleMouseEnter = () => {
     SetIsHover(true);
@@ -84,7 +57,6 @@ const CardContainer = (props) => {
     height: "270px",
     color: "white",
   };
-
   // const genreNames = genreFilter();
 
   return (
@@ -174,7 +146,7 @@ export default CardContainer;
 export const MovieSlider = (props) => {
   const { movies = [], movieCategoryTitle } = props;
   const [swiper, setSwiper] = useState(null);
-
+  const moviesData = movies && movies.results;
   return (
     <>
       <div className="button1">
@@ -192,7 +164,6 @@ export const MovieSlider = (props) => {
             </h3>
           </Button>
           <Button>
-            {" "}
             See all
             <NavigateNextIcon />
           </Button>
@@ -200,7 +171,6 @@ export const MovieSlider = (props) => {
 
         <div className="right">
           <Button onClick={() => swiper.slidePrev()}>
-            {" "}
             <ArrowBackIosNewIcon />
           </Button>
           <Button onClick={() => swiper.slideNext()}>
@@ -218,11 +188,12 @@ export const MovieSlider = (props) => {
             setSwiper(i);
           }}
         >
-          {movies.map((i, index) => (
-            <SwiperSlide>
-              <CardContainer movieDetail={i} />
-            </SwiperSlide>
-          ))}
+          {moviesData &&
+            moviesData.map((i, index) => (
+              <SwiperSlide>
+                <CardContainer movieDetail={i} />
+              </SwiperSlide>
+            ))}
         </Swiper>
       </div>
     </>

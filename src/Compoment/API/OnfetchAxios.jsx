@@ -1,24 +1,19 @@
-import { APIConfig } from "../Compoment/API/APIConfig";
+import { APIConfig } from "./APIConfig";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-export const GenreList = () => {
-
-    // const urlBase = 
-
-  const { isLoading, error, data } = useQuery(["genreList"], () =>
+export const OnFetchAxios = (funtion, ontionalFilter) => {
+  const { isLoading, error, data } = useQuery(["list"], () =>
     axios.get(
-      `https://api.themoviedb.org/3/genre/movie/list?api_key=${APIConfig.apiKey}`
+      `${APIConfig.baseUrl}${funtion}${APIConfig.apiKey}${ontionalFilter}`
     )
   );
-
   if (isLoading) {
     return <p>Loading...</p>;
   } else if (error) {
+    console.log("loi", error);
     return <p>Error fetching genre list: {error.message}</p>;
   } else {
-    return (
-      data
-    );
+    return data;
   }
 };

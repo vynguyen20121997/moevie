@@ -1,28 +1,25 @@
-import { APIConfig } from "../Compoment/API/APIConfig";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
+// import { APIConfig } from "../Compoment/API/APIConfig";
+// import { useQuery, useQueryClient } from "@tanstack/react-query";
+// import tmdbAPI from "../Compoment/API/tmdbAPI";
+// import axios from "axios";
+// import { colors } from "@mui/material";
+// import { SomeThingList } from "../Compoment/API/OnfetchAxios";
 
-export const GenreList = () => {
-  const queryClient = useQueryClient();
+// export const List = () => {
+//   const { data } = SomeThingList(tmdbAPI.getMoviesList("popular"));
+//   const dataRecive = data && data.results;
+//   console.log("nhận về:", dataRecive);
 
-  const { isLoading, error, data } = useQuery(["genreList"], () =>
-    axios.get(
-      `https://api.themoviedb.org/3/genre/movie/list?api_key=${APIConfig.apiKey}`
-    )
-  );
-  const genreList = data && data.data;
-  console.log("gi ne", genreList);
-  if (isLoading) {
-    return <p>Loading...</p>;
-  } else if (error) {
-    return <p>Error fetching genre list: {error.message}</p>;
-  } else {
-    return (
-      <ul>
-        {data.data.genres.map((genre) => (
-          <li key={genre.id}>{genre.name}</li>
-        ))}
-      </ul>
-    );
-  }
-};
+//   return (
+//     // <ul style={{ color: "white" }}>
+//     //   {data &&
+//     //     data.map((genre) => (
+//     //       <li style={{ color: "white" }} key={genre.id}>
+//     //         {genre.name}
+//     //       </li>
+//     //     ))}
+//     // </ul>
+//     <div></div>
+//   );
+// };
+// // };
