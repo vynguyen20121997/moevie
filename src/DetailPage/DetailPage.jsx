@@ -23,90 +23,66 @@ import CardMedia from "@mui/material/CardMedia";
 import { OnFetchAxios } from "../Compoment/API/OnfetchAxios";
 import { tmdbAPI } from "../Compoment/API/tmdbAPI";
 import useGenreList from "../Compoment/Data-Hooks/GenresListHooks";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { ButtonContainer } from "../Compoment/Button/GenresButton";
 
 const MovieDetailPage = () => {
-  //   const [genreList, setGenreList] = useState([]);
   const [open, setOpen] = useState(false);
   const params = useParams();
-  //   const { data: video } = OnFetchVideo(params.movieId);
-  //   const [data, setData] = useState([]);xxx
-  //   const [credit, setCredit] = useState([]);
 
   const idMovie = params.movieId;
-  const url = tmdbAPI.detail("movie", idMovie);
-  console.log("link", url);
-  const { data: heehe } = OnFetchAxios(url, null, "movienowseeing");
-  console.log("DATAS", heehe);
+  const url_MovieData = tmdbAPI.detail("movie", idMovie);
+  const { data } = OnFetchAxios(url_MovieData, null, "movieNowWatching");
+  const url_MovieCredit = tmdbAPI.credits("movie", idMovie);
+  const { data: credit } = OnFetchAxios(url_MovieCredit, null, "movieCredit");
+  const url_MovieVideo = tmdbAPI.getVideos("movie", idMovie);
+  const { data: video } = OnFetchAxios(url_MovieVideo, null, "movieVideo");
+  const { data: genreList } = useGenreList();
+  // console.log("danh sach cast", credit);
+  // console.log("DATAS", data);
 
-  const { data } = useGenreList();
-  console.log("lay gi ve", data);
-
-  //   const OnFetchGenreist = () => {
-  //     const urlLink = `https://api.themoviedb.org/3/genre/movie/list?api_key=${APIConfig.apiKey}`;
-
-  //     fetch(urlLink)
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         setGenreList(data);
-  //       });
-  //   };
-
-  //   const OnFetchmovieDetails = (movieId) => {
-  //     const urlLink = `https://api.themoviedb.org/3/movie/${params.movieId}?api_key=${APIConfig.apiKey}`;
-  //     fetch(urlLink)
-  //       .then((response) => response.json())
-  //       .then((e) => {
-  //         setData(e);
-  //       });
-  //   };
-
-  //   const OnFetchDataList = () => {
-  //     const urlLink = `https://api.themoviedb.org/3/movie/${params.movieId}/credits?api_key=${APIConfig.apiKey}`;
-  //     fetch(urlLink)
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         setCredit(data.cast);
-  //       });
-  //   };
-  //   useEffect(() => {
-  //     OnFetchmovieDetails();
-  //     OnFetchGenreist();
-  //     OnFetchDataList();
-  //   }, []);
+  const {
+    overview,
+    release_date,
+    vote_count,
+    vote_average,
+    poster_path,
+    original_title,
+    imdb_id,
+    original_language,
+    name,
+    backdrop_path,
+    runtime,
+    genres,
+  } = data;
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  // const {
-  //   overview,
-  //   release_date,
-  //   vote_count,
-  //   vote_average,
-  //   poster_path,
-  //   original_title,
-  //   imdb_id,
-  //   original_language,
-  //   name,
-  //   backdrop_path,
-  //   runtime,
-  // } = data;
-  // const genresList = data.genres;
-  // const countryList = data.production_countries;
-  // const imgUrl = APIConfig.w500Image(poster_path);
-  // const backgroundUrl = APIConfig.originalImage(backdrop_path);
 
-  //   const videoNe = video && video[0];
-  //   console.log("heheh", videoNe);
-  //   const urlVideo = `https://www.youtube.com/embed/${videoNe && videoNe.key}`;
+  const genresList = data.genres;
+  const countryList = data.production_countries;
+  const imgUrl = APIConfig.w500Image(poster_path);
+  const backgroundUrl = APIConfig.originalImage(backdrop_path);
+  const cast = credit && credit.cast;
+  const videoData = video && video.results;
+  // console.log("gi daya", videoData);
+
+  const videoNe = videoData && videoData[0];
+  const urlVideo = `https://www.youtube.com/embed/${videoNe && videoNe.key}`;
 
   return (
     <>
-      {/* <Typography>
+      <Typography>
         <div
           className="detailpage-body"
           style={{
             backgroundImage: `linear-gradient(to bottom,
            rgba(0, 0, 0, 0.1),
            rgba(0, 0, 0, 10)), url(${backgroundUrl})`,
+            width: "100%",
+            // paddingLeft: "1%",
+            // paddingRight: "2%",
           }}
         >
           <div className="detail-page">
@@ -160,7 +136,7 @@ const MovieDetailPage = () => {
                       width="100%"
                       height="100%"
                       component="iframe"
-                      //   src={urlVideo}
+                      src={urlVideo}
                       AutoPlay
                     />
                   </Box>
@@ -191,7 +167,7 @@ const MovieDetailPage = () => {
                                 style={{ color: "white" }}
                                 align="right"
                               >
-                                <Button variant="outlined">{i.name}</Button>
+                                <ButtonContainer variant="outlined" genre={i} />
                               </TableCell>
                             ))}
                         </TableRow>
@@ -234,9 +210,9 @@ const MovieDetailPage = () => {
 
             <div className="right-detail-page">
               <h2>CAST & CREW</h2>
-              <div className="cast-list"> */}
-      {/* {credit &&
-                  credit.map((i) => {
+              <div className="cast-list">
+                {cast &&
+                  cast.map((i) => {
                     return (
                       <div className="cast-block">
                         <div className="img-cast-block">
@@ -252,12 +228,12 @@ const MovieDetailPage = () => {
                         </div>
                       </div>
                     );
-                  })} */}
-      {/* </div>
+                  })}
+              </div>
             </div>
           </div>
         </div>
-      </Typography> */}
+      </Typography>
     </>
   );
 };

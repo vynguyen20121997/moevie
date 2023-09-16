@@ -36,7 +36,7 @@ export const tmdbAPI = {
 
   getVideos: (cate, id) => {
     const url = category[cate] + "/" + id + "/videos";
-    return url, { params: {} };
+    return url;
   },
   search: (cate, params) => {
     const url = "search/" + category[cate];
@@ -54,7 +54,7 @@ export const tmdbAPI = {
 
   credits: (cate, id) => {
     const url = category[cate] + "/" + id + "/credits";
-    return url, { params: {} };
+    return url;
   },
   similar: (cate, id) => {
     const url = category[cate] + "/" + id + "/similar";

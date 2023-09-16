@@ -28,7 +28,6 @@ const HomePage = () => {
     ontionalPageFilter,
     "upcoming"
   );
-  console.log("topRatedMovies", topRatedMovies);
 
   return (
     <>

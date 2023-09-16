@@ -11,6 +11,7 @@ const useGenreList = () => {
 
   return useQuery(["genreList"], () => axios.get(urlLink), {
     cacheTime: Infinity,
+    timeout: 5000,
   });
 };
 

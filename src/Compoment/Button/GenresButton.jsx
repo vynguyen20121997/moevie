@@ -1,40 +1,42 @@
-// import React, { useState, useEffect } from 'react'
-// // import { OnfetchGenresList } from '../API/OnfetchGenresList'
-// import { APIConfig } from '../API/APIConfig'
-// import { Button } from '@mui/material'
-// import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from "react";
+// import { OnfetchGenresList } from '../API/OnfetchGenresList'
+import { APIConfig } from "../API/APIConfig";
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
+import useGenreList from "../Data-Hooks/GenresListHooks";
 
-// export const GenresButton = (props) => {
-//   const { genre = [], color } = props;
-//   const [genres, setGenres] = useState([])
+export const GenresButton = (props) => {
+  //   const { genre = [], color } = props;
+  const { data: genreList } = useGenreList();
+  const genreListData = genreList && genreList.data.genres;
 
-//   const OnFetchDataList = () => {
-//     const urlLink = `https://api.themoviedb.org/3/genre/movie/list?api_key=${APIConfig.apiKey}`
-//     // const urlLink = `${url}?api_key=${APIConfig.apiKey}`
-//     fetch(urlLink)
-//       .then((response) => response.json())
-//       .then((data) => {
-//         setGenres(data);
-//       })
-//   };
+  console.log("nut", genreListData);
+  return (
+    <>
+      {/* genreListData?.genreListData?. */}
+      {genreListData &&
+        genreListData.map((i) => {
+          const styleObject = {
+            maxWidth: "225px",
+            fontSize: "16px",
+            minWidth: "225px",
+          };
+          return (
+            <div style={{ marginTop: "5%", display: "block" }}>
+              <ButtonContainer
+                stylebutton={styleObject}
+                genre={i}
+                variant="outlined"
+                size="large"
+              />
+            </div>
+          );
+        })}
+    </>
+  );
+};
 
-//   useEffect(() => {
-//     OnFetchDataList();
-//   }, []);
-
-//   return (
-//     <>
-//       {genres?.genres?.map((i) => (
-
-//         <div style={{ marginTop: '5%' }} >
-//         <ButtonContainer
-//           genre={i} variant="outlined" size="large"/>
-//         </div>
-//       ))}
-//     </>)
-// }
-
-// export default GenresButton;
+export default GenresButton;
 
 export const ButtonContainer = (props) => {
   const { genre, variant, size, stylebutton } = props;
@@ -43,6 +45,7 @@ export const ButtonContainer = (props) => {
     <>
       <Link to={`/genres/${genreId}`}>
         <Button
+          style={stylebutton}
           sx={size}
           variant={variant}
           color={

@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./HomePage/HomePage";
 import Header from "./Header/Header";
 import MovieDetailPage from "./DetailPage/DetailPage";
-// import Footer from "./Footer/Footer";
+import Footer from "./Footer/Footer";
 // import { GenreList } from "./Test/TestAgain";
 // import GenresPage from "./Genres Page/GenresPage";
 // import { OnfetchDataById } from "./Compoment/API/OnfetchDataById";
@@ -43,7 +43,7 @@ function App() {
               // <Route path="/b" element={<Testings />} /> */}
               <Route path="/b" element={<Testings />} />
             </Routes>
-            {/* <Footer /> */}
+            <Footer />
           </BrowserRouter>
         </QueryClientProvider>
       </div>

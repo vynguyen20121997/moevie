@@ -16,7 +16,7 @@ import Typography from "@mui/material/Typography";
 import { Fab } from "@mui/material";
 import ExploreIcon from "@mui/icons-material/Explore";
 import { APIConfig } from "../Compoment/API/APIConfig";
-// import GenresButton from "../Compoment/Button/GenresButton";
+import GenresButton from "../Compoment/Button/GenresButton";
 
 const Header = () => {
   const [sidenav, setSideNav] = useState(false);
@@ -137,7 +137,9 @@ const Header = () => {
                   <p>Discovery</p>
                 </IconButton>
               </Link>
-              <div>{/* <GenresButton /> */}</div>
+              <div style={{ marginTop: "0", paddingTop: "0" }}>
+                <GenresButton />
+              </div>
             </div>
           </div>
         </div>
