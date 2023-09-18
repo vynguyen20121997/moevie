@@ -38,6 +38,10 @@ export const tmdbAPI = {
     const url = category[cate] + "/" + id + "/videos";
     return url;
   },
+
+
+  
+
   search: (cate, params) => {
     const url = "search/" + category[cate];
     return url, params;
@@ -46,6 +50,14 @@ export const tmdbAPI = {
     const url = "genre/" + category[cate] + "/list";
     return url;
   },
+ similar: (cate, id) => {
+    const url = category[cate] + "/" + id + "/similar";
+    return url, { params: {} };
+  },
+
+
+
+
 
   detail: (cate, id) => {
     const url = category[cate] + "/" + id;
@@ -56,9 +68,6 @@ export const tmdbAPI = {
     const url = category[cate] + "/" + id + "/credits";
     return url;
   },
-  similar: (cate, id) => {
-    const url = category[cate] + "/" + id + "/similar";
-    return url, { params: {} };
-  },
+ 
 };
 // export default tmdbAPI;

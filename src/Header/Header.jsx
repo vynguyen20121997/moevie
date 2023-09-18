@@ -115,7 +115,7 @@ const Header = () => {
                 <Link to={`/`}>
                   <IconButton size="large" edge="start" color="primary">
                     <HomeIcon fontSize="large" />
-                    <p>Home</p>
+                    <Typography>Home</Typography>
                   </IconButton>
                 </Link>
               </div>
@@ -134,7 +134,7 @@ const Header = () => {
               <Link to={`/genres`}>
                 <IconButton size="large" edge="start" color="primary">
                   <ExploreIcon fontSize="inherit" />
-                  <p>Discovery</p>
+                  <Typography>Discovery</Typography>
                 </IconButton>
               </Link>
               <div style={{ marginTop: "0", paddingTop: "0" }}>
@@ -143,7 +143,7 @@ const Header = () => {
             </div>
           </div>
         </div>
-      </Typography>{" "}
+      </Typography>
     </>
   );
 };
