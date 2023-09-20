@@ -1,10 +1,10 @@
-// import React, { useEffect, useState } from 'react'
-// import "./GenresStyle.css"
-// import { OnfetchGenresHook } from '../Compoment/API/OnfetchMoviebyGenresHook'
-// import { APIConfig } from '../Compoment/API/APIConfig';
-// import { MovieSlider } from '../HomePage/BodyCompoment/SliderContainer';
+import React, { useEffect, useState } from "react";
+import "./GenresStyle.css";
+import { OnFetchAxiosOptions } from "../Compoment/API/OnfetchAxios";
+import { APIConfig } from "../Compoment/API/APIConfig";
+import SliderContainer from "../Compoment/SmallCompoment/SliderContainer";
 
-// const GenresPage = () => {
+const GenresPage = () => {
 //       const { data: action } = OnfetchGenresHook(28);
 //       const { data: adventure } = OnfetchGenresHook(12);
 //       const { data: animation } = OnfetchGenresHook(16);
@@ -17,6 +17,10 @@
 //       const { data: horror } = OnfetchGenresHook(27);
 //       const { data: history } = OnfetchGenresHook(36);
 //       const { data: romance } = OnfetchGenresHook(10749);
+
+
+
+
 
 //       // const [ genres, setGenres]= useState([])
 //       // const fetchGenresList = () =>{
@@ -33,17 +37,17 @@
 
 //       // }
 
-//       return (
-//             <div style={{
-//                   width: '100%',
-//                   paddingTop: '4%',
-//             }}>
+      return (
+            <div style={{
+                  width: '100%',
+                  paddingTop: '4%',
+            }}>
 
-//                   <div className='genresSlider' style={{ marginTop: '1%' }} >
-//                         <MovieSlider
-//                               movies={action}
+{/* //                   <div className='genresSlider' style={{ marginTop: '1%' }} > */}
+{/* //                         <MovieSlider */}
+{/* //                               movies={action}
 //                               movieCategoryTitle="Action"
-//                         />
+//                         /> */}
 //                   </div>
 //                   <div className='genresSlider'  >
 
@@ -123,8 +127,8 @@
 //                         />
 //                   </div>
 
-//             </div>
-//       )
-// }
+            // </div>
+      )
+}
 
-// export default GenresPage
+export default GenresPage
