@@ -13,7 +13,6 @@ export const GenresButton = (props) => {
   console.log("nut", genreListData);
   return (
     <>
-      {/* genreListData?.genreListData?. */}
       {genreListData &&
         genreListData.map((i) => {
           const styleObject = {

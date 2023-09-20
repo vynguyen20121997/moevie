@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
@@ -9,18 +11,37 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
-import "./header.css";
 import HomeIcon from "@mui/icons-material/Home";
 import CloseIcon from "@mui/icons-material/Close";
 import Typography from "@mui/material/Typography";
 import { Fab } from "@mui/material";
 import ExploreIcon from "@mui/icons-material/Explore";
-import { APIConfig } from "../Compoment/API/APIConfig";
-import GenresButton from "../Compoment/Button/GenresButton";
+import "./header.css";
+import Box from "@mui/material/Box";
+import MenuItem from "@mui/material/MenuItem";
+// import { APIConfig } from "../Compoment/API/APIConfig";
+// import GenresButton from "../Compoment/Button/GenresButton";
 
-const Header = () => {
-  const [sidenav, setSideNav] = useState(false);
-  const urlLink = `https://api.themoviedb.org/3/genre/movie/list?api_key=${APIConfig.apiKey}`;
+interface HeaderProps {}
+const menuItems = [
+  {
+    title: "HOME",
+    // icon: <HomeIcon />,
+    path: "/",
+  },
+  {
+    title: "MOVIES",
+    // icon: <HomeIcon />,
+    path: "/",
+  },
+  {
+    title: "TV SHOW",
+    // icon: <HomeIcon />,
+    path: "/",
+  },
+];
+const Header = ({}: HeaderProps) => {
+  const [sidenav, setSideNav] = useState<boolean>(false);
 
   const onOpenSideNav = () => {
     setSideNav(true);
@@ -34,9 +55,42 @@ const Header = () => {
     width: sidenav ? "15%" : "0",
     padding: "0",
   };
+
   return (
-    <>
-      <Typography>
+//     <>
+//       <AppBar position="static">
+//         <Toolbar>
+//           <Box
+//             display="flex"
+//             justifyContent="space-between"
+//             alignItems="center"
+//             width={1}
+//             py={2}
+//           >
+//             <Box>
+//             <Typography variant="h6">React TypeScript</Typography>
+// </Box>
+//             <Box textAlign="center">
+//               <ButtonGroup variant="text" aria-label="text button group">
+//                 {menuItems.map((item, index) => (
+//                   <Button>
+//                     <Link className="list-element" to={item.path}>
+//                       <h3>{item.title}</h3>
+//                     </Link>
+//                   </Button>
+//                 ))}
+//                 ;
+//               </ButtonGroup>
+//             </Box>
+
+         
+//           </Box>
+//         </Toolbar>
+//       </AppBar>
+//     </>
+//   );
+// };
+<>
         <div className="header">
           <div
             style={{
@@ -51,7 +105,7 @@ const Header = () => {
                 width="80px"
                 src="https://i.ibb.co/K9NfKFW/wired-gradient-62-film.png"
                 alt="wired-gradient-62-film"
-                border="0"
+             
               />
             </Link>
             <Link to="/">
@@ -60,30 +114,22 @@ const Header = () => {
               </Button>
             </Link>
           </div>
+
           <div
             style={{
               display: "flex",
               border: "0",
               margin: "0",
               marginRight: "5%",
-            }}
-          >
+            }} >      
             <ButtonGroup variant="text" aria-label="text button group">
-              <Button>
-                <Link className="list-element" to="/">
-                  HOME
-                </Link>{" "}
-              </Button>
-              <Button>
-                <Link className="list-element" to="/">
-                  MOVIES
-                </Link>
-              </Button>
-              <Button>
-                <Link className="list-element" to="/">
-                  TV SHOW
-                </Link>
-              </Button>
+              {menuItems.map((item, index) => (
+                <Button>
+                  <Link className="list-element" to={item.path}>
+                    <h3>{item.title}</h3>
+                  </Link>
+                </Button>
+              ))}
             </ButtonGroup>
           </div>
           <div>
@@ -92,7 +138,6 @@ const Header = () => {
               size="large"
               edge="end"
               aria-label="account of current user"
-              //   aria-controls={menuId}
               aria-haspopup="true"
               color="primary"
             >
@@ -109,7 +154,7 @@ const Header = () => {
             </IconButton>
           </div>
 
-          <div id="mySidenav" classNames="sidenav" style={displaySidenav}>
+          <div id="mySidenav" className="sidenav" style={displaySidenav}>
             <div id="home-SideNav" className="home-sidenav">
               <div className="homebutton">
                 <Link to={`/`}>
@@ -123,7 +168,7 @@ const Header = () => {
                 <Button size="small" variant="contained" color="primary">
                   <CloseIcon
                     onClick={onCloseSideNav}
-                    color="white"
+                   
                     fontSize="small"
                   />
                 </Button>
@@ -138,14 +183,12 @@ const Header = () => {
                 </IconButton>
               </Link>
               <div style={{ marginTop: "0", paddingTop: "0" }}>
-                <GenresButton />
               </div>
             </div>
           </div>
         </div>
-      </Typography>{" "}
-    </>
+        </>
   );
-};
+ };
 
-export default Header;
+ export default Header;
