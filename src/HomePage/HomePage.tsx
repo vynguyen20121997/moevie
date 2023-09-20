@@ -53,7 +53,6 @@ const HomePage = () => {
   if (popularLoading) return null;
   if (topRatedLoading) return null;
   if (UpcomingLoading) return null;
-  console.log("gif day", UpcomingData);
 
   return (
     <>

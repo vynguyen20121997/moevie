@@ -1,18 +1,18 @@
 import React from "react";
 
-export const APIConfig:
-  {
-    baseUrl: string;
-    apiKey: string;
-    originalImage: (imgPath: string) => string;
-    w500Image: (imgPath: string) => string;
-    w300Image: (imgPath: string) => string;
-    w200Image: (imgPath: string) => string;
-    w100Image: (imgPath: string) => string;
-  } = {
+export const APIConfig: {
+  baseUrl: string;
+  apiKey: string;
+  originalImage: (imgPath: string) => string;
+  w500Image: (imgPath: string) => string;
+  w300Image: (imgPath: string) => string;
+  w200Image: (imgPath: string) => string;
+  w100Image: (imgPath: string) => string;
+} = {
   baseUrl: "https://api.themoviedb.org/3/",
   apiKey: "?api_key=5992fec4de8ddfb9864b94bdf9cfac0e",
-  originalImage: (imgPath: string) => `https://image.tmdb.org/t/p/original/${imgPath}`,
+  originalImage: (imgPath: string) =>
+    `https://image.tmdb.org/t/p/original/${imgPath}`,
   w500Image: (imgPath: string) => `https://image.tmdb.org/t/p/w500/${imgPath}`,
   w300Image: (imgPath: string) => `https://image.tmdb.org/t/p/w300/${imgPath}`,
   w200Image: (imgPath: string) => `https://image.tmdb.org/t/p/w200/${imgPath}`,
@@ -20,16 +20,15 @@ export const APIConfig:
 };
 
 export const MoviesEndPoints: {
-  nowPlaying: string,
-  popular: string,
-  topRated: string,
-  upcoming: string,
-  airingtoday: string,
-  ontheair: string,
-  populartv: string,
-  topratedtv: string,
-  genre: string,
-
+  nowPlaying: string;
+  popular: string;
+  topRated: string;
+  upcoming: string;
+  airingtoday: string;
+  ontheair: string;
+  populartv: string;
+  topratedtv: string;
+  genre: string;
 } = {
   nowPlaying: "https://api.themoviedb.org/3/movie/now_playing",
   topRated: "https://api.themoviedb.org/3/movie/top_rated",
@@ -40,14 +39,17 @@ export const MoviesEndPoints: {
   populartv: "https://api.themoviedb.org/3/tv/popular",
   topratedtv: "https://api.themoviedb.org/3/tv/top_rated",
   genre: "https://api.themoviedb.org/3/genre/movie/list",
-}
+};
 
-export const MoviebyOptions: { byGenreId: (id: number) => string; byPageNumber:string} = {
+export const MoviebyOptions: {
+  byGenreId: (id: number) => string;
+  byPageNumber: string;
+} = {
   byGenreId: (id: number) => `&with_genres=${id}`,
   byPageNumber: `&page=${Math.floor(Math.random() * 88 + 1)}`,
 };
 export const MoviesDetailEndPoints = {
-  details: (id: number) => `https://api.themoviedb.org/3/movie/${id}}`,
+  details: (id: string | undefined) => `https://api.themoviedb.org/3/movie/${id}}`,
   credits: (id: number) => `https://api.themoviedb.org/3/movie/${id}}/credits`,
   video: (id: number) => `https://api.themoviedb.org/3/movie/${id}/videos`,
-}
+};

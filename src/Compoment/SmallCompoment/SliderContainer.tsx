@@ -132,40 +132,42 @@ const SliderContainer: React.FC<PropType> = (props) => {
               };
               return (
                 <>
-                  <div
-                    // onMouseEnter={handleMouseEnter}
-                    // onMouseLeave={handleMouseLeave}
-                    className="movie-card"
-                    // style={boxStyle}
-                  >
-                    <img
-                      // style={{ opacity: isHover ? "0.5" : null }}
-                      src={APIConfig.w300Image(poster_path)}
-                      alt=""
-                    />
-
+                  {" "}
+                  <Link to={`/movies/${id}`}>
                     <div
-                      className="hide"
-                      // style={onHoverDisplaying}
                       // onMouseEnter={handleMouseEnter}
                       // onMouseLeave={handleMouseLeave}
+                      className="movie-card"
+                      // style={boxStyle}
                     >
-                      <div className="content-content-hide">
-                        <h4>{title}</h4>
-                        <h5>{release_date}</h5>
-                      </div>
+                      <img
+                        // style={{ opacity: isHover ? "0.5" : null }}
+                        src={APIConfig.w300Image(poster_path)}
+                        alt=""
+                      />
 
-                      <div className="rating-content-btn-hide">
-                        <Rating
-                          name="customized-10"
-                          size="small"
-                          readOnly
-                          value={ratingfixed}
-                        />
-                        <h5> {vote_average}/10</h5>
-                      </div>
-                      <div className="content-btn-hide">
-                        {/* <Link to={`/movies/${id}`}>
+                      <div
+                        className="hide"
+                        // style={onHoverDisplaying}
+                        // onMouseEnter={handleMouseEnter}
+                        // onMouseLeave={handleMouseLeave}
+                      >
+                        <div className="content-content-hide">
+                          <h4>{title}</h4>
+                          <h5>{release_date}</h5>
+                        </div>
+
+                        <div className="rating-content-btn-hide">
+                          <Rating
+                            name="customized-10"
+                            size="small"
+                            readOnly
+                            value={ratingfixed}
+                          />
+                          <h5> {vote_average}/10</h5>
+                        </div>
+                        <div className="content-btn-hide">
+                          {/* <Link to={`/movies/${id}`}>
                         <Button
                           style={{ borderRadius: "5px", padding: "5%" }}
                           variant="contained"
@@ -175,7 +177,7 @@ const SliderContainer: React.FC<PropType> = (props) => {
                           WATCH NOW
                         </Button>
                       </Link> */}
-                        {/* <Fab
+                          {/* <Fab
               style={{ marginLeft: "8%" }}
               size="medium"
               color="primary"
@@ -184,9 +186,10 @@ const SliderContainer: React.FC<PropType> = (props) => {
             >
               <AddIcon variant="contained" fontSize="medium" />
             </Fab> */}
+                        </div>
                       </div>
-                    </div>
-                  </div>
+                    </div>{" "}
+                  </Link>
                 </>
               );
             })}
