@@ -75,7 +75,7 @@
     opacity: 0.5;
   }
   .hide {
-    /* display: none; */
+    display: none;
     position: absolute;
     top: 1%;
     border-radius: 15px;
@@ -83,7 +83,7 @@
     width: 100%;
   }
   .hide:hover{
-  display: block;
+  display: block; 
   position: absolute;
   top: 0;
   border-radius: 15px;

@@ -21,90 +21,106 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import CardMedia from "@mui/material/CardMedia";
 import { OnFetchAxios } from "../Compoment/API/OnfetchAxios";
-import { tmdbAPI } from "../Compoment/API/tmdbAPI";
 import useGenreList from "../Compoment/Data-Hooks/GenresListHooks";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import { ButtonContainer } from "../Compoment/Button/GenresButton";
+// import { ButtonContainer } from "../Compoment/Button/GenresButton";
+// import { Movie } from "../Compoment/SmallCompoment/SliderContainer";
 
-const MovieDetailPage = () => {
+interface MovieObject {
+  id: number;
+  title: string;
+  original_title: string;
+  overview: string;
+  poster_path: string;
+  backdrop_path: string;
+  vote_count: number;
+  vote_average: number;
+  release_date: string;
+  popularity: number;
+  original_language:string;
+  imdb_id: number;
+  runtime: number;
+}
+
+type PropType = {
+  item: MovieObject;
+};
+const MovieDetailPage:React.FC<PropType> = () => {
   const [open, setOpen] = useState(false);
   const params = useParams();
 
   const idMovie = params.movieId;
-  const url_MovieData = tmdbAPI.detail("movie", idMovie);
-  const { data } = OnFetchAxios(url_MovieData, null, "movieNowWatching");
-  const url_MovieCredit = tmdbAPI.credits("movie", idMovie);
-  const { data: credit } = OnFetchAxios(url_MovieCredit, null, "movieCredit");
-  const url_MovieVideo = tmdbAPI.getVideos("movie", idMovie);
-  const { data: video } = OnFetchAxios(url_MovieVideo, null, "movieVideo");
+  // const url_MovieData = tmdbAPI.detail("movie", idMovie);
+  // const { data } = OnFetchAxios(url_MovieData, null, "movieNowWatching");
+  // const url_MovieCredit = tmdbAPI.credits("movie", idMovie);
+  // const { data: credit } = OnFetchAxios(url_MovieCredit, null, "movieCredit");
+  // const url_MovieVideo = tmdbAPI.getVideos("movie", idMovie);
+  // const { data: video } = OnFetchAxios(url_MovieVideo, null, "movieVideo");
   const { data: genreList } = useGenreList();
-  // console.log("danh sach cast", credit);
   // console.log("DATAS", data);
 
-  const {
-    overview,
-    release_date,
-    vote_count,
-    vote_average,
-    poster_path,
-    original_title,
-    imdb_id,
-    original_language,
-    name,
-    backdrop_path,
-    runtime,
-    genres,
-  } = data;
+  // const {
+  //   overview,
+  //   release_date,
+  //   vote_count,
+  //   vote_average,
+  //   poster_path,
+  //   original_title,
+  //   imdb_id,
+  //   original_language,
+  //   name,
+  //   backdrop_path,
+  //   runtime,
+  //   genres,
+  // } = data;
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const genresList = data.genres;
-  const countryList = data.production_countries;
-  const imgUrl = APIConfig.w500Image(poster_path);
-  const backgroundUrl = APIConfig.originalImage(backdrop_path);
-  const cast = credit && credit.cast;
-  const videoData = video && video.results;
+  // const genresList = data.genres;
+  // const countryList = data.production_countries;
+  // const imgUrl = APIConfig.w500Image(poster_path);
+  // const backgroundUrl = APIConfig.originalImage(backdrop_path);
+  // const cast = credit && credit.cast;
+  // const videoData = video && video.results;
   // console.log("gi daya", videoData);
 
-  const videoNe = videoData && videoData[0];
-  const urlVideo = `https://www.youtube.com/embed/${videoNe && videoNe.key}`;
+  // const videoNe = videoData && videoData[0];
+  // const urlVideo = `https://www.youtube.com/embed/${videoNe && videoNe.key}`;
 
   return (
     <>
       <Typography>
         <div
           className="detailpage-body"
-          style={{
-            backgroundImage: `linear-gradient(to bottom,
-           rgba(0, 0, 0, 0.1),
-           rgba(0, 0, 0, 10)), url(${backgroundUrl})`,
-            width: "100%",
-            // paddingLeft: "1%",
-            // paddingRight: "2%",
-          }}
+          // style={{
+          //   backgroundImage: `linear-gradient(to bottom,
+          //  rgba(0, 0, 0, 0.1),
+          //  rgba(0, 0, 0, 10)), url(${backgroundUrl})`,
+          //   width: "100%",
+          //   // paddingLeft: "1%",
+          //   // paddingRight: "2%",
+          // }}
         >
           <div className="detail-page">
             <div className="leftside-detail-page">
               <div>
-                <img src={imgUrl} alt={imdb_id} />
+                {/* <img src={imgUrl} alt={imdb_id} /> */}
               </div>
               <div className="left-detail">
                 <h4>
-                  {vote_average}
+                  {/* {vote_average} */}
                   <span> rattings</span>
                 </h4>
                 <h4>
-                  {vote_count}
+                  {/* {vote_count} */}
                   <span> reviews</span>
                 </h4>
               </div>
             </div>
 
             <div className="middleside-detail-page">
-              <h1 id="title">{original_title}</h1>
-              <h4 id="release-date">Release Date: {release_date}</h4>
+              {/* <h1 id="title">{original_title}</h1> */}
+              {/* <h4 id="release-date">Release Date: {release_date}</h4> */}
               <div className="buttongroup">
                 <Button
                   id="watch-button"
@@ -132,24 +148,28 @@ const MovieDetailPage = () => {
                       boxShadow: 24,
                     }}
                   >
-                    <CardMedia
+                    {/* <CardMedia
                       width="100%"
                       height="100%"
                       component="iframe"
                       src={urlVideo}
                       AutoPlay
-                    />
+                    /> */}
                   </Box>
                 </Modal>
 
-                <Fab id="other-button" variant="contained">
+                <Fab id="other-button"
+                // variant="contained"
+                >
                   <BookmarkBorderOutlinedIcon />
                 </Fab>
-                <Fab id="other-button" variant="contained">
+                <Fab id="other-button"
+                //  variant="contained"
+                 >
                   <ShareOutlinedIcon />
                 </Fab>
               </div>
-              <h4>{overview}</h4>
+              {/* <h4>{overview}</h4> */}
 
               <div className="moviedetail-table">
                 <h1>Details</h1>
@@ -161,7 +181,7 @@ const MovieDetailPage = () => {
                           <TableCell style={{ color: "white" }}>
                             <strong>Genres</strong>
                           </TableCell>
-                          {genresList &&
+                          {/* {genresList &&
                             genresList.map((i) => (
                               <TableCell
                                 style={{ color: "white" }}
@@ -169,13 +189,13 @@ const MovieDetailPage = () => {
                               >
                                 <ButtonContainer variant="outlined" genre={i} />
                               </TableCell>
-                            ))}
+                            ))} */}
                         </TableRow>
                         <TableRow>
                           <TableCell style={{ color: "white" }}>
                             <strong>Country of Origin</strong>
                           </TableCell>
-                          {countryList &&
+                          {/* {countryList &&
                             countryList.map((i) => (
                               <TableCell
                                 style={{ color: "white" }}
@@ -183,7 +203,7 @@ const MovieDetailPage = () => {
                               >
                                 {i.name}
                               </TableCell>
-                            ))}
+                            ))} */}
                         </TableRow>
 
                         <TableRow
@@ -198,7 +218,7 @@ const MovieDetailPage = () => {
                             <strong>Runtime</strong>
                           </TableCell>
                           <TableCell style={{ color: "white" }} align="right">
-                            {runtime}
+                            {/* {runtime} */}
                           </TableCell>
                         </TableRow>
                       </TableBody>
@@ -211,7 +231,7 @@ const MovieDetailPage = () => {
             <div className="right-detail-page">
               <h2>CAST & CREW</h2>
               <div className="cast-list">
-                {cast &&
+                {/* {cast &&
                   cast.map((i) => {
                     return (
                       <div className="cast-block">
@@ -228,7 +248,7 @@ const MovieDetailPage = () => {
                         </div>
                       </div>
                     );
-                  })}
+                  })} */}
               </div>
             </div>
           </div>

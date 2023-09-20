@@ -44,7 +44,6 @@ const SliderContainer: React.FC<PropType> = (props) => {
   const { options, items, movieCategoryTitle } = props;
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()]);
   const { data: genreList } = useGenreList();
-  console.log("gif day", genreList);
 
   const onButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
     const { autoplay } = emblaApi.plugins();

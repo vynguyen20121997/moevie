@@ -40,7 +40,6 @@ const HeroSlider: React.FC<PropType> = (props) => {
     align: "center",
     skipSnaps: false,
   });
-  console.log("hienra", items);
 
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<Array<number>>([]);

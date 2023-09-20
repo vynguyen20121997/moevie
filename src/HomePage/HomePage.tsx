@@ -29,7 +29,6 @@ const HomePage = () => {
     OnFetchAxios(fetchPopularMovies);
   const popularData = popularMoviesrData?.data?.results;
 
-  
   const urltopRatedMovies =
     MoviesEndPoints.topRated + APIConfig.apiKey + MoviebyOptions.byPageNumber;
   const fetchtopRatedMovies = {
@@ -38,19 +37,24 @@ const HomePage = () => {
   };
   const { data: topRatedMoviesrData, isLoading: topRatedLoading } =
     OnFetchAxios(fetchtopRatedMovies);
-  const topRatedData = popularMoviesrData?.data?.results;
-  //   const { data: topRatedMovies } = OnFetchAxios(
-  //     tmdbAPI.getMoviesList("top_rated"),
-  //     ontionalPageFilter,
-  //     "top_rated"
-  //   );
-  //   const { data: UpComingMovies } = OnFetchAxios(
-  //     tmdbAPI.getMoviesList("upcoming"),
-  //     ontionalPageFilter,
-  //     "upcoming"
-  //   );
+  const topRatedData = topRatedMoviesrData?.data?.results;
+
+  const urlUpcomingMovies =
+    MoviesEndPoints.upcoming + APIConfig.apiKey + MoviebyOptions.byPageNumber;
+  const fetchUpcomingMovies = {
+    url: urlUpcomingMovies,
+    key: "UpcomingMoviesHooks",
+  };
+  const { data: UpcomingMoviesrData, isLoading: UpcomingLoading } =
+    OnFetchAxios(fetchUpcomingMovies);
+  const UpcomingData = UpcomingMoviesrData?.data?.results;
 
   if (isLoading) return null;
+  if (popularLoading) return null;
+  if (topRatedLoading) return null;
+  if (UpcomingLoading) return null;
+  console.log("gif day", UpcomingData);
+
   return (
     <>
       <div style={{ boxShadow: " grey 0px 1px 50px -10px", width: "100%" }}>
@@ -69,15 +73,9 @@ const HomePage = () => {
           movieCategoryTitle="Now playing "
         />
       </div>
-      {/* //         <div style={{ margin: "1%" }}>
-//           <MovieSlider movies={topRatedMovies} movieCategoryTitle="Top Rated" />
-//         </div>
-
-//         <div style={{ margin: "1%" }}>
-//           <MovieSlider movies={UpComingMovies} movieCategoryTitle="Upcoming " />
-//         </div>
-//       </div>
-    </> */}{" "}
+      <div style={{ margin: "1%" }}>
+        <SliderContainer items={UpcomingData} movieCategoryTitle="Upcoming " />
+      </div>
     </>
   );
 };

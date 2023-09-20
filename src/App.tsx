@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import React from "react";
 import HomePage from "./HomePage/HomePage";
 // import { Test } from "./Test/test";
+import Footer from "./Footer/Footer";
 const queryClient = new QueryClient();
 
 function App(): JSX.Element {
@@ -33,7 +34,7 @@ function App(): JSX.Element {
               // <Route path="/b" element={<Testings />} /> */}
             {/* <Route path="/b" element={<Testings />} /> */}
           </Routes>
-          {/* <Footer /> */}
+          <Footer />
         </BrowserRouter>
       </QueryClientProvider>
     </div>
