@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useCallback, useEffect, useState } from "react";
+import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel, {
   EmblaCarouselType,
   EmblaOptionsType,
@@ -8,12 +9,15 @@ import useEmblaCarousel, {
   UseEmblaCarouselType,
 } from "embla-carousel-react";
 import "./test.css";
-import Fab from "@mui/material/Fab";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { Link, useNavigate } from "react-router-dom";
 import { APIConfig } from "../Compoment/API/APIConfig";
 import Button from "@mui/material/Button";
+import Rating from "@mui/material/Rating";
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
+import type * as CSS from "csstype";
 
 export interface Movie {
   id: number;
@@ -34,133 +38,173 @@ type PropType = {
 };
 const Test: React.FC<PropType> = (props) => {
   const { options, items } = props;
-  const navigate = useNavigate();
+  const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()]);
 
-  const [viewportRef, embla] = useEmblaCarousel({
-    align: "center",
-    skipSnaps: false,
-  });
-  console.log("hienra", items);
-
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [scrollSnaps, setScrollSnaps] = useState<Array<number>>([]);
-  // const [emblaRef, emblaApi] = useEmblaCarousel(options);
-  const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
-  const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
-
-  const scrollTo = useCallback(
-    (index: number) => embla && embla.scrollTo(index),
-    [embla]
-  );
-
-  const data = [1, 2, 3, 8, 9, 0, 8, 6, 66, 7];
-
-  const scrollPrev = useCallback(() => embla && embla.scrollPrev(), [embla]);
-  const scrollNext = useCallback(() => embla && embla.scrollNext(), [embla]);
-  const onSelect = useCallback(() => {
-    if (!embla) return;
-    setSelectedIndex(embla.selectedScrollSnap());
-  }, [embla, setSelectedIndex]);
-
-  const onSelectButton = useCallback((embla: EmblaCarouselType) => {
-    setPrevBtnDisabled(!embla.canScrollPrev());
-    setNextBtnDisabled(!embla.canScrollNext());
+  const onButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
+    const { autoplay } = emblaApi.plugins();
+    if (!autoplay) return;
+    if (autoplay.options.stopOnInteraction !== false) autoplay.stop();
   }, []);
 
-  useEffect(() => {
-    if (!embla) return;
-    onSelect();
-    setScrollSnaps(embla.scrollSnapList());
-    embla.on("select", onSelect);
-    onSelectButton(embla);
-  }, [embla, setScrollSnaps, onSelect]);
+  const {
+    prevBtnDisabled,
+    nextBtnDisabled,
+    onPrevButtonClick,
+    onNextButtonClick,
+  } = usePrevNextButtons(emblaApi, onButtonClick);
 
+  console.log("hehhe", items);
   return (
-    <div className="App">
-      <div className="embla">
-        <div className="btn1">
-            <Fab
-              onClick={scrollPrev}
-              // disabled={prevBtnDisabled}
-              color="primary"
-            >
-              <ChevronLeftIcon fontSize="large" />
-            </Fab>
-          </div>
-        <div className="embla__viewport" ref={viewportRef}>
-          <div className="embla__container">
-            {items.map((i, index) => (
-              <div
-                className="embla__slide"
-                key={index}
-                style={{
-                  backgroundImage: `url(${APIConfig.originalImage(
-                    i.backdrop_path
-                  )})`,
-                }}
-              >
-                <div className="embla__slide__inner">
+    <div className="embla_slider">
+      <div className="embla__viewport_slider" ref={emblaRef}>
+        <div className="embla__container_slider">
+          {items.map((item, index) => {
+            const [isHover, SetIsHover] = useState<boolean>(false);
+            const handleMouseEnter = () => {
+              SetIsHover(true);
+            };
+            const handleMouseLeave = () => {
+              SetIsHover(false);
+            };
+            const { vote_average, title, release_date, id, poster_path } = item;
+            const ratingfixed = vote_average / 2;
+            const boxStyle: CSS.Properties = {
+              scale: isHover ? "1" : null,
+              boxShadow: isHover
+                ? "0px 10px 20px 2px rgba(0, 200, 255, 0.7)"
+                : null,
+              transform: isHover ? "translateY(-5px)" : null,
+            };
+            const onHoverDisplaying: CSS.Properties = {
+              display: isHover ? "block" : "",
+              position: "absolute",
+              top: "0",
+              borderRadius: "15px",
+              width: "100%",
+              height: "270px",
+              color: "white",
+            };
+            return (
+              <>
+                <div
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                  className="movie-card"
+                  style={boxStyle}
+                >
+                  <img
+                    // style={{ opacity: isHover ? "0.5" : null }}
+                    src={APIConfig.w300Image(poster_path)}
+                    alt=""
+                  />
+
                   <div
-                    className="poster"
-                    style={{ marginTop: "10%", position: "relative" }}
+                    className="hide"
+                    style={onHoverDisplaying}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
                   >
-                    <Link to={`/movies/${i.id}`}>
-                      <img
-                        onClick={() => {
-                          navigate(`/movies/${i.id}`);
-                        }}
-                        src={APIConfig.w300Image(i.poster_path)}
-                        alt=""
+                    <div className="content-content-hide">
+                      <h4>{title}</h4>
+                      <h5>{release_date}</h5>
+                    </div>
+
+                    <div className="rating-content-btn-hide">
+                      <Rating
+                        name="customized-10"
+                        size="small"
+                        readOnly
+                        value={ratingfixed}
                       />
-                    </Link>
-                  </div>
-                  <div className="info">
-                    <h1>{i.title}</h1>
-                    <h4 style={{ maxHeight: "20%", position: "relative" }}>
-                      {i.overview}
-                    </h4>
-                    <div className="btn">
-                      <Button
-                        onClick={() => {
-                          navigate(`/movies/${i.id}`);
-                        }}
-                        size="large"
-                        variant="contained"
-                      >
-                        WATCH NOW
-                      </Button>
+                      <h5> {vote_average}/10</h5>
+                    </div>
+                    <div className="content-btn-hide">
+                      <Link to={`/movies/${id}`}>
+                        {" "}
+                        <Button
+                          style={{ borderRadius: "5px", padding: "5%" }}
+                          variant="contained"
+                          size="medium"
+                          className="play-btn-content-btn-hide"
+                        >
+                          WATCH NOW
+                        </Button>
+                      </Link>
+                      {/* <Fab
+              style={{ marginLeft: "8%" }}
+              size="medium"
+              color="primary"
+              variant="contained"
+              className="play-btn-content-btn-hide"
+            >
+              <AddIcon variant="contained" fontSize="medium" />
+            </Fab> */}
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>{" "}
-        <div className="btn2">
-            <Fab
-              color="primary"
-              onClick={scrollNext}
-              disabled={nextBtnDisabled}
-            >
-              <ChevronRightIcon fontSize="large" />
-            </Fab>
-          </div>
+              </>
+            );
+          })}
+        </div>
       </div>
 
-      <div className="embla__navigator">
-        {scrollSnaps.map((_, index) => (
-          <div
-            className="embla__dots"
-            key={index}
-            style={{
-              backgroundColor:
-                selectedIndex === index ? "lightblue" : "lightgray",
-            }}
-            onClick={() => scrollTo(index)}
-          />
-        ))}
+      <div className="embla__buttons_slider">
+        <Button onClick={onPrevButtonClick} disabled={prevBtnDisabled}>
+          On left
+        </Button>
+        <Button onClick={onNextButtonClick} disabled={nextBtnDisabled}>
+          On Right
+        </Button>
       </div>
     </div>
   );
 };
+
 export default Test;
+
+type UsePrevNextButtonsType = {
+  prevBtnDisabled: boolean;
+  nextBtnDisabled: boolean;
+  onPrevButtonClick: () => void;
+  onNextButtonClick: () => void;
+};
+
+export const usePrevNextButtons = (
+  emblaApi: EmblaCarouselType | undefined,
+  onButtonClick?: (emblaApi: EmblaCarouselType) => void
+): UsePrevNextButtonsType => {
+  const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
+  const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
+
+  const onPrevButtonClick = useCallback(() => {
+    if (!emblaApi) return;
+    emblaApi.scrollPrev();
+    if (onButtonClick) onButtonClick(emblaApi);
+  }, [emblaApi, onButtonClick]);
+
+  const onNextButtonClick = useCallback(() => {
+    if (!emblaApi) return;
+    emblaApi.scrollNext();
+    if (onButtonClick) onButtonClick(emblaApi);
+  }, [emblaApi, onButtonClick]);
+
+  const onSelect = useCallback((emblaApi: EmblaCarouselType) => {
+    setPrevBtnDisabled(!emblaApi.canScrollPrev());
+    setNextBtnDisabled(!emblaApi.canScrollNext());
+  }, []);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    onSelect(emblaApi);
+    emblaApi.on("reInit", onSelect);
+    emblaApi.on("select", onSelect);
+  }, [emblaApi, onSelect]);
+
+  return {
+    prevBtnDisabled,
+    nextBtnDisabled,
+    onPrevButtonClick,
+    onNextButtonClick,
+  };
+};

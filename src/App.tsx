@@ -11,7 +11,7 @@ function App(): JSX.Element {
     <div
       className="App"
       style={{
-        // backgroundColor: "black",
+        backgroundColor: "black",
         width: "100%",
         minHeight: " 100vh",
       }}

@@ -1,152 +1,159 @@
-// import React, { ReactNode, useCallback, useEffect } from "react";
-// import { useTheme } from "@mui/material/styles";
-// import Button from "@mui/material/Button";
-// import { useState, useContext } from "react";
-// import { APIConfig } from "../API/APIConfig";
-// import { OnFetchAxios } from "../API/OnfetchAxios";
-// import { Link, Navigate, useNavigate } from "react-router-dom";
-// import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-// import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-// import "./style.css";
-// import Fab from "@mui/material/Fab";
-// import "@fontsource/roboto/300.css";
-// import "@fontsource/roboto/400.css";
-// import "@fontsource/roboto/500.css";
-// import "@fontsource/roboto/700.css";
-// // import { Movie } from "../TS_TYPES/movie.type";
-// import { MoviesEndPoints } from "../API/APIConfig";
-// import { MoviebyOptions } from "../API/APIConfig";
-// import "swiper/css";
-// import "swiper/css/navigation";
-// import "swiper/css/pagination";
-// // import { SwiperOptions } from "swiper/types";
-// // import { Swiper, SwiperSlide } from "swiper/react";
-// export interface Movie {
-//   id: number;
-//   title: string;
-//   original_title: string;
-//   overview: string;
-//   poster_path: string;
-//   backdrop_path: string;
-//   vote_count: number;
-//   vote_average: number;
-//   release_date: string;
-//   popularity: number;
-// }
+import * as React from "react";
+import { useCallback, useEffect, useState } from "react";
+import useEmblaCarousel, {
+  EmblaCarouselType,
+  EmblaOptionsType,
+  EmblaPluginType,
+  EmblaEventType,
+  UseEmblaCarouselType,
+} from "embla-carousel-react";
+import "./style.css";
+import Fab from "@mui/material/Fab";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { Link, useNavigate } from "react-router-dom";
+import { APIConfig } from "../API/APIConfig";
+import Button from "@mui/material/Button";
+import Autoplay from  "embla-carousel-react";
+export interface Movie {
+  id: number;
+  title: string;
+  original_title: string;
+  overview: string;
+  poster_path: string;
+  backdrop_path: string;
+  vote_count: number;
+  vote_average: number;
+  release_date: string;
+  popularity: number;
+}
 
-// interface HeroSliderProps {
-//   items: Movie[];
-// }
+type PropType = {
+  items: Movie[];
+  options?: EmblaOptionsType;
+};
+const HeroSlider: React.FC<PropType> = (props) => {
+  const { options, items } = props;
+  const navigate = useNavigate();
 
-// export const HeroSlider = ({ items }: HeroSliderProps) => {
-//   const navigate = useNavigate();
-  
-//   console.log("hienra", items);
-//   return (
-//     <>
-//       <div className="slider">
+  const [viewportRef, embla] = useEmblaCarousel({
+    align: "center",
+    skipSnaps: false,
+  });
+  console.log("hienra", items);
 
-//         <div className="btn1">
-//           <Fab
-//             color="primary"
-           
-//           >
-//             <ChevronLeftIcon fontSize="large" />
-//           </Fab>
-//         </div>
-        
-//           {items &&
-//             items.map((i, index) => (
-             
-//                 <div
-//                   key={index}
-//                   className="hero-slider-container"
-//                   style={{
-//                     backgroundImage: `url(${APIConfig.originalImage(
-//                       i.backdrop_path
-//                     )})`,
-//                   }}
-//                 >
-//                   <div
-//                     className="content"
-//                     style={{
-//                       padding: "5%",
-//                       paddingRight: "-2%",
-//                       height: "100%",
-//                       width: "100%",
-//                     }}
-//                   >
-//                     <div
-//                       className="poster"
-//                       style={{
-//                         width: "25%",
-//                         position: "relative",
-//                         borderRadius: "15px",
-//                       }}
-//                     >
-//                       <Link to={`/movies/${i.id}`}>
-//                         <img
-//                           style={{ borderRadius: "15px" }}
-//                           onClick={() => {
-//                             navigate(`/movies/${i.id}`);
-//                           }}
-//                           src={APIConfig.w500Image(i.poster_path)}
-//                           alt=""
-//                         />
-//                       </Link>
-//                     </div>
-//                     <div
-//                       className="info"
-//                       style={{
-//                         width: "60%",
-//                         paddingTop: "5%",
-//                         color: "white",
-//                         paddingLeft: "2%",
-//                         position: "relative",
-//                         height: "100%",
-//                       }}
-//                     >
-//                       <h1 style={{ width: "40%", height: "10%" }}>{i.title}</h1>
-//                       <h4 style={{ width: "55%", height: "20%" }}>
-//                         {i.overview}
-//                       </h4>
-//                       <div className="btn" style={{ height: "20%" }}>
-//                         <Button
-//                           onClick={() => {
-//                             navigate(`/movies/${i.id}`);
-//                           }}
-//                           style={{
-//                             borderRadius: "30px",
-//                             marginLeft: "2%",
-//                             width: "200px",
-//                             height: "58px",
-//                             padding: "0",
-//                           }}
-//                           size="large"
-//                           variant="contained"
-//                         >
-//                           WATCH NOW
-//                         </Button>
-//                       </div>
-//                     </div>
-//                   </div>
-//                 </div>
-             
-//             ))}
-       
-//         ;
-//         <div className="btn2">
-//           <Fab
-//             color="primary"
-         
-//           >
-//             <ChevronRightIcon fontSize="large" />
-//           </Fab>
-//         </div>
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState<Array<number>>([]);
+  // const [emblaRef, emblaApi] = useEmblaCarousel(options);
+  const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
+  const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
 
-//       </div>
-//     </>
-//   );
-// };
+  const scrollTo = useCallback(
+    (index: number) => embla && embla.scrollTo(index),
+    [embla]
+  );
 
-// export default HeroSlider;
+  const data = [1, 2, 3, 8, 9, 0, 8, 6, 66, 7];
+
+  const scrollPrev = useCallback(() => embla && embla.scrollPrev(), [embla]);
+  const scrollNext = useCallback(() => embla && embla.scrollNext(), [embla]);
+  const onSelect = useCallback(() => {
+    if (!embla) return;
+    setSelectedIndex(embla.selectedScrollSnap());
+  }, [embla, setSelectedIndex]);
+
+  const onSelectButton = useCallback((embla: EmblaCarouselType) => {
+    setPrevBtnDisabled(!embla.canScrollPrev());
+    setNextBtnDisabled(!embla.canScrollNext());
+  }, []);
+
+  useEffect(() => {
+    if (!embla) return;
+    onSelect();
+    setScrollSnaps(embla.scrollSnapList());
+    embla.on("select", onSelect);
+    onSelectButton(embla);
+  }, [embla, setScrollSnaps, onSelect]);
+
+  return (
+    <div className="App">
+      <div className="embla">
+        <div className="btn1">
+          <Fab
+            onClick={scrollPrev}
+            // disabled={prevBtnDisabled}
+            color="primary"
+          >
+            <ChevronLeftIcon fontSize="large" />
+          </Fab>
+        </div>
+        <div className="embla__viewport" ref={viewportRef}>
+          <div className="embla__container">
+            {items.map((i, index) => (
+              <div
+                className="embla__slide"
+                key={index}
+                style={{
+                  backgroundImage: `url(${APIConfig.originalImage(
+                    i.backdrop_path
+                  )})`,
+                }}
+              >
+                <div className="embla__slide__inner">
+                  <div
+                    className="poster"
+                    style={{ marginTop: "10%", position: "relative" }}
+                  >
+                    <Link to={`/movies/${i.id}`}>
+                      <img
+                        onClick={() => {
+                          navigate(`/movies/${i.id}`);
+                        }}
+                        src={APIConfig.w300Image(i.poster_path)}
+                        alt=""
+                      />
+                    </Link>
+                  </div>
+                  <div className="info">
+                    <h1>{i.title}</h1>
+                    <h4>{i.overview}</h4>
+                    <div className="btn">
+                      <Button
+                        onClick={() => {
+                          navigate(`/movies/${i.id}`);
+                        }}
+                        size="large"
+                        variant="contained"
+                      >
+                        WATCH NOW
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>{" "}
+        <div className="btn2">
+          <Fab color="primary" onClick={scrollNext} disabled={nextBtnDisabled}>
+            <ChevronRightIcon fontSize="large" />
+          </Fab>
+        </div>
+        <div className="embla__navigator">
+          {scrollSnaps.map((_, index) => (
+            <div
+              className="embla__dots"
+              key={index}
+              style={{
+                backgroundColor:
+                  selectedIndex === index ? "lightblue" : "lightgray",
+              }}
+              onClick={() => scrollTo(index)}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+export default HeroSlider;

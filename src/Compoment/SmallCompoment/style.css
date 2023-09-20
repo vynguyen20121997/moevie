@@ -1,16 +1,89 @@
-.slider {
-    margin-bottom: 3rem;
+.App {
+    font-family: sans-serif;
+    text-align: center;
+  }
+  .embla {
+    max-width:100%;
+    margin-left: auto;
+    margin-right: auto;
+  
+    /* filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.1)); */
+  }
+  .embla__viewport {
+    overflow: hidden;
+  }
+  .embla__container {
     display: flex;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    height: 70vh;
+    width: 100%;
+  }
+  .embla__slide {
+    min-width: 100%;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 9rem, 0;
+  }
+  .embla__slide::before {
+    position: absolute;
+    background: linear-gradient(to top, rgba(194, 194, 196, 0.13), rgb(21, 21, 94));
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+  .embla__slide__inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    max-width: 95%;
+  }
+.poster{
+  width: 25%;
+  position: relative;
+  
+}
+.info{
+  width: 60%;
+  position: relative;
+  color: white;
+}
+.info h4{
+    max-height: 20%,
 }
 
-.btn1 {
+  .embla__navigator {
+    display: flex;
+    margin-bottom: 24px;
+    margin-top:20px;
+    position: absolute;
+   top: 65%;
+   left: 42%;
+    z-index: 3;
+  }
+  .embla__dots {
+    cursor: pointer;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin: 3px;
+    box-shadow: 0px 0px 20px rgb(0 0 0 / 10%);
+  }
+  .btn1 {
     padding: 0;
     margin: 0;
     align-items: center;
     z-index: 3;
     position: absolute;
     background: transparent;
-    top: 40%;
+    top: 30%;
     left: 3%;
 }
 
@@ -21,34 +94,6 @@
     z-index: 3;
     position: absolute;
     background: transparent;
-    top: 40%;
+    top: 30%;
     right: 3%;
 }
-
-.hero-slider-container {
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    position: relative;
-    padding: 9rem, 0;
-}
-
-.hero-slider-container::before {
-    position: absolute;
-    background: linear-gradient(to top, rgba(194, 194, 196, 0.13), rgb(21, 21, 94));
-    content: "";
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-
-.content {
-    display: flex;
-    justify-content: center;
-};
-
-/* //////////////////////// */
-
