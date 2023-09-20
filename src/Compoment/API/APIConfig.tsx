@@ -28,6 +28,7 @@ export const MoviesEndPoints: {
   ontheair: string,
   populartv: string,
   topratedtv: string,
+  genre: string,
 
 } = {
   nowPlaying: "https://api.themoviedb.org/3/movie/now_playing",
@@ -37,7 +38,8 @@ export const MoviesEndPoints: {
   airingtoday: "https://api.themoviedb.org/3/tv/airing_today",
   ontheair: "https://api.themoviedb.org/3/tv/on_the_air",
   populartv: "https://api.themoviedb.org/3/tv/popular",
-  topratedtv: "https://api.themoviedb.org/3/tv/top_rated"
+  topratedtv: "https://api.themoviedb.org/3/tv/top_rated",
+  genre: "https://api.themoviedb.org/3/genre/movie/list",
 }
 
 export const MoviebyOptions: { byGenreId: (id: number) => string; byPageNumber:string} = {

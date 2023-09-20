@@ -53,7 +53,6 @@ const HeroSlider: React.FC<PropType> = (props) => {
     [embla]
   );
 
-  const data = [1, 2, 3, 8, 9, 0, 8, 6, 66, 7];
 
   const scrollPrev = useCallback(() => embla && embla.scrollPrev(), [embla]);
   const scrollNext = useCallback(() => embla && embla.scrollNext(), [embla]);
