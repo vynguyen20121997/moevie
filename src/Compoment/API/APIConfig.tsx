@@ -49,7 +49,10 @@ export const MoviebyOptions: {
   byPageNumber: `&page=${Math.floor(Math.random() * 88 + 1)}`,
 };
 export const MoviesDetailEndPoints = {
-  details: (id: string | undefined) => `https://api.themoviedb.org/3/movie/${id}}`,
-  credits: (id: number) => `https://api.themoviedb.org/3/movie/${id}}/credits`,
-  video: (id: number) => `https://api.themoviedb.org/3/movie/${id}/videos`,
+  details: (id: string | undefined) =>
+    `https://api.themoviedb.org/3/movie/${id}}`,
+  credits: (id: string | undefined) =>
+    `https://api.themoviedb.org/3/movie/${id}}/credits`,
+  video: (id: string | undefined) =>
+    `https://api.themoviedb.org/3/movie/${id}/videos`,
 };
