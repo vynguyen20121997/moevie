@@ -5,10 +5,13 @@ import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import useGenreList from "../Data-Hooks/GenresListHooks";
 
-export const GenresButton = (props) => {
-  //   const { genre = [], color } = props;
+export const GenresButton = () => {
+  interface genreObject {
+    id: number;
+    name: string;
+  }
   const { data: genreList } = useGenreList();
-  const genreListData = genreList && genreList.data.genres;
+  const genreListData: genreObject[] = genreList?.data?.genres;
 
   console.log("nut", genreListData);
   return (
@@ -37,16 +40,31 @@ export const GenresButton = (props) => {
 
 export default GenresButton;
 
-export const ButtonContainer = (props) => {
+interface genreObject {
+  id: number;
+  name: string;
+}
+type ButtonPropType = {
+  genre: genreObject;
+  variant?: string;
+  size?: string;
+  stylebutton?: {
+    maxWidth: string;
+    fontSize: string;
+    minWidth: string;
+  };
+};
+
+export const ButtonContainer: React.FC<ButtonPropType> = (props) => {
   const { genre, variant, size, stylebutton } = props;
   const { name, id: genreId } = genre;
   return (
     <>
       <Link to={`/genres/${genreId}`}>
         <Button
-          style={stylebutton}
-          sx={size}
           variant={variant}
+          style={stylebutton}
+          // sx={size}
           color={
             name === "Action"
               ? "primary"
@@ -89,8 +107,7 @@ export const ButtonContainer = (props) => {
               : "primary"
           }
         >
-          {" "}
-          <p>{name}</p>{" "}
+          <p>{name}</p>
         </Button>
       </Link>
     </>

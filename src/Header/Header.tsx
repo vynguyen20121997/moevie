@@ -19,8 +19,7 @@ import ExploreIcon from "@mui/icons-material/Explore";
 import "./header.css";
 import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
-// import { APIConfig } from "../Compoment/API/APIConfig";
-// import GenresButton from "../Compoment/Button/GenresButton";
+import GenresButton from "../Compoment/Button/GenresButton";
 
 interface HeaderProps {}
 const menuItems = [
@@ -57,138 +56,134 @@ const Header = ({}: HeaderProps) => {
   };
 
   return (
-//     <>
-//       <AppBar position="static">
-//         <Toolbar>
-//           <Box
-//             display="flex"
-//             justifyContent="space-between"
-//             alignItems="center"
-//             width={1}
-//             py={2}
-//           >
-//             <Box>
-//             <Typography variant="h6">React TypeScript</Typography>
-// </Box>
-//             <Box textAlign="center">
-//               <ButtonGroup variant="text" aria-label="text button group">
-//                 {menuItems.map((item, index) => (
-//                   <Button>
-//                     <Link className="list-element" to={item.path}>
-//                       <h3>{item.title}</h3>
-//                     </Link>
-//                   </Button>
-//                 ))}
-//                 ;
-//               </ButtonGroup>
-//             </Box>
+    //     <>
+    //       <AppBar position="static">
+    //         <Toolbar>
+    //           <Box
+    //             display="flex"
+    //             justifyContent="space-between"
+    //             alignItems="center"
+    //             width={1}
+    //             py={2}
+    //           >
+    //             <Box>
+    //             <Typography variant="h6">React TypeScript</Typography>
+    // </Box>
+    //             <Box textAlign="center">
+    //               <ButtonGroup variant="text" aria-label="text button group">
+    //                 {menuItems.map((item, index) => (
+    //                   <Button>
+    //                     <Link className="list-element" to={item.path}>
+    //                       <h3>{item.title}</h3>
+    //                     </Link>
+    //                   </Button>
+    //                 ))}
+    //                 ;
+    //               </ButtonGroup>
+    //             </Box>
 
-         
-//           </Box>
-//         </Toolbar>
-//       </AppBar>
-//     </>
-//   );
-// };
-<>
-        <div className="header">
-          <div
-            style={{
-              display: "flex",
-              border: "0",
-              margin: "0",
-            }}
-          >
-            <Link to="/">
-              {" "}
-              <img
-                width="80px"
-                src="https://i.ibb.co/K9NfKFW/wired-gradient-62-film.png"
-                alt="wired-gradient-62-film"
-             
-              />
-            </Link>
-            <Link to="/">
+    //           </Box>
+    //         </Toolbar>
+    //       </AppBar>
+    //     </>
+    //   );
+    // };
+    <>
+      <div className="header">
+        <div
+          style={{
+            display: "flex",
+            border: "0",
+            margin: "0",
+          }}
+        >
+          <Link to="/">
+            {" "}
+            <img
+              width="80px"
+              src="https://i.ibb.co/K9NfKFW/wired-gradient-62-film.png"
+              alt="wired-gradient-62-film"
+            />
+          </Link>
+          <Link to="/">
+            <Button>
+              <h3>MOVIE WORLD</h3>
+            </Button>
+          </Link>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            border: "0",
+            margin: "0",
+            marginRight: "5%",
+          }}
+        >
+          <ButtonGroup variant="text" aria-label="text button group">
+            {menuItems.map((item, index) => (
               <Button>
-                <h3>MOVIE WORLD</h3>
-              </Button>
-            </Link>
-          </div>
-
-          <div
-            style={{
-              display: "flex",
-              border: "0",
-              margin: "0",
-              marginRight: "5%",
-            }} >      
-            <ButtonGroup variant="text" aria-label="text button group">
-              {menuItems.map((item, index) => (
-                <Button>
-                  <Link className="list-element" to={item.path}>
-                    <h3>{item.title}</h3>
-                  </Link>
-                </Button>
-              ))}
-            </ButtonGroup>
-          </div>
-          <div>
-            <IconButton
-              style={{ marginRight: "1px" }}
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-haspopup="true"
-              color="primary"
-            >
-              <AccountCircle fontSize="large" />
-            </IconButton>
-            <IconButton
-              size="large"
-              edge="start"
-              color="primary"
-              aria-label="open drawer"
-              onClick={onOpenSideNav}
-            >
-              <MenuIcon fontSize="large" />
-            </IconButton>
-          </div>
-
-          <div id="mySidenav" className="sidenav" style={displaySidenav}>
-            <div id="home-SideNav" className="home-sidenav">
-              <div className="homebutton">
-                <Link to={`/`}>
-                  <IconButton size="large" edge="start" color="primary">
-                    <HomeIcon fontSize="large" />
-                    <p>Home</p>
-                  </IconButton>
+                <Link className="list-element" to={item.path}>
+                  <h3>{item.title}</h3>
                 </Link>
-              </div>
-              <div className="closebutton">
-                <Button size="small" variant="contained" color="primary">
-                  <CloseIcon
-                    onClick={onCloseSideNav}
-                   
-                    fontSize="small"
-                  />
-                </Button>
-              </div>
-            </div>
+              </Button>
+            ))}
+          </ButtonGroup>
+        </div>
+        <div>
+          <IconButton
+            style={{ marginRight: "1px" }}
+            size="large"
+            edge="end"
+            aria-label="account of current user"
+            aria-haspopup="true"
+            color="primary"
+          >
+            <AccountCircle fontSize="large" />
+          </IconButton>
+          <IconButton
+            size="large"
+            edge="start"
+            color="primary"
+            aria-label="open drawer"
+            onClick={onOpenSideNav}
+          >
+            <MenuIcon fontSize="large" />
+          </IconButton>
+        </div>
 
-            <div id="genre-SideNav" className="home-sidenav">
-              <Link to={`/genres`}>
+        <div id="mySidenav" className="sidenav" style={displaySidenav}>
+          <div id="home-SideNav" className="home-sidenav">
+            <div className="homebutton">
+              <Link to={`/`}>
                 <IconButton size="large" edge="start" color="primary">
-                  <ExploreIcon fontSize="inherit" />
-                  <p>Discovery</p>
+                  <HomeIcon fontSize="large" />
+                  <p>Home</p>
                 </IconButton>
               </Link>
-              <div style={{ marginTop: "0", paddingTop: "0" }}>
-              </div>
+            </div>
+            <div className="closebutton">
+              <Button size="small" variant="contained" color="primary">
+                <CloseIcon onClick={onCloseSideNav} fontSize="small" />
+              </Button>
+            </div>
+          </div>
+
+          <div id="genre-SideNav" className="home-sidenav">
+            <Link to={`/genres`}>
+              <IconButton size="large" edge="start" color="primary">
+                <ExploreIcon fontSize="inherit" />
+                <p>Discovery</p>
+              </IconButton>
+            </Link>
+            <div style={{ marginTop: "0", paddingTop: "0" }}>
+              <GenresButton />
             </div>
           </div>
         </div>
-        </>
+      </div>
+    </>
   );
- };
+};
 
- export default Header;
+export default Header;

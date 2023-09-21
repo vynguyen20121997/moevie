@@ -44,9 +44,12 @@ const MovieDetailPage = () => {
     imdb_id: string;
     runtime: number;
     name: string;
-    genres: {
-      id: number;
-    };
+    genres: [
+      {
+        id: number;
+        name: string;
+      }
+    ];
     production_countries: [{ name: string }];
   }
   interface creditObject {
@@ -63,10 +66,13 @@ const MovieDetailPage = () => {
     popularity: number;
     profile_path: string;
   }
+  interface genreObject {
+    id: number;
+    name: string;
+  }
   const [open, setOpen] = useState(false);
   const params = useParams();
   const idMovie: string | undefined = params.movieId;
-  // const { data: genreList }: { data?: GenreListResponse } = useGenreList();
   const urlByDetail = MoviesDetailEndPoints.details(idMovie) + APIConfig.apiKey;
   const fetchOptions = {
     url: urlByDetail,
@@ -90,15 +96,14 @@ const MovieDetailPage = () => {
   };
   const { data: video, isLoading: videoLoading } =
     OnFetchAxios(videofetchOptions);
-
+  // const { data: genreList } = useGenreList();
   if (creditLoading) return null;
   if (detailLoading) return null;
   if (videoLoading) return null;
-  const videoData = video && video.data.results;
-
+  const videoData = video?.data.results;
   const movieDetail: movieObject = movieDetailData?.data;
-  const cast: creditObject[] = movieCredit?.data?.cast;
-  console.log("credit", videoData);
+  const cast: creditObject[] = movieCredit?.data.cast;
+  // const genreListData: genreObject[] = genreList?.data?.genres;
 
   const {
     overview,
@@ -121,10 +126,9 @@ const MovieDetailPage = () => {
   const countryList = movieDetail.production_countries;
   const imgUrl = APIConfig.w500Image(poster_path);
   const backgroundUrl = APIConfig.originalImage(backdrop_path);
-
+  const genresList = movieDetail.genres;
   const videoNe = videoData && videoData[0];
   const urlVideo = `https://www.youtube.com/embed/${videoNe?.key}`;
-  console.log("video", urlVideo);
   return (
     <>
       <div
@@ -212,15 +216,13 @@ const MovieDetailPage = () => {
                         <TableCell style={{ color: "white" }}>
                           <strong>Genres</strong>
                         </TableCell>
-                        {/* {genresList &&
-                            genresList.map((i) => (
-                              <TableCell
-                                style={{ color: "white" }}
-                                align="right"
-                              >
-                                <ButtonContainer variant="outlined" genre={i} />
-                              </TableCell>
-                            ))} */}
+                        {genresList &&
+                          genresList.map((i) => (
+                            <TableCell style={{ color: "white" }} align="right">
+                              <Button variant="outlined">{i.name}</Button>
+                              {/* <ButtonContainer variant="outlined" genre={i} /> */}
+                            </TableCell>
+                          ))}
                       </TableRow>
                       <TableRow>
                         <TableCell style={{ color: "white" }}>

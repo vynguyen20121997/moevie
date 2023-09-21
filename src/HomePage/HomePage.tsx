@@ -49,10 +49,20 @@ const HomePage = () => {
     OnFetchAxios(fetchUpcomingMovies);
   const UpcomingData = UpcomingMoviesrData?.data?.results;
 
+  const urlNowPlaying =
+    MoviesEndPoints.nowPlaying + APIConfig.apiKey + MoviebyOptions.byPageNumber;
+  const fetchNowPlayingMovies = {
+    url: urlNowPlaying,
+    key: "NowPlayingMoviesHooks",
+  };
+  const { data: nowPlayingMoviesrData, isLoading: nowPlayingLoading } =
+    OnFetchAxios(fetchNowPlayingMovies);
+  const nowPlayingData = nowPlayingMoviesrData?.data?.results;
   if (isLoading) return null;
   if (popularLoading) return null;
   if (topRatedLoading) return null;
   if (UpcomingLoading) return null;
+  if (nowPlayingLoading) return null;
 
   return (
     <>
@@ -67,13 +77,16 @@ const HomePage = () => {
         </div>
       </div>
       <div style={{ margin: "1%" }}>
-        <SliderContainer
-          items={topRatedData}
-          movieCategoryTitle="Now playing "
-        />
+        <SliderContainer items={topRatedData} movieCategoryTitle="Top Rated " />
       </div>
       <div style={{ margin: "1%" }}>
         <SliderContainer items={UpcomingData} movieCategoryTitle="Upcoming " />
+      </div>
+      <div style={{ margin: "1%" }}>
+        <SliderContainer
+          items={nowPlayingData}
+          movieCategoryTitle="Now Playing"
+        />
       </div>
     </>
   );
