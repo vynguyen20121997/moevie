@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import { OnfetchGenresList } from '../API/OnfetchGenresList'
 import { APIConfig } from "../API/APIConfig";
-import { Button } from "@mui/material";
+import { Button, ButtonPropsVariantOverrides } from "@mui/material";
 import { Link } from "react-router-dom";
 import useGenreList from "../Data-Hooks/GenresListHooks";
 
@@ -13,7 +13,6 @@ export const GenresButton = () => {
   const { data: genreList } = useGenreList();
   const genreListData: genreObject[] = genreList?.data?.genres;
 
-  console.log("nut", genreListData);
   return (
     <>
       {genreListData &&
@@ -46,7 +45,7 @@ interface genreObject {
 }
 type ButtonPropType = {
   genre: genreObject;
-  variant?: string;
+  variant?: "text" | "contained" | "outlined";
   size?: string;
   stylebutton?: {
     maxWidth: string;

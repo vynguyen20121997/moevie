@@ -6,6 +6,7 @@ import HomePage from "./HomePage/HomePage";
 import MovieDetailPage from "./DetailPage/DetailPage";
 // import { Test } from "./Test/test";
 import Footer from "./Footer/Footer";
+import GenresPage from "./Genres Page/GenresPage";
 const queryClient = new QueryClient();
 
 function App(): JSX.Element {
@@ -23,17 +24,9 @@ function App(): JSX.Element {
           <Header />
           <Routes>
             <Route path="/" element={<HomePage />} />
-            {/* <Route path="/genres" element={<GenresPage />} /> */}
+            <Route path="/genres" element={<GenresPage />} />
             <Route path="/movies/:movieId" element={<MovieDetailPage />} />
             {/* <Route path="/genres/:genreId" element={<GenresPageDetail />} /> */}
-            {/* <Route path="/test" element={<OnfetchDataById />} /> */}
-            {/* <Route path="/button" element={<GenresButton />} />
-              <Route path="/testa" element={<GenreList />} />
-              <Route path="/testb" element={<GenreList />} />  */}
-            {/* {/* <Route path="/b" element={<Home />} /> */}
-            {/* <Route path="/a" element={<Lists />} />
-              // <Route path="/b" element={<Testings />} /> */}
-            {/* <Route path="/b" element={<Testings />} /> */}
           </Routes>
           <Footer />
         </BrowserRouter>

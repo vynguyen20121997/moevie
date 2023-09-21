@@ -29,6 +29,7 @@ export const MoviesEndPoints: {
   populartv: string;
   topratedtv: string;
   genre: string;
+  discover: string;
 } = {
   nowPlaying: "https://api.themoviedb.org/3/movie/now_playing",
   topRated: "https://api.themoviedb.org/3/movie/top_rated",
@@ -39,6 +40,7 @@ export const MoviesEndPoints: {
   populartv: "https://api.themoviedb.org/3/tv/popular",
   topratedtv: "https://api.themoviedb.org/3/tv/top_rated",
   genre: "https://api.themoviedb.org/3/genre/movie/list",
+  discover: "https://api.themoviedb.org/3/discover/movie",
 };
 
 export const MoviebyOptions: {
