@@ -93,7 +93,7 @@ const SliderContainer: React.FC<PropType> = (props) => {
       <div className="embla_slider">
         <div className="embla__viewport_slider" ref={emblaRef}>
           <div className="embla__container_slider">
-            {items.map((item, index) => {
+            {items?.map((item, index) => {
               // const [isHover, SetIsHover] = useState<boolean>(false);
               // const handleMouseEnter = () => {
               //   SetIsHover(true);
