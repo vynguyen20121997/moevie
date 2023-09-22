@@ -4,9 +4,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import React from "react";
 import HomePage from "./HomePage/HomePage";
 import MovieDetailPage from "./DetailPage/DetailPage";
-// import { Test } from "./Test/test";
 import Footer from "./Footer/Footer";
 import GenresPage from "./Genres Page/GenresPage";
+import GenresPageDetail from "./Genres Page/GenresPageDetail";
 const queryClient = new QueryClient();
 
 function App(): JSX.Element {
@@ -26,7 +26,7 @@ function App(): JSX.Element {
             <Route path="/" element={<HomePage />} />
             <Route path="/genres" element={<GenresPage />} />
             <Route path="/movies/:movieId" element={<MovieDetailPage />} />
-            {/* <Route path="/genres/:genreId" element={<GenresPageDetail />} /> */}
+            <Route path="/genres/:genreId" element={<GenresPageDetail />} />
           </Routes>
           <Footer />
         </BrowserRouter>

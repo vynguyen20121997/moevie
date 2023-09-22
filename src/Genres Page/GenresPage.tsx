@@ -7,24 +7,61 @@ import {
 } from "../Compoment/API/APIConfig";
 import SliderContainer from "../Compoment/SmallCompoment/SliderContainer";
 import { OnFetchAxios } from "../Compoment/API/OnfetchAxios";
-import { GetConfigMovieByGenreHook } from "../Compoment/API/APIServies";
-import useGenreList from "../Compoment/Data-Hooks/GenresListHooks";
+import { newGenreArrayAPI } from "../Compoment/API/APIServies";
+
+interface genreHookObject {
+  url: string;
+  key: string;
+}
 const GenresPage = () => {
-  //   const fetchAction = GetConfigMovieByGenreHook({ hookKey: "action", id: 28 });
-  //     const { data: action, isLoading: actionLoading } = OnFetchAxios(fetchAction);
-  //     const actionData = action?.data?.results;
+  const result: genreHookObject[] | null = newGenreArrayAPI();
 
-  //   const fetchAdventure = GetConfigMovieByGenreHook({
-  //     hookKey: "adventure",
-  //     id: 12,
-  //   });
-  //   const { data: adventure, isLoading: adventureLoading } =
-  //     OnFetchAxios(fetchAdventure);
-  //   const adventureData = adventure?.data?.results;
+  const actionMovie = result?.find((item) => item.key === "action");
+  const { data: action, isLoading: actionLoading } = OnFetchAxios(
+    actionMovie ?? {
+      url: "",
+      key: "",
+    }
+  );
+  const actionData = action?.data?.results;
 
-  //       const { data: animation } = OnfetchGenresHook(16);
+  const adventureMovie = result?.find((item) => item.key === "adventure");
+  const { data: adventure, isLoading: adventureLoading } = OnFetchAxios(
+    adventureMovie ?? {
+      url: "",
+      key: "",
+    }
+  );
+  const adventurenData = adventure?.data?.results;
+
+  const animationMovie = result?.find((item) => item.key === "animation");
+  const { data: animation, isLoading: animationLoading } = OnFetchAxios(
+    animationMovie ?? {
+      url: "",
+      key: "",
+    }
+  );
+  const animationData = animation?.data?.results;
+
+  const crimeMovie = result?.find((item) => item.key === "crime");
+  const { data: crime, isLoading: crimeLoading } = OnFetchAxios(
+    crimeMovie ?? {
+      url: "",
+      key: "",
+    }
+  );
+  const crimeData = crime?.data?.results;
+
+  const horrorMovie = result?.find((item) => item.key === "horror");
+  const { data: horror, isLoading: horrorLoading } = OnFetchAxios(
+    horrorMovie ?? {
+      url: "",
+      key: "",
+    }
+  );
+  const horrorData = horror?.data?.results;
+
   //       const { data: comedy } = OnfetchGenresHook(35);
-  //       const { data: crime } = OnfetchGenresHook(80);
   //       const { data: documentary } = OnfetchGenresHook(99);
   //       const { data: drama } = OnfetchGenresHook(18);
   //       const { data: family } = OnfetchGenresHook(10402);
@@ -44,89 +81,25 @@ const GenresPage = () => {
         paddingTop: "4%",
       }}
     >
-      {/* <div className="genresSlider" style={{ marginTop: "1%" }}>
+      <div className="genresSlider" style={{ marginTop: "1%" }}>
         <SliderContainer items={actionData} movieCategoryTitle="Action" />
       </div>
 
       <div className="genresSlider">
-        <SliderContainer items={adventureData} movieCategoryTitle="Adventure" />
-      </div> */}
-      {/* <div className='genresSlider'  >
-                     <MovieSlider
-                               movies={adventure} 
-                               movieCategoryTitle="Adventure"
-                         /> 
-                </div>
-                   <div className='genresSlider'  >
-
-                    <MovieSlider
-                                  movies={animation}
-                                  movieCategoryTitle="Animation"
-                            />
-                       </div>
-                       <div className='genresSlider' >
-
-                             <MovieSlider
-                                  movies={crime}
-                                  movieCategoryTitle="Crime"
-                            />
-                      </div>
-                      <div className='genresSlider' >
-
-                            <MovieSlider
-                                  movies={documentary}
-                                  movieCategoryTitle="Documentary"
-                            />
-                      </div>
-                      <div className='genresSlider'>
-
-                            <MovieSlider
-                                  movies={comedy}
-                                  movieCategoryTitle="Comedy"
-                            />
-                      </div>
-                      <div className='genresSlider' >
-
-                            <MovieSlider
-                                  movies={drama}
-                                  movieCategoryTitle="Drama"
-                            />
-                      </div>
-                      <div className='genresSlider'>
-
-                            <MovieSlider
-                                  movies={family}
-                                  movieCategoryTitle="Family"
-                            />
-                      </div>
-                      <div className='genresSlider' >
-
-                            <MovieSlider
-                                  movies={history}
-                                  movieCategoryTitle="History"
-                            />
-                      </div>
-                      <div className='genresSlider'  >
-
-                            <MovieSlider
-                                  movies={horror}
-                                  movieCategoryTitle="Horror"
-                            />
-                      </div>
-                      <div className='genresSlider' >
-
-                            <MovieSlider
-                                  movies={fantasy}
-                                  movieCategoryTitle="Fantasy"
-                            />
-                      </div>
-                      <div className='genresSlider'>
-
-                            <MovieSlider
-                                  movies={romance}
-                                  movieCategoryTitle="Romance"
-                            />
-                      </div> */}
+        <SliderContainer
+          items={adventurenData}
+          movieCategoryTitle="Adventure"
+        />
+      </div>
+      <div className="genresSlider">
+        <SliderContainer items={animationData} movieCategoryTitle="Animation" />
+      </div>
+      <div className="genresSlider">
+        <SliderContainer items={crimeData} movieCategoryTitle="Crime" />
+      </div>
+      <div className="genresSlider">
+        <SliderContainer items={horrorData} movieCategoryTitle="Horror" />
+      </div>
     </div>
   );
 };

@@ -47,8 +47,8 @@ export const MoviebyOptions: {
   byGenreId: (id: number) => string;
   byPageNumber: string;
 } = {
-  byGenreId: (id: number) => `&with_genres=${id}`,
-  byPageNumber: `&page=${Math.floor(Math.random() * 88 + 1)}`,
+  byGenreId: (id) => `&with_genres=${id}`,
+  byPageNumber: `&page=${Math.floor(Math.random() * 55 + 1)}`,
 };
 export const MoviesDetailEndPoints = {
   details: (id: string | undefined) =>

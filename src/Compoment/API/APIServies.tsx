@@ -1,29 +1,28 @@
-import useGenreList from "../Data-Hooks/GenresListHooks";
+import UseGenreList from "../Data-Hooks/GenresListHooks";
 import { APIConfig, MoviebyOptions, MoviesEndPoints } from "./APIConfig";
 import React from "react";
 
-export const GetConfigMovieByGenreHook = ({
-  hookKey,
-  id,
-}: {
-  hookKey: string;
+interface genreObject {
   id: number;
-}) => {
-  interface genreObject {
-    id: number;
-    name: string;
-  }
-  interface genreHookObject {
-    url: string;
-    key: string;
-  }
-  const { data: genreList } = useGenreList();
-  const genreListData: genreObject[] = genreList?.data?.genres;
-  console.log("gege", genreListData);
-  const url =
-    MoviesEndPoints.discover + APIConfig.apiKey + MoviebyOptions.byGenreId(id);
+  name: string;
+}
+interface genreHookObject {
+  url: string;
+  key: string;
+}
 
- const newGenreUrlArray = 
-
-  return {};
+export const newGenreArrayAPI = () => {
+  const { data: genreList, isLoading } = UseGenreList();
+  if (isLoading) return null;
+  const genreListData: genreObject[] = genreList && genreList.data.genres;
+  const result: genreHookObject[] = [];
+  for (const item of genreListData) {
+    const newUrl =
+      MoviesEndPoints.discover +
+      APIConfig.apiKey +
+      MoviebyOptions.byGenreId(item.id);
+    const newKey = item.name.toLowerCase();
+    result.push({ url: newUrl, key: newKey });
+  }
+  return result;
 };
