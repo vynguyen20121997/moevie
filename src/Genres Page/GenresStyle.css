@@ -1,3 +1,9 @@
 .genresSlider{
     padding:2%;
 }
+
+.pagtination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

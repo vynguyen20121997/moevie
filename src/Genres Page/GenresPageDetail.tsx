@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   APIConfig,
   MoviebyOptions,
@@ -7,6 +7,12 @@ import {
 } from "../Compoment/API/APIConfig";
 import { newGenreArrayAPI } from "../Compoment/API/APIServies";
 import { OnFetchAxios } from "../Compoment/API/OnfetchAxios";
+import { Rating } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
+import "./GenresStyle.css";
+import { AxiosResponse } from "axios";
 export interface Movie {
   id: number;
   title: string;
@@ -20,6 +26,10 @@ export interface Movie {
   popularity: number;
 }
 const GenresPageDetail = () => {
+  const [page, setPage] = useState(1);
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+  };
   const params: { genreId: string } = useParams() as { genreId: string };
   const idGenre = params.genreId;
   const idGenreNumber = parseInt(idGenre);
@@ -27,16 +37,19 @@ const GenresPageDetail = () => {
     MoviesEndPoints.discover +
     APIConfig.apiKey +
     MoviebyOptions.byGenreId(idGenreNumber) +
-    MoviebyOptions.bySpecificPageNumber("2");
+    MoviebyOptions.bySpecificPageNumber(page);
 
   const { data, isLoading } = OnFetchAxios({
     url: newUrl,
     key: "newUrl",
   });
-  // console.log("gi day", data);
+  const [movieData, setMovieData] = useState(data);
+  useEffect(() => {
+    setMovieData(data);
+  }, [data]);
 
-  const movieByGenreData = data && data.data.results;
-  // console.log("gi day", movieByGenreData);
+  console.log("data", movieData);
+  const movieByGenreData: Movie[] = movieData && movieData.data.results;
   return (
     <div>
       <div>
@@ -46,51 +59,53 @@ const GenresPageDetail = () => {
         <div
           className="moviecard"
           style={{
-            paddingLeft: "10%",
+            marginLeft: "3%",
+            padding: "5%",
             display: "grid",
             gridTemplateColumns: " auto auto auto auto auto",
           }}
         >
-          {movieByGenreData.map((item) => {
- const { vote_average, title, release_date, id, poster_path } =
- item;
-const ratingfixed = vote_average / 2;
-            return 
-            (   <> <Link to={`/movies/${id}`}>
-            <div
-              // onMouseEnter={handleMouseEnter}
-              // onMouseLeave={handleMouseLeave}
-              className="movie-card"
-              // style={boxStyle}
-            >
-              <img
-                // style={{ opacity: isHover ? "0.5" : null }}
-                src={APIConfig.w300Image(poster_path)}
-                alt=""
-              />
+          {movieByGenreData?.map((item) => {
+            const { vote_average, title, release_date, id, poster_path } = item;
+            const ratingfixed = vote_average / 2;
+            return (
+              <>
+                {" "}
+                <Link to={`/movies/${id}`}>
+                  <div
+                    // onMouseEnter={handleMouseEnter}
+                    // onMouseLeave={handleMouseLeave}
+                    className="movie-card"
+                    // style={boxStyle}
+                  >
+                    <img
+                      // style={{ opacity: isHover ? "0.5" : null }}
+                      src={APIConfig.w300Image(poster_path)}
+                      alt=""
+                    />
 
-              <div
-                className="hide"
-                // style={onHoverDisplaying}
-                // onMouseEnter={handleMouseEnter}
-                // onMouseLeave={handleMouseLeave}
-              >
-                <div className="content-content-hide">
-                  <h4>{title}</h4>
-                  <h5>{release_date}</h5>
-                </div>
+                    <div
+                      className="hide"
+                      // style={onHoverDisplaying}
+                      // onMouseEnter={handleMouseEnter}
+                      // onMouseLeave={handleMouseLeave}
+                    >
+                      <div className="content-content-hide">
+                        <h4>{title}</h4>
+                        <h5>{release_date}</h5>
+                      </div>
 
-                <div className="rating-content-btn-hide">
-                  <Rating
-                    name="customized-10"
-                    size="small"
-                    readOnly
-                    value={ratingfixed}
-                  />
-                  <h5> {vote_average}/10</h5>
-                </div>
-                <div className="content-btn-hide">
-                    {/* <Link to={`/movies/${id}`}>
+                      <div className="rating-content-btn-hide">
+                        <Rating
+                          name="customized-10"
+                          size="small"
+                          readOnly
+                          value={ratingfixed}
+                        />
+                        <h5> {vote_average}/10</h5>
+                      </div>
+                      <div className="content-btn-hide">
+                        {/* <Link to={`/movies/${id}`}>
                         <Button
                           style={{ borderRadius: "5px", padding: "5%" }}
                           variant="contained"
@@ -100,7 +115,7 @@ const ratingfixed = vote_average / 2;
                           WATCH NOW
                         </Button>
                       </Link> */}
-                          {/* <Fab
+                        {/* <Fab
               style={{ marginLeft: "8%" }}
               size="medium"
               color="primary"
@@ -109,11 +124,29 @@ const ratingfixed = vote_average / 2;
             >
               <AddIcon variant="contained" fontSize="medium" />
             </Fab> */}
-                        </div>
                       </div>
                     </div>
-                  </Link>           
-                   </> )} )}
+                  </div>
+                </Link>
+              </>
+            );
+          })}
+        </div>
+        <div className="pagtination">
+          <Stack spacing={2}>
+            <Pagination
+              sx={{
+                ".MuiPaginationItem-text": {
+                  color: "white",
+                },
+              }}
+              color="primary"
+              count={10}
+              page={page}
+              size="large"
+              onChange={handleChange}
+            />
+          </Stack>
         </div>
       </div>
     </div>
