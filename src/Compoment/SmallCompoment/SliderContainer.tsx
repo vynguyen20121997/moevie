@@ -132,7 +132,6 @@ const SliderContainer: React.FC<PropType> = (props) => {
               };
               return (
                 <>
-                  {" "}
                   <Link to={`/movies/${id}`}>
                     <div
                       // onMouseEnter={handleMouseEnter}
