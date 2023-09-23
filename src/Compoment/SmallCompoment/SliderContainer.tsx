@@ -34,9 +34,7 @@ export interface Movie {
   vote_average: number;
   release_date: string;
   popularity: number;
-  genre_ids: {
-    id: number;
-  };
+  genre_ids: [number];
 }
 
 type PropType = {

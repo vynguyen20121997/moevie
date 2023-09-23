@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   withFormik,
   FormikProps,
@@ -34,6 +34,7 @@ const signupFormValidationScheme = yup.object().shape({
     .required("Password is required"),
 });
 const RegisterPage = () => {
+  const [login, setLogin] = useState<boolean>(false);
   const navigate = useNavigate();
   const formik: any = useFormik({
     initialValues: {
@@ -43,15 +44,14 @@ const RegisterPage = () => {
     },
     onSubmit: (values) => {
       console.log("Submit values:", values);
-      // Call API to create new account
-      // Logic code ...
+      setLogin(true);
       alert("Signup successfully");
       resetForm({
         // fullname: "",
         // email: "",
         // password: "",
       });
-      navigate(`/`);
+      navigate(`/`, { state: login });
     },
     validationSchema: signupFormValidationScheme,
   });

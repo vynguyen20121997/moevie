@@ -10,7 +10,6 @@ import GenresPageDetail from "./Genres Page/GenresPageDetail";
 import RegisterPage from "./Compoment/RegisterPage/RegisterPage";
 import axios from "axios";
 import { APIConfig, MoviesEndPoints } from "./Compoment/API/APIConfig";
-import MyOtherComponent from "./Compoment/Data-Hooks/test333";
 const queryClient = new QueryClient();
 export const GenreListContext = createContext<any[]>([]);
 
@@ -27,7 +26,7 @@ function App(): JSX.Element {
     <div
       className="App"
       style={{
-        // backgroundColor: "black",
+        backgroundColor: "black",
         width: "100%",
         minHeight: " 100vh",
       }}
@@ -43,7 +42,7 @@ function App(): JSX.Element {
               <Route path="/movies/:movieId" element={<MovieDetailPage />} />
               <Route path="/genres/:genreId" element={<GenresPageDetail />} />
               <Route path="/register" element={<RegisterPage />} />
-              <Route path="/test" element={<MyOtherComponent />} />
+              {/* <Route path="/test" element={<MyOtherComponent />} /> */}
             </Routes>
             <Footer />
           </BrowserRouter>

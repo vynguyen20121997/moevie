@@ -1,9 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useMemo } from "react";
 import { APIConfig } from "../API/APIConfig";
 import { Button, Rating } from "@mui/material";
 import { Link } from "react-router-dom";
 import type * as CSS from "csstype";
 import { GenreListContext } from "../../App";
+import { ButtonContainer } from "../Button/GenresButton";
 export interface Movie {
   id: number;
   title: string;
@@ -15,9 +16,7 @@ export interface Movie {
   vote_average: number;
   release_date: string;
   popularity: number;
-  genre_ids: {
-    id: number;
-  };
+  genre_ids: [number];
 }
 
 interface PropType {
@@ -32,22 +31,24 @@ const CardContainer: React.FC<PropType> = (props) => {
   const { vote_average, title, release_date, id, poster_path, genre_ids } =
     movieDetail;
   const [isHover, SetIsHover] = useState<boolean>(false);
-  console.log("day laf", movieDetail.genre_ids);
 
   const genreList: any = useContext(GenreListContext);
   const genreData: genreDataType[] = genreList?.genres;
-  console.log("genlist", genreData);
+  //   const memoizedGenreList = useMemo(() => genreList, [genreList]);
+  //   console.log("genre list", genreData);
 
-  // const genreFilter = () => {
-  //   const result = [];
-  //   for (const genreId of genre_ids) {
-  //     const element = genreList.find((i) => i.id === genreId);
-  //     if (element) {
-  //       result.push({ name: element.name, id: element.id });
-  //     }
-  //   }
-  //   return result;
-  // };
+  const genreFilter = () => {
+    const result = [];
+    for (const genreId of genre_ids) {
+      const element = genreData.find((item) => item.id === genreId);
+      if (element) {
+        result.push({ name: element.name, id: element.id });
+      }
+    }
+    return result;
+  };
+  const genreNames = genreFilter();
+  console.log("loc giday", genreNames);
 
   const handleMouseEnter = () => {
     SetIsHover(true);
@@ -73,7 +74,6 @@ const CardContainer: React.FC<PropType> = (props) => {
     height: "270px",
     color: "white",
   };
-  // const genreNames = genreFilter();
 
   return (
     <>
@@ -111,24 +111,24 @@ const CardContainer: React.FC<PropType> = (props) => {
               <h5> {vote_average}/10</h5>
             </div>
 
-            {/* <div className="genre">
+            <div className="genre">
               {genreNames.map((i) => {
                 return (
                   <ButtonContainer
                     variant="contained"
                     size="small"
-                    style={{
-                      maxWidth: "30px",
-                      fontSize: "12px",
-                      maxHeight: "30px",
-                      minWidth: "30px",
-                      minHeight: "30px",
-                    }}
+                    // style={{
+                    //   maxWidth: "30px",
+                    //   fontSize: "12px",
+                    //   maxHeight: "30px",
+                    //   minWidth: "30px",
+                    //   minHeight: "30px",
+                    // }}
                     genre={i}
                   />
                 );
               })}
-            </div> */}
+            </div>
 
             <div className="content-btn-hide">
               <Link to={`/movies/${id}`}>
