@@ -48,7 +48,7 @@ const CardContainer: React.FC<PropType> = (props) => {
     return result;
   };
   const genreNames = genreFilter();
-  console.log("loc giday", genreNames);
+  //   console.log("loc giday", genreNames);
 
   const handleMouseEnter = () => {
     SetIsHover(true);

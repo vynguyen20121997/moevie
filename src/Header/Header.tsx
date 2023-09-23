@@ -41,10 +41,10 @@ const menuItems = [
 ];
 const Header = ({}: HeaderProps) => {
   const [sidenav, setSideNav] = useState<boolean>(false);
-  const location = useLocation();
-  // console.log("saukhitruyen:", location);
-  const login = location.state;
+  const values = JSON.parse(localStorage.getItem("values") || "");
+  const login = JSON.parse(localStorage.getItem("login") || "");
 
+  console.log("trave gi day", login);
   const onOpenSideNav = () => {
     setSideNav(true);
   };
@@ -102,6 +102,7 @@ const Header = ({}: HeaderProps) => {
           </ButtonGroup>
         </div>
         <div>
+          <div></div>
           <Link to={`/register`}>
             <IconButton
               style={{ marginRight: "1px" }}

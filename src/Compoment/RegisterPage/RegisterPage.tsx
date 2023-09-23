@@ -8,6 +8,7 @@ import {
   FormikHelpers,
   Formik,
   useFormik,
+  useFormikContext,
 } from "formik";
 import * as yup from "yup";
 import "./style4.css";
@@ -21,7 +22,6 @@ import { Button, IconButton, OutlinedInput } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import LocalPostOfficeRoundedIcon from "@mui/icons-material/LocalPostOfficeRounded";
 import { useNavigate } from "react-router-dom";
-
 const signupFormValidationScheme = yup.object().shape({
   fullname: yup.string().required("Fullname is required"),
   email: yup
@@ -36,6 +36,7 @@ const signupFormValidationScheme = yup.object().shape({
 const RegisterPage = () => {
   const [login, setLogin] = useState<boolean>(false);
   const navigate = useNavigate();
+
   const formik: any = useFormik({
     initialValues: {
       fullname: "",
@@ -43,15 +44,18 @@ const RegisterPage = () => {
       password: "",
     },
     onSubmit: (values) => {
-      console.log("Submit values:", values);
       setLogin(true);
+      console.log("Submit values:", login);
+      localStorage.setItem("values", JSON.stringify(values));
+      localStorage.setItem("loginStatus", JSON.stringify(login));
+
       alert("Signup successfully");
       resetForm({
-        // fullname: "",
-        // email: "",
-        // password: "",
+        fullname: "",
+        email: "",
+        password: "",
       });
-      navigate(`/`, { state: login });
+      navigate(`/`);
     },
     validationSchema: signupFormValidationScheme,
   });
