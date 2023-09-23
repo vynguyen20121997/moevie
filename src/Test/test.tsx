@@ -18,7 +18,6 @@
 // import Fab from "@mui/material/Fab";
 // import AddIcon from "@mui/icons-material/Add";
 // import type * as CSS from "csstype";
-// import useGenreList from "../Compoment/Data-Hooks/GenresListHooks";
 // import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 // import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 // import NavigateNextIcon from "@mui/icons-material/NavigateNext";

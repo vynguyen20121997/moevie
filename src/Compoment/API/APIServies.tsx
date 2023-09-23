@@ -11,7 +11,7 @@ interface genreHookObject {
   key: string;
 }
 
-export const newGenreArrayAPI = () => {
+export const urlCreatingGenreAPI = () => {
   const { data: genreList, isLoading } = UseGenreList();
   if (isLoading) return null;
   const genreListData: genreObject[] = genreList && genreList.data.genres;

@@ -6,13 +6,12 @@ import {
   MoviebyOptions,
   MoviesEndPoints,
 } from "../Compoment/API/APIConfig";
-import { newGenreArrayAPI } from "../Compoment/API/APIServies";
 import { OnFetchAxios } from "../Compoment/API/OnfetchAxios";
 import { Rating } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import "./GenresStyle.css";
+import "./genresStyle.css";
 import { AxiosResponse } from "axios";
 export interface Movie {
   id: number;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./GenresStyle.css";
+import "./genresStyle.css";
 import {
   APIConfig,
   MoviebyOptions,
@@ -7,14 +7,14 @@ import {
 } from "../Compoment/API/APIConfig";
 import SliderContainer from "../Compoment/SmallCompoment/SliderContainer";
 import { OnFetchAxios } from "../Compoment/API/OnfetchAxios";
-import { newGenreArrayAPI } from "../Compoment/API/APIServies";
+import { urlCreatingGenreAPI } from "../Compoment/API/APIServies";
 
 interface genreHookObject {
   url: string;
   key: string;
 }
 const GenresPage = () => {
-  const result: genreHookObject[] | null = newGenreArrayAPI();
+  const result: genreHookObject[] | null = urlCreatingGenreAPI();
 
   const actionMovie = result?.find((item) => item.key === "action");
   const { data: action, isLoading: actionLoading } = OnFetchAxios(

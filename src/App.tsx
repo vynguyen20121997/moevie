@@ -8,6 +8,7 @@ import Footer from "./Footer/Footer";
 import GenresPage from "./Genres Page/GenresPage";
 import GenresPageDetail from "./Genres Page/GenresPageDetail";
 import RegisterPage from "./Compoment/RegisterPage/RegisterPage";
+import { GenreListContext } from "./Compoment/Data-Hooks/test222";
 const queryClient = new QueryClient();
 
 function App(): JSX.Element {
@@ -20,19 +21,21 @@ function App(): JSX.Element {
         minHeight: " 100vh",
       }}
     >
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <Header />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/genres" element={<GenresPage />} />
-            <Route path="/movies/:movieId" element={<MovieDetailPage />} />
-            <Route path="/genres/:genreId" element={<GenresPageDetail />} />
-            <Route path="/register" element={<RegisterPage />} />
-          </Routes>
-          <Footer />
-        </BrowserRouter>
-      </QueryClientProvider>
+      <GenreListContext.Provider>
+        <QueryClientProvider client={queryClient}>
+          <BrowserRouter>
+            <Header />
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/genres" element={<GenresPage />} />
+              <Route path="/movies/:movieId" element={<MovieDetailPage />} />
+              <Route path="/genres/:genreId" element={<GenresPageDetail />} />
+              <Route path="/register" element={<RegisterPage />} />
+            </Routes>
+            <Footer />
+          </BrowserRouter>
+        </QueryClientProvider>
+      </GenreListContext.Provider>
     </div>
   );
 }

@@ -3,7 +3,6 @@ import { APIConfig } from "../API/APIConfig";
 import { Button, Rating } from "@mui/material";
 import { Link } from "react-router-dom";
 import type * as CSS from "csstype";
-
 export interface Movie {
   id: number;
   title: string;
@@ -31,8 +30,6 @@ const CardContainer: React.FC<PropType> = (props) => {
   const [isHover, SetIsHover] = useState<boolean>(false);
 
   console.log("day laf", movieDetail.genre_ids);
-  //   const genreList = data && data.data;
-  //   console.log("gi ne", genreList);
 
   // const genreFilter = () => {
   //   const result = [];
