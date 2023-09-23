@@ -17,7 +17,6 @@ import Rating from "@mui/material/Rating";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import type * as CSS from "csstype";
-import useGenreList from "../Data-Hooks/GenresListHooks";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
@@ -37,24 +36,17 @@ export interface Movie {
   genre_ids: [number];
 }
 
-type PropType = {
+interface PropType {
+  loading: boolean;
   items: Movie[];
   options?: EmblaOptionsType;
   movieCategoryTitle: string;
-};
+}
 const SliderContainer: React.FC<PropType> = (props) => {
-  const { options, items, movieCategoryTitle } = props;
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    options
-    //  [Autoplay()]
-  );
-  const { data: genreList } = useGenreList();
+  const { options, items, movieCategoryTitle, loading } = props;
+  const [emblaRef, emblaApi] = useEmblaCarousel(options);
 
-  const onButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
-    // const { autoplay } = emblaApi.plugins();
-    //   if (!autoplay) return;
-    //   if (autoplay.options.stopOnInteraction !== false) autoplay.stop();
-  }, []);
+  const onButtonClick = useCallback((emblaApi: EmblaCarouselType) => {}, []);
 
   const {
     prevBtnDisabled,
@@ -62,7 +54,6 @@ const SliderContainer: React.FC<PropType> = (props) => {
     onPrevButtonClick,
     onNextButtonClick,
   } = usePrevNextButtons(emblaApi, onButtonClick);
-
   return (
     <>
       <div className="button1">
@@ -99,7 +90,7 @@ const SliderContainer: React.FC<PropType> = (props) => {
         <div className="embla__viewport_slider" ref={emblaRef}>
           <div className="embla__container_slider">
             {items?.map((item, index) => {
-              return <CardContainer movieDetail={item} />;
+              return <CardContainer movieDetail={item} loadingCard={loading} />;
             })}
           </div>
         </div>

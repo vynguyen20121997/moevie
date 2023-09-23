@@ -15,6 +15,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { Link, useNavigate } from "react-router-dom";
 import { APIConfig } from "../API/APIConfig";
 import Button from "@mui/material/Button";
+import Loading from "../Loading/Loading";
 export interface Movie {
   id: number;
   title: string;
@@ -29,11 +30,11 @@ export interface Movie {
 }
 
 type PropType = {
+  loading: boolean;
   items: Movie[];
-  options?: EmblaOptionsType;
 };
 const HeroSlider: React.FC<PropType> = (props) => {
-  const { options, items } = props;
+  const { items, loading } = props;
   const navigate = useNavigate();
 
   const [viewportRef, embla] = useEmblaCarousel(
@@ -74,6 +75,7 @@ const HeroSlider: React.FC<PropType> = (props) => {
     embla.on("select", onSelect);
     onSelectButton(embla);
   }, [embla, setScrollSnaps, onSelect]);
+  if (loading) return <Loading />;
 
   return (
     <div className="App">

@@ -82,23 +82,40 @@ const GenresPage = () => {
       }}
     >
       <div className="genresSlider" style={{ marginTop: "1%" }}>
-        <SliderContainer items={actionData} movieCategoryTitle="Action" />
+        <SliderContainer
+          loading={actionLoading}
+          items={actionData}
+          movieCategoryTitle="Action"
+        />
       </div>
 
       <div className="genresSlider">
         <SliderContainer
+          loading={adventureLoading}
           items={adventurenData}
           movieCategoryTitle="Adventure"
         />
       </div>
       <div className="genresSlider">
-        <SliderContainer items={animationData} movieCategoryTitle="Animation" />
+        <SliderContainer
+          loading={animationLoading}
+          items={animationData}
+          movieCategoryTitle="Animation"
+        />
       </div>
       <div className="genresSlider">
-        <SliderContainer items={crimeData} movieCategoryTitle="Crime" />
+        <SliderContainer
+          loading={crimeLoading}
+          items={crimeData}
+          movieCategoryTitle="Crime"
+        />
       </div>
       <div className="genresSlider">
-        <SliderContainer items={horrorData} movieCategoryTitle="Horror" />
+        <SliderContainer
+          loading={horrorLoading}
+          items={horrorData}
+          movieCategoryTitle="Horror"
+        />
       </div>
     </div>
   );

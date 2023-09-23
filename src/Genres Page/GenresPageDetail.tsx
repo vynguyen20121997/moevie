@@ -85,7 +85,7 @@ const GenresPageDetail = () => {
           }}
         >
           {movieByGenreData?.map((item) => {
-            return <CardContainer movieDetail={item} />;
+            return <CardContainer movieDetail={item} loadingCard={isLoading} />;
           })}
         </div>
         <div className="pagtination">

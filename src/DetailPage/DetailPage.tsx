@@ -21,7 +21,6 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import CardMedia from "@mui/material/CardMedia";
 import { OnFetchAxios } from "../Compoment/API/OnfetchAxios";
-import useGenreList from "../Compoment/Data-Hooks/GenresListHooks";
 // import { ButtonContainer } from "../Compoment/Button/GenresButton";
 // import { Movie } from "../Compoment/SmallCompoment/SliderContainer";
 import { MoviebyOptions } from "../Compoment/API/APIConfig";
@@ -96,7 +95,6 @@ const MovieDetailPage = () => {
   };
   const { data: video, isLoading: videoLoading } =
     OnFetchAxios(videofetchOptions);
-  // const { data: genreList } = useGenreList();
   if (creditLoading) return null;
   if (detailLoading) return null;
   if (videoLoading) return null;

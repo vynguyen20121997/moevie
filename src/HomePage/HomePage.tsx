@@ -59,32 +59,43 @@ const HomePage = () => {
     OnFetchAxios(fetchNowPlayingMovies);
   const nowPlayingData = nowPlayingMoviesrData?.data?.results;
   if (isLoading) return null;
-  if (popularLoading) return null;
-  if (topRatedLoading) return null;
-  if (UpcomingLoading) return null;
-  if (nowPlayingLoading) return null;
+  // if (popularLoading) return null;
+  // if (topRatedLoading) return null;
+  // if (UpcomingLoading) return null;
+  // if (nowPlayingLoading) return null;
 
   return (
     <>
       <div style={{ boxShadow: " grey 0px 1px 50px -10px", width: "100%" }}>
-        <HeroSlider items={ketqua} />
+        <HeroSlider items={ketqua} loading={isLoading} />
       </div>
-      <div
-      // style={{ margin: "1%", marginTop: "2%" }}
-      >
+      <div>
         <div style={{ margin: "1%" }}>
-          <SliderContainer items={popularData} movieCategoryTitle="Popular" />
+          <SliderContainer
+            loading={popularLoading}
+            items={popularData}
+            movieCategoryTitle="Popular"
+          />
         </div>
       </div>
       <div style={{ margin: "1%" }}>
-        <SliderContainer items={topRatedData} movieCategoryTitle="Top Rated " />
+        <SliderContainer
+          loading={topRatedLoading}
+          items={topRatedData}
+          movieCategoryTitle="Top Rated "
+        />
       </div>
       <div style={{ margin: "1%" }}>
-        <SliderContainer items={UpcomingData} movieCategoryTitle="Upcoming " />
+        <SliderContainer
+          loading={UpcomingLoading}
+          items={UpcomingData}
+          movieCategoryTitle="Upcoming "
+        />
       </div>
       <div style={{ margin: "1%" }}>
         <SliderContainer
           items={nowPlayingData}
+          loading={nowPlayingLoading}
           movieCategoryTitle="Now Playing"
         />
       </div>
