@@ -15,6 +15,9 @@
     background-color:white ;
 
   }
+  .signup-form-container h2{
+    color: black;
+  }
   
   .form-control {
     margin-bottom: 16px;
