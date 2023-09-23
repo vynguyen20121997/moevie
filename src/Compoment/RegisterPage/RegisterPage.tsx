@@ -20,11 +20,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import { Button, IconButton, OutlinedInput } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import LocalPostOfficeRoundedIcon from "@mui/icons-material/LocalPostOfficeRounded";
-interface Values {
-  firstName: string;
-  lastName: string;
-  email: string;
-}
+import { useNavigate } from "react-router-dom";
 
 const signupFormValidationScheme = yup.object().shape({
   fullname: yup.string().required("Fullname is required"),
@@ -38,6 +34,7 @@ const signupFormValidationScheme = yup.object().shape({
     .required("Password is required"),
 });
 const RegisterPage = () => {
+  const navigate = useNavigate();
   const formik: any = useFormik({
     initialValues: {
       fullname: "",
@@ -54,6 +51,7 @@ const RegisterPage = () => {
         // email: "",
         // password: "",
       });
+      navigate(`/`);
     },
     validationSchema: signupFormValidationScheme,
   });
