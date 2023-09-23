@@ -2,17 +2,23 @@
     height: 100vh;
     display: grid;
     place-items: center;
+    display: flex;
+    justify-content: center;
   }
   
-  .signup-wrapper h2 {
+  .signup-wrapper h1 {
     margin-bottom: 24px;
-    color: #fff;
+    
   }
   .signup-form-container {
     width: 400px;
     padding: 40px;
     border-radius: 16px;
     background-color:white ;
+    justify-content: center;
+    display: flex;
+    height: 45%;
+    
 
   }
   .signup-form-container h2{
@@ -21,6 +27,7 @@
   
   .form-control {
     margin-bottom: 16px;
+    width: 100%;
   }
   
   .form-control label {
@@ -49,4 +56,8 @@
     color: rgb(242, 113, 113);
     font-size: 12px;
     margin: 8px 0;
+  }
+  .submit-btn{
+    margin-top: 15%;
+   margin-left: 30%;
   }

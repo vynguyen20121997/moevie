@@ -17,8 +17,9 @@ import InputLabel from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import { IconButton, OutlinedInput } from "@mui/material";
+import { Button, IconButton, OutlinedInput } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import LocalPostOfficeRoundedIcon from "@mui/icons-material/LocalPostOfficeRounded";
 interface Values {
   firstName: string;
   lastName: string;
@@ -70,75 +71,95 @@ const RegisterPage = () => {
   return (
     <div className="signup-wrapper">
       <form className="signup-form-container" onSubmit={handleSubmit}>
-        <h2>Create an account</h2>
-        <div className="form-control">
-          <TextField
-            id="fullname"
-            name="fullname"
-            label="Fullname"
-            value={values.fullname}
-            onChange={handleChange}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <AccountCircle />
-                </InputAdornment>
-              ),
-            }}
-            variant="standard"
-          />
-
-          {errors.fullname && (
-            <p className="error-message">{errors.fullname}</p>
-          )}
+        <div>
+          <h1>Create an account</h1>
+          <div className="form-control">
+            <FormControl
+              sx={{ marginTop: "4%", width: "100%" }}
+              variant="standard"
+            >
+              <InputLabel htmlFor="standard-adornment-password">
+                Fullname
+              </InputLabel>
+              <Input
+                id="fullname"
+                name="fullname"
+                value={values.fullname}
+                onChange={handleChange}
+                startAdornment={
+                  <InputAdornment position="start">
+                    <IconButton>
+                      <AccountCircle />
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+              {errors.fullname && (
+                <p className="error-message">{errors.fullname}</p>
+              )}
+            </FormControl>
+          </div>
+          <div className="form-control">
+            <FormControl
+              sx={{ marginTop: "4%", width: "100%" }}
+              variant="standard"
+            >
+              <InputLabel htmlFor="standard-adornment-password">
+                Email
+              </InputLabel>
+              <Input
+                id="email"
+                name="email"
+                value={values.email}
+                onChange={handleChange}
+                startAdornment={
+                  <InputAdornment position="start">
+                    <IconButton>
+                      <LocalPostOfficeRoundedIcon />
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+              {errors.email && <p className="error-message">{errors.email}</p>}
+            </FormControl>
+          </div>
+          <div className="form-control">
+            <FormControl
+              sx={{ marginTop: "4%", width: "100%" }}
+              variant="standard"
+            >
+              <InputLabel htmlFor="standard-adornment-password">
+                Password
+              </InputLabel>
+              <Input
+                id="password"
+                name="password"
+                value={values.password}
+                onChange={handleChange}
+                type={showPassword ? "text" : "password"}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+              {errors.password && (
+                <p className="error-message">{errors.password}</p>
+              )}
+            </FormControl>
+          </div>
+          <div className="submit-btn">
+            <Button variant="outlined" type="submit">
+              Submit
+            </Button>
+          </div>
         </div>
-        <div className="form-control">
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            name="email"
-            value={values.email}
-            onChange={handleChange}
-          />
-          {errors.email && <p className="error-message">{errors.email}</p>}
-        </div>
-        <div className="form-control">
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            name="password"
-            value={values.password}
-            onChange={handleChange}
-          />
-          {errors.password && (
-            <p className="error-message">{errors.password}</p>
-          )}
-        </div>
-
-        <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password">
-            Password
-          </InputLabel>
-          <OutlinedInput
-            id="outlined-adornment-password"
-            type={showPassword ? "text" : "password"}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-            label="Password"
-          />
-        </FormControl>
-
-        <button className="btn-submit">Submit</button>
       </form>
     </div>
   );
