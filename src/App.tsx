@@ -7,6 +7,7 @@ import MovieDetailPage from "./DetailPage/DetailPage";
 import Footer from "./Footer/Footer";
 import GenresPage from "./Genres Page/GenresPage";
 import GenresPageDetail from "./Genres Page/GenresPageDetail";
+import RegisterPage from "./Compoment/RegisterPage/RegisterPage";
 const queryClient = new QueryClient();
 
 function App(): JSX.Element {
@@ -27,6 +28,7 @@ function App(): JSX.Element {
             <Route path="/genres" element={<GenresPage />} />
             <Route path="/movies/:movieId" element={<MovieDetailPage />} />
             <Route path="/genres/:genreId" element={<GenresPageDetail />} />
+            <Route path="/register" element={<RegisterPage />} />
           </Routes>
           <Footer />
         </BrowserRouter>

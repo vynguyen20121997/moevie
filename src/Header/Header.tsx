@@ -56,38 +56,6 @@ const Header = ({}: HeaderProps) => {
   };
 
   return (
-    //     <>
-    //       <AppBar position="static">
-    //         <Toolbar>
-    //           <Box
-    //             display="flex"
-    //             justifyContent="space-between"
-    //             alignItems="center"
-    //             width={1}
-    //             py={2}
-    //           >
-    //             <Box>
-    //             <Typography variant="h6">React TypeScript</Typography>
-    // </Box>
-    //             <Box textAlign="center">
-    //               <ButtonGroup variant="text" aria-label="text button group">
-    //                 {menuItems.map((item, index) => (
-    //                   <Button>
-    //                     <Link className="list-element" to={item.path}>
-    //                       <h3>{item.title}</h3>
-    //                     </Link>
-    //                   </Button>
-    //                 ))}
-    //                 ;
-    //               </ButtonGroup>
-    //             </Box>
-
-    //           </Box>
-    //         </Toolbar>
-    //       </AppBar>
-    //     </>
-    //   );
-    // };
     <>
       <div className="header">
         <div
@@ -131,16 +99,18 @@ const Header = ({}: HeaderProps) => {
           </ButtonGroup>
         </div>
         <div>
-          <IconButton
-            style={{ marginRight: "1px" }}
-            size="large"
-            edge="end"
-            aria-label="account of current user"
-            aria-haspopup="true"
-            color="primary"
-          >
-            <AccountCircle fontSize="large" />
-          </IconButton>
+          <Link to={`/register`}>
+            <IconButton
+              style={{ marginRight: "1px" }}
+              size="large"
+              edge="end"
+              aria-label="account of current user"
+              aria-haspopup="true"
+              color="primary"
+            >
+              <AccountCircle fontSize="large" />
+            </IconButton>
+          </Link>
           <IconButton
             size="large"
             edge="start"

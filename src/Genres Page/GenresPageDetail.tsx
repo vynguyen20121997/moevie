@@ -38,18 +38,36 @@ const GenresPageDetail = () => {
     APIConfig.apiKey +
     MoviebyOptions.byGenreId(idGenreNumber) +
     MoviebyOptions.bySpecificPageNumber(page);
-
-  const { data, isLoading } = OnFetchAxios({
+  const { data: apiData, isLoading } = OnFetchAxios({
     url: newUrl,
     key: "newUrl",
   });
-  const [movieData, setMovieData] = useState(data);
-  useEffect(() => {
-    setMovieData(data);
-  }, [data]);
+  const newData = apiData?.data.results;
+  const movieByGenreData: Movie[] = newData && newData;
+  const [movieData, setMovieData] = useState([]);
 
-  console.log("data", movieData);
-  const movieByGenreData: Movie[] = movieData && movieData.data.results;
+  // const loadMore = async () => {
+  //   const newUrl =
+  //     MoviesEndPoints.discover +
+  //     APIConfig.apiKey +
+  //     MoviebyOptions.byGenreId(idGenreNumber) +
+  //     MoviebyOptions.bySpecificPageNumber(page);
+  //   const { data: apiData, isLoading } = OnFetchAxios({
+  //     url: newUrl,
+  //     key: "newUrl",
+  //   });
+
+  //   if (apiData) {
+  //     setMovieData([...movieData, ...apiData.data.results]);
+  //     setPage(page + 1);
+  //   }
+  // };
+
+  // // Gọi hàm loadMore thủ công khi component được mount.
+  // useEffect(() => {
+  //   loadMore();
+  // }, movieByGenreData);
+
   return (
     <div>
       <div>
