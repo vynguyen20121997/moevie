@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
+import CardContainer from "../Compoment/SmallCompoment/MovieCardContainer";
 import {
   APIConfig,
   MoviebyOptions,
@@ -24,6 +25,9 @@ export interface Movie {
   vote_average: number;
   release_date: string;
   popularity: number;
+  genre_ids: {
+    id: number;
+  };
 }
 const GenresPageDetail = () => {
   const [page, setPage] = useState(1);
@@ -84,70 +88,7 @@ const GenresPageDetail = () => {
           }}
         >
           {movieByGenreData?.map((item) => {
-            const { vote_average, title, release_date, id, poster_path } = item;
-            const ratingfixed = vote_average / 2;
-            return (
-              <>
-                {" "}
-                <Link to={`/movies/${id}`}>
-                  <div
-                    // onMouseEnter={handleMouseEnter}
-                    // onMouseLeave={handleMouseLeave}
-                    className="movie-card"
-                    // style={boxStyle}
-                  >
-                    <img
-                      // style={{ opacity: isHover ? "0.5" : null }}
-                      src={APIConfig.w300Image(poster_path)}
-                      alt=""
-                    />
-
-                    <div
-                      className="hide"
-                      // style={onHoverDisplaying}
-                      // onMouseEnter={handleMouseEnter}
-                      // onMouseLeave={handleMouseLeave}
-                    >
-                      <div className="content-content-hide">
-                        <h4>{title}</h4>
-                        <h5>{release_date}</h5>
-                      </div>
-
-                      <div className="rating-content-btn-hide">
-                        <Rating
-                          name="customized-10"
-                          size="small"
-                          readOnly
-                          value={ratingfixed}
-                        />
-                        <h5> {vote_average}/10</h5>
-                      </div>
-                      <div className="content-btn-hide">
-                        {/* <Link to={`/movies/${id}`}>
-                        <Button
-                          style={{ borderRadius: "5px", padding: "5%" }}
-                          variant="contained"
-                          size="medium"
-                          className="play-btn-content-btn-hide"
-                        >
-                          WATCH NOW
-                        </Button>
-                      </Link> */}
-                        {/* <Fab
-              style={{ marginLeft: "8%" }}
-              size="medium"
-              color="primary"
-              variant="contained"
-              className="play-btn-content-btn-hide"
-            >
-              <AddIcon variant="contained" fontSize="medium" />
-            </Fab> */}
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </>
-            );
+            return <CardContainer movieDetail={item} />;
           })}
         </div>
         <div className="pagtination">

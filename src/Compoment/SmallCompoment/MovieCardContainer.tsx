@@ -30,6 +30,7 @@ const CardContainer: React.FC<PropType> = (props) => {
     movieDetail;
   const [isHover, SetIsHover] = useState<boolean>(false);
 
+  console.log("day laf", movieDetail.genre_ids);
   //   const genreList = data && data.data;
   //   console.log("gi ne", genreList);
 

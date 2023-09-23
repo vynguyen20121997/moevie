@@ -7,6 +7,7 @@ import useEmblaCarousel, {
   EmblaEventType,
   UseEmblaCarouselType,
 } from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 import "./style.css";
 import Fab from "@mui/material/Fab";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
@@ -14,7 +15,6 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { Link, useNavigate } from "react-router-dom";
 import { APIConfig } from "../API/APIConfig";
 import Button from "@mui/material/Button";
-import Autoplay from  "embla-carousel-react";
 export interface Movie {
   id: number;
   title: string;
@@ -36,10 +36,13 @@ const HeroSlider: React.FC<PropType> = (props) => {
   const { options, items } = props;
   const navigate = useNavigate();
 
-  const [viewportRef, embla] = useEmblaCarousel({
-    align: "center",
-    skipSnaps: false,
-  });
+  const [viewportRef, embla] = useEmblaCarousel(
+    {
+      align: "center",
+      skipSnaps: false,
+    },
+    [Autoplay()]
+  );
 
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<Array<number>>([]);
@@ -51,7 +54,6 @@ const HeroSlider: React.FC<PropType> = (props) => {
     (index: number) => embla && embla.scrollTo(index),
     [embla]
   );
-
 
   const scrollPrev = useCallback(() => embla && embla.scrollPrev(), [embla]);
   const scrollNext = useCallback(() => embla && embla.scrollNext(), [embla]);
