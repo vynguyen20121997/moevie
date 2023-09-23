@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { APIConfig } from "../API/APIConfig";
 import { Button, Rating } from "@mui/material";
 import { Link } from "react-router-dom";
 import type * as CSS from "csstype";
+import { GenreListContext } from "../../App";
 export interface Movie {
   id: number;
   title: string;
@@ -19,17 +20,23 @@ export interface Movie {
   };
 }
 
-type PropType = {
+interface PropType {
   movieDetail: Movie;
-};
-
+}
+interface genreDataType {
+  id: number;
+  name: string;
+}
 const CardContainer: React.FC<PropType> = (props) => {
   const { movieDetail } = props;
   const { vote_average, title, release_date, id, poster_path, genre_ids } =
     movieDetail;
   const [isHover, SetIsHover] = useState<boolean>(false);
-
   console.log("day laf", movieDetail.genre_ids);
+
+  const genreList: any = useContext(GenreListContext);
+  const genreData: genreDataType[] = genreList?.genres;
+  console.log("genlist", genreData);
 
   // const genreFilter = () => {
   //   const result = [];
