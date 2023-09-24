@@ -14,26 +14,20 @@ import Media from "./Compoment/Loading/Loading";
 import TVShowPage from "./HomePage/TvPage";
 import MovieTVListPageDetail from "./Genres Page/Movie&TVListPageDetail";
 const queryClient = new QueryClient();
-export const GenreListContext = createContext<any[]>([]);
-interface Movie {
+interface MovieItem {
   name: string;
   id: number;
-  title: string;
-  original_title: string;
-  overview: string;
+  title?: string;
   poster_path: string;
-  backdrop_path: string;
-  vote_count: number;
-  vote_average: number;
-  release_date: string;
-  popularity: number;
-  genre_ids: [number];
+  quantity: number;
 }
+export const GenreListContext = createContext<any[]>([]);
+
 function App(): JSX.Element {
   const [genreList, setGenreList] = useState<any>([]);
-  const [addItem, setAddItem] = useState([]);
+  const [addItem, setAddItem] = useState<MovieItem[]>([]);
 
-  const addToCart = ({ name, id, poster_path }: Movie) => {
+  const addToCart = ({ title, name, id, poster_path }: MovieItem) => {
     const products = [...addItem];
     const itemIndex = products?.findIndex((item) => item.id === id);
     console.log(itemIndex);
@@ -61,7 +55,7 @@ function App(): JSX.Element {
       }}
     >
       {" "}
-      <GenreListContext.Provider value={genreList}>
+      <GenreListContext.Provider value={[genreList, addToCart]}>
         <QueryClientProvider client={queryClient}>
           <BrowserRouter>
             <Header />

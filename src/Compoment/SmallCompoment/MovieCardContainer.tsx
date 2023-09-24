@@ -35,6 +35,7 @@ interface ButtonPropType {
   variant?: "text" | "contained" | "outlined";
 }
 const CardContainer: React.FC<PropType> = (props) => {
+  const addToCart: any = useContext(GenreListContext);
   const genreList: any = useContext(GenreListContext);
   const [isHover, SetIsHover] = useState<boolean>(false);
   const { movieDetail, loadingCard } = props;
@@ -162,6 +163,7 @@ const CardContainer: React.FC<PropType> = (props) => {
                   size="small"
                   color="primary"
                   className="play-btn-content-btn-hide"
+                  onClick={() => addToCart({ title, name, id, poster_path })}
                 >
                   <AddIcon />
                 </Fab>
