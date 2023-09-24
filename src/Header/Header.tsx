@@ -49,6 +49,15 @@ const Header = ({}: HeaderProps) => {
   // const values = JSON.parse(localStorage?.getItem("values") || "");
   // const login = JSON.parse(localStorage?.getItem("login") || "");
   // console.log("trave gi day", login);
+  const [matches, setMatches] = useState(
+    window.matchMedia("(max-width: 600px)").matches
+  );
+
+  useEffect(() => {
+    window
+      .matchMedia("(max-width: 600px)")
+      .addEventListener("change", (e) => setMatches(e.matches));
+  }, []);
   const onOpenSideNav = () => {
     setSideNav(true);
   };
@@ -58,7 +67,7 @@ const Header = ({}: HeaderProps) => {
   };
 
   const displaySidenav = {
-    width: sidenav ? "15%" : "0",
+    width: sidenav && matches ? "100%" : sidenav ? "15%" : "0",
     padding: "0",
   };
 
