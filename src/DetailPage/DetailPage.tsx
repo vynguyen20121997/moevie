@@ -136,8 +136,6 @@ const MovieDetailPage = () => {
          rgba(0, 0, 0, 0.1),
          rgba(0, 0, 0, 10)), url(${backgroundUrl})`,
           width: "100%",
-          paddingLeft: "1%",
-          // paddingRight: "2%",
         }}
       >
         <div className="detail-page">

@@ -540,8 +540,8 @@ padding: 0 10%;
     margin-bottom: 24px;
     margin-top:20px;
     position: absolute;
-   top:40%;
-   left: 42%;
+   top:75%;
+   left: 40%;
     z-index: 3;
   }
   .embla__dots {
@@ -559,7 +559,7 @@ padding: 0 10%;
     z-index: 3;
     position: absolute;
     background: transparent;
-    top: 25%;
+    top: 40%;
     left: 3%;
 }
 
@@ -570,7 +570,7 @@ padding: 0 10%;
     z-index: 3;
     position: absolute;
     background: transparent;
-    top:25%;
+    top:40%;
     right: 3%;
 }
 }
