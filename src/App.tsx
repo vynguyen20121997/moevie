@@ -11,6 +11,7 @@ import RegisterPage from "./Compoment/RegisterPage/RegisterPage";
 import axios from "axios";
 import { APIConfig, MoviesEndPoints } from "./Compoment/API/APIConfig";
 import Media from "./Compoment/Loading/Loading";
+import TVShowPage from "./HomePage/TvPage";
 const queryClient = new QueryClient();
 export const GenreListContext = createContext<any[]>([]);
 
@@ -39,6 +40,7 @@ function App(): JSX.Element {
             <Header />
             <Routes>
               <Route path="/" element={<HomePage />} />
+              <Route path="/tvshow" element={<TVShowPage />} />
               <Route path="/genres" element={<GenresPage />} />
               <Route path="/movies/:movieId" element={<MovieDetailPage />} />
               <Route path="/genres/:genreId" element={<GenresPageDetail />} />

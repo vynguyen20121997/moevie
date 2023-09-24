@@ -25,7 +25,6 @@ import { Menu } from "@mui/base/Menu";
 import { MenuButton } from "@mui/base/MenuButton";
 import { menuItemClasses } from "@mui/base/MenuItem";
 import { styled } from "@mui/system";
-
 interface HeaderProps {}
 const menuItems = [
   {
@@ -41,7 +40,7 @@ const menuItems = [
   {
     title: "TV SHOW",
     // icon: <HomeIcon />,
-    path: "/",
+    path: "/tvshow",
   },
 ];
 const Header = ({}: HeaderProps) => {
