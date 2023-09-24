@@ -1,11 +1,13 @@
 import React, { useState, useContext, useMemo } from "react";
 import { APIConfig } from "../API/APIConfig";
-import { Button, Rating } from "@mui/material";
+import { Button, Fab, Rating } from "@mui/material";
 import { Link } from "react-router-dom";
 import type * as CSS from "csstype";
 import { GenreListContext } from "../../App";
 import { ButtonContainer } from "../Button/GenresButton";
 import Loading from "../Loading/Loading";
+import "./styleMovieCard.css";
+import AddIcon from "@mui/icons-material/Add";
 export interface Movie {
   id: number;
   title: string;
@@ -28,6 +30,9 @@ interface genreDataType {
   id: number;
   name: string;
 }
+interface ButtonPropType {
+  variant?: "text" | "contained" | "outlined";
+}
 const CardContainer: React.FC<PropType> = (props) => {
   const genreList: any = useContext(GenreListContext);
   const [isHover, SetIsHover] = useState<boolean>(false);
@@ -37,21 +42,18 @@ const CardContainer: React.FC<PropType> = (props) => {
     movieDetail;
 
   const genreData: genreDataType[] = genreList?.genres;
-  //   const memoizedGenreList = useMemo(() => genreList, [genreList]);
-  //   console.log("genre list", genreData);
 
-  // const genreFilter = () => {
-  //   const result = [];
-  //   for (const genreId of genre_ids) {
-  //     const element = genreData?.find((item) => item.id === genreId);
-  //     if (element) {
-  //       result.push({ name: element.name, id: element.id });
-  //     }
-  //   }
-  //   return result;
-  // };
-  // const genreNames = genreFilter();
-  //   console.log("loc giday", genreNames);
+  const genreFilter = () => {
+    const result = [];
+    for (const genreId of genre_ids) {
+      const element = genreData?.find((item) => item.id === genreId);
+      if (element) {
+        result.push({ name: element.name, id: element.id });
+      }
+    }
+    return result;
+  };
+  const genreNames = genreFilter();
 
   const handleMouseEnter = () => {
     SetIsHover(true);
@@ -63,13 +65,13 @@ const CardContainer: React.FC<PropType> = (props) => {
   const ratingfixed = vote_average / 2;
 
   const boxStyle = {
-    scale: isHover ? "1" : null,
-    boxShadow: isHover ? "0px 10px 20px 2px rgba(0, 200, 255, 0.7)" : null,
-    transform: isHover ? "translateY(-5px)" : null,
+    scale: isHover ? "1" : "",
+    boxShadow: isHover ? "0px 10px 20px 2px rgba(0, 200, 255, 0.7)" : "",
+    transform: isHover ? "translateY(-5px)" : "",
   };
 
   const onHoverDisplaying: CSS.Properties = {
-    // display: isHover ? "block" : null,
+    display: isHover ? "block" : "",
     position: "absolute",
     top: "0",
     borderRadius: "15px",
@@ -88,17 +90,17 @@ const CardContainer: React.FC<PropType> = (props) => {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             className="movie-card"
-            // style={boxStyle}
+            style={boxStyle}
           >
             <img
-              //   style={{ opacity: isHover ? "0.5" : null }}
+              style={{ opacity: isHover ? "0.5" : "" }}
               src={APIConfig.w500Image(poster_path)}
               alt=""
             />
 
             <div
               className="hide"
-              //   style={onHoverDisplaying}
+              style={onHoverDisplaying}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
@@ -107,7 +109,7 @@ const CardContainer: React.FC<PropType> = (props) => {
                 <h5>{release_date}</h5>
               </div>
 
-              <div className="rating-content-btn-hide">
+              <div className="rating-content-hide">
                 <Rating
                   name="customized-10"
                   size="small"
@@ -117,45 +119,43 @@ const CardContainer: React.FC<PropType> = (props) => {
                 <h5> {vote_average}/10</h5>
               </div>
 
-              <div className="genre">
-                {/* {genreNames.map((i) => {
+              <div className="genre-content-hide">
+                {genreNames.map((item) => {
                   return (
                     <ButtonContainer
                       variant="contained"
                       size="small"
-                      // style={{
-                      //   maxWidth: "30px",
-                      //   fontSize: "12px",
-                      //   maxHeight: "30px",
-                      //   minWidth: "30px",
-                      //   minHeight: "30px",
-                      // }}
-                      genre={i}
+                      stylebutton={{
+                        maxWidth: "80px",
+                        fontSize: "10px",
+                        maxHeight: "30px",
+                        minWidth: "30px",
+                        minHeight: "30px",
+                      }}
+                      genre={item}
                     />
                   );
-                })} */}
+                })}
               </div>
 
               <div className="content-btn-hide">
                 <Link to={`/movies/${id}`}>
                   <Button
-                    style={{ borderRadius: "5px", padding: "5%" }}
                     variant="contained"
-                    size="medium"
+                    size="large"
                     className="play-btn-content-btn-hide"
                   >
                     WATCH NOW
                   </Button>
                 </Link>
-                {/* <Fab
-                style={{ marginLeft: "8%" }}
-                size="medium"
-                color="primary"
-                variant="contained"
-                className="play-btn-content-btn-hide"
-              >
-                <AddIcon variant="contained" fontSize="medium" />
-              </Fab> */}
+                <Fab
+                  style={{ marginLeft: "3%" }}
+                  size="small"
+                  color="primary"
+                  className="play-btn-content-btn-hide"
+                >
+                  <AddIcon />
+                </Fab>
               </div>
             </div>
           </div>

@@ -67,7 +67,7 @@ const Header = ({}: HeaderProps) => {
   };
 
   const displaySidenav = {
-    width: sidenav && matches ? "100%" : sidenav ? "15%" : "0",
+    width: sidenav && matches ? "100%" : sidenav ? "23%" : "0",
     padding: "0",
   };
 

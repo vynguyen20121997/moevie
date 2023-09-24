@@ -43,16 +43,18 @@ interface genreObject {
   id: number;
   name: string;
 }
-type ButtonPropType = {
+interface ButtonPropType {
   genre: genreObject;
   variant?: "text" | "contained" | "outlined";
   size?: string;
   stylebutton?: {
-    maxWidth: string;
-    fontSize: string;
-    minWidth: string;
+    maxWidth?: string;
+    fontSize?: string;
+    minWidth?: string;
+    maxHeight?: string;
+    minHeight?: string;
   };
-};
+}
 
 export const ButtonContainer: React.FC<ButtonPropType> = (props) => {
   const { genre, variant, size, stylebutton } = props;
