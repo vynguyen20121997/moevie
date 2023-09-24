@@ -7,25 +7,23 @@
   /* Medium devices (landscape tablets, 768px and up) */
   @media only screen and (min-width: 768px) {
     .heroSlider{
-        height: 5vh;
+        height: 600px;
        } 
-       #popular-slider{
-        padding-top: 60%}
+      
              } 
   
   /* Large devices (laptops/desktops, 992px and up) */
   @media only screen and (min-width: 992px) {
     .heroSlider{
-        height: 20vh;
+        height: 600px;
        }  
-       #popular-slider{
-padding-top: 400px;       }
+   
     }
   
   /* Extra large devices (large laptops and desktops, 1200px and up) */
   @media only screen and (min-width: 1200px) {
     .heroSlider{
-        height: 43vh;
+        height: 600px;
        };
        .movie-slider{
         height: 70vh;

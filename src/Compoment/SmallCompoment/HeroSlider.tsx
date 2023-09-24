@@ -78,82 +78,80 @@ const HeroSlider: React.FC<PropType> = (props) => {
   if (loading) return <Loading />;
 
   return (
-    <div>
-      <div className="embla">
-        <div className="btn1">
-          <Fab
-            onClick={scrollPrev}
-            // disabled={prevBtnDisabled}
-            color="primary"
-          >
-            <ChevronLeftIcon fontSize="large" />
-          </Fab>
-        </div>
-        <div className="embla__viewport" ref={viewportRef}>
-          <div className="embla__container">
-            {items.map((i, index) => (
-              <div
-                className="embla__slide"
-                key={index}
-                style={{
-                  backgroundImage: `url(${APIConfig.originalImage(
-                    i.backdrop_path
-                  )})`,
-                }}
-              >
-                <div className="embla__slide__inner">
-                  <div
-                    className="poster"
-                    style={{ marginTop: "10%", position: "relative" }}
-                  >
-                    <Link to={`/movies/${i.id}`}>
-                      <img
-                        onClick={() => {
-                          navigate(`/movies/${i.id}`);
-                        }}
-                        src={APIConfig.w300Image(i.poster_path)}
-                        alt=""
-                      />
-                    </Link>
-                  </div>
-                  <div className="info">
-                    <h1>{i.title}</h1>
-                    <h4>{i.overview}</h4>
-                    <div className="btn">
-                      <Button
-                        onClick={() => {
-                          navigate(`/movies/${i.id}`);
-                        }}
-                        size="large"
-                        variant="contained"
-                      >
-                        WATCH NOW
-                      </Button>
-                    </div>
+    <div className="embla">
+      <div className="btn1">
+        <Fab
+          onClick={scrollPrev}
+          // disabled={prevBtnDisabled}
+          color="primary"
+        >
+          <ChevronLeftIcon fontSize="large" />
+        </Fab>
+      </div>
+      <div className="embla__viewport" ref={viewportRef}>
+        <div className="embla__container">
+          {items.map((i, index) => (
+            <div
+              className="embla__slide"
+              key={index}
+              style={{
+                backgroundImage: `url(${APIConfig.originalImage(
+                  i.backdrop_path
+                )})`,
+              }}
+            >
+              <div className="embla__slide__inner">
+                <div
+                  className="poster"
+                  style={{ marginTop: "10%", position: "relative" }}
+                >
+                  <Link to={`/movies/${i.id}`}>
+                    <img
+                      onClick={() => {
+                        navigate(`/movies/${i.id}`);
+                      }}
+                      src={APIConfig.w300Image(i.poster_path)}
+                      alt=""
+                    />
+                  </Link>
+                </div>
+                <div className="info">
+                  <h1>{i.title}</h1>
+                  <h4>{i.overview}</h4>
+                  <div className="btn">
+                    <Button
+                      onClick={() => {
+                        navigate(`/movies/${i.id}`);
+                      }}
+                      size="large"
+                      variant="contained"
+                    >
+                      WATCH NOW
+                    </Button>
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>{" "}
-        <div className="btn2">
-          <Fab color="primary" onClick={scrollNext} disabled={nextBtnDisabled}>
-            <ChevronRightIcon fontSize="large" />
-          </Fab>
-        </div>
-        <div className="embla__navigator">
-          {scrollSnaps.map((_, index) => (
-            <div
-              className="embla__dots"
-              key={index}
-              style={{
-                backgroundColor:
-                  selectedIndex === index ? "lightblue" : "lightgray",
-              }}
-              onClick={() => scrollTo(index)}
-            />
+            </div>
           ))}
         </div>
+      </div>{" "}
+      <div className="btn2">
+        <Fab color="primary" onClick={scrollNext} disabled={nextBtnDisabled}>
+          <ChevronRightIcon fontSize="large" />
+        </Fab>
+      </div>
+      <div className="embla__navigator">
+        {scrollSnaps.map((_, index) => (
+          <div
+            className="embla__dots"
+            key={index}
+            style={{
+              backgroundColor:
+                selectedIndex === index ? "lightblue" : "lightgray",
+            }}
+            onClick={() => scrollTo(index)}
+          />
+        ))}
       </div>
     </div>
   );
