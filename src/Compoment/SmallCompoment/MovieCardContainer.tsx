@@ -23,7 +23,15 @@ export interface Movie {
   genre_ids: [number];
 }
 
+interface MovieItem {
+  name: string;
+  id: number;
+  title?: string;
+  poster_path: string;
+  quantity: number;
+}
 interface PropType {
+  movieItem: MovieItem;
   movieDetail: Movie;
   loadingCard: boolean;
 }
@@ -35,7 +43,7 @@ interface ButtonPropType {
   variant?: "text" | "contained" | "outlined";
 }
 const CardContainer: React.FC<PropType> = (props) => {
-  const addToCart: any = useContext(GenreListContext);
+  const addToCart: (movie: MovieItem) => void = useContext(GenreListContext);
   const genreList: any = useContext(GenreListContext);
   const [isHover, SetIsHover] = useState<boolean>(false);
   const { movieDetail, loadingCard } = props;
