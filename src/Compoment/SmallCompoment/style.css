@@ -168,11 +168,12 @@
   justify-content: center;
 }
 .info{
-  width: 60%;
+  width: 50%;
   position: relative;
   color: white;
 }
 .info h4{
+  max-width: ;
     max-height: 20%,
 }
 

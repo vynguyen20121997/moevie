@@ -72,11 +72,7 @@ const HomePage = () => {
         <HeroSlider items={ketqua} loading={isLoading} />
       </div>
 
-      <div
-        className="movie-slider"
-        id="popular-slider"
-        style={{ margin: "1%" }}
-      >
+      <div className="movie-slider" id="popular-slider">
         <SliderContainer
           loading={popularLoading}
           items={popularData}
@@ -84,7 +80,7 @@ const HomePage = () => {
         />
       </div>
 
-      <div className="movie-slider" style={{ margin: "1%" }}>
+      <div className="movie-slider">
         <SliderContainer
           loading={topRatedLoading}
           items={topRatedData}
@@ -92,7 +88,7 @@ const HomePage = () => {
         />
       </div>
 
-      <div className="movie-slider" style={{ margin: "1%" }}>
+      <div className="movie-slider">
         <SliderContainer
           loading={UpcomingLoading}
           items={UpcomingData}
