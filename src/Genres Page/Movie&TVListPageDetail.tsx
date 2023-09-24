@@ -7,12 +7,10 @@ import {
   MoviesEndPoints,
 } from "../Compoment/API/APIConfig";
 import { OnFetchAxios } from "../Compoment/API/OnfetchAxios";
-import { Rating } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import "./genresStyle.css";
-import { AxiosResponse } from "axios";
 export interface Movie {
   name: string;
   id: number;
@@ -27,21 +25,22 @@ export interface Movie {
   popularity: number;
   genre_ids: [number];
 }
-const GenresPageDetail = () => {
+const MovieTVListPageDetail = () => {
   const [movieData, setMovieData] = useState([]);
   const [page, setPage] = useState(1);
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
   };
-  const params: { genreId: string } = useParams() as { genreId: string };
-  const idGenre = params.genreId;
-  const idGenreNumber = parseInt(idGenre);
+  const params: { type: string } = useParams() as { type: string };
+  const { type } = params;
+  const uppercasedType = type.toUpperCase();
 
+  // MoviesEndPoints.`${params.type}` +s
   const newUrl =
-    MoviesEndPoints.discover +
+    MoviesEndPoints.popular +
     APIConfig.apiKey +
-    MoviebyOptions.byGenreId(idGenreNumber) +
     MoviebyOptions.bySpecificPageNumber(page);
+
   const { data: apiData, isLoading } = OnFetchAxios({
     url: newUrl,
     key: "newUrl",
@@ -75,7 +74,7 @@ const GenresPageDetail = () => {
     <div>
       <div>
         <div style={{ paddingTop: "5%", paddingLeft: "10%" }}>
-          {/* <h1 style={{ color: "white" }}>{nameGenre && nameGenre.name}</h1> */}
+          <h1 style={{ color: "white" }}>{uppercasedType}</h1>
         </div>
         <div
           className="moviecard"
@@ -111,4 +110,7 @@ const GenresPageDetail = () => {
   );
 };
 
-export default GenresPageDetail;
+export default MovieTVListPageDetail;
+function useUppercase(type: any) {
+  throw new Error("Function not implemented.");
+}

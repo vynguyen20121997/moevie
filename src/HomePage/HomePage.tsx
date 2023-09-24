@@ -76,7 +76,7 @@ const HomePage = () => {
         <SliderContainer
           loading={popularLoading}
           items={popularData}
-          movieCategoryTitle="Popular"
+          movieCategoryTitle="popular"
         />
       </div>
 
@@ -84,7 +84,7 @@ const HomePage = () => {
         <SliderContainer
           loading={topRatedLoading}
           items={topRatedData}
-          movieCategoryTitle="Top Rated "
+          movieCategoryTitle="toprated "
         />
       </div>
 
@@ -92,7 +92,7 @@ const HomePage = () => {
         <SliderContainer
           loading={UpcomingLoading}
           items={UpcomingData}
-          movieCategoryTitle="Upcoming "
+          movieCategoryTitle="upcoming "
         />
       </div>
 
@@ -100,7 +100,7 @@ const HomePage = () => {
         <SliderContainer
           items={nowPlayingData}
           loading={nowPlayingLoading}
-          movieCategoryTitle="Now Playing"
+          movieCategoryTitle="nowplaying"
         />
       </div>
     </>

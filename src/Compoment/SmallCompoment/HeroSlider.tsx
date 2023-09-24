@@ -17,6 +17,7 @@ import { APIConfig } from "../API/APIConfig";
 import Button from "@mui/material/Button";
 import Loading from "../Loading/Loading";
 export interface Movie {
+  name: string;
   id: number;
   title: string;
   original_title: string;
@@ -113,7 +114,7 @@ const HeroSlider: React.FC<PropType> = (props) => {
                   </Link>
                 </div>
                 <div className="info">
-                  <h1>{i.title}</h1>
+                  <h1>{i.title || i.name}</h1>
                   <h4>{i.overview}</h4>
                   <div className="btn">
                     <Button

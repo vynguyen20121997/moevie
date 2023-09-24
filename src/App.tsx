@@ -12,11 +12,38 @@ import axios from "axios";
 import { APIConfig, MoviesEndPoints } from "./Compoment/API/APIConfig";
 import Media from "./Compoment/Loading/Loading";
 import TVShowPage from "./HomePage/TvPage";
+import MovieTVListPageDetail from "./Genres Page/Movie&TVListPageDetail";
 const queryClient = new QueryClient();
 export const GenreListContext = createContext<any[]>([]);
-
+interface Movie {
+  name: string;
+  id: number;
+  title: string;
+  original_title: string;
+  overview: string;
+  poster_path: string;
+  backdrop_path: string;
+  vote_count: number;
+  vote_average: number;
+  release_date: string;
+  popularity: number;
+  genre_ids: [number];
+}
 function App(): JSX.Element {
   const [genreList, setGenreList] = useState<any>([]);
+  const [addItem, setAddItem] = useState([]);
+
+  const addToCart = ({ name, id, poster_path }: Movie) => {
+    const products = [...addItem];
+    const itemIndex = products?.findIndex((item) => item.id === id);
+    console.log(itemIndex);
+    if (itemIndex === -1) {
+      setAddItem([...products, { name, id, poster_path, quantity: 1 }]);
+    } else {
+      products[itemIndex].quantity += 1;
+      setAddItem(products);
+    }
+  };
 
   useEffect(() => {
     axios.get(`${MoviesEndPoints.genre}${APIConfig.apiKey}`).then((res) => {
@@ -44,8 +71,12 @@ function App(): JSX.Element {
               <Route path="/genres" element={<GenresPage />} />
               <Route path="/movies/:movieId" element={<MovieDetailPage />} />
               <Route path="/genres/:genreId" element={<GenresPageDetail />} />
+              <Route
+                path="/category/:type"
+                element={<MovieTVListPageDetail />}
+              />
               <Route path="/register" element={<RegisterPage />} />
-              <Route path="/test" element={<Media />} />
+              {/* <Route path="/test" element={<Media />} /> */}
             </Routes>
             <Footer />
           </BrowserRouter>

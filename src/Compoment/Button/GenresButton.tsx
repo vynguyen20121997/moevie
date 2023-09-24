@@ -53,6 +53,7 @@ interface ButtonPropType {
     minWidth?: string;
     maxHeight?: string;
     minHeight?: string;
+    marginLeft?: string;
   };
 }
 

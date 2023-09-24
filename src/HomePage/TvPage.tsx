@@ -17,51 +17,51 @@ const TVShowPage = () => {
   const { data: airingtodayData, isLoading } = OnFetchAxios(fetchOptions);
   const ketqua = airingtodayData?.data?.results;
 
-  const urlpopularMovies =
-    MoviesEndPoints.popular + APIConfig.apiKey + MoviebyOptions.byPageNumber;
-  const fetchPopularMovies = {
-    url: urlpopularMovies,
-    key: "popularMoviesHooks",
+  const urlpopularTV =
+    MoviesEndPoints.populartv + APIConfig.apiKey + MoviebyOptions.byPageNumber;
+  const fetchPopularTV = {
+    url: urlpopularTV,
+    key: "popularTVHooks",
   };
-  const { data: popularMoviesrData, isLoading: popularLoading } =
-    OnFetchAxios(fetchPopularMovies);
-  const popularData = popularMoviesrData?.data?.results;
+  const { data: popularTVData, isLoading: popularLoading } =
+    OnFetchAxios(fetchPopularTV);
+  const popularTV = popularTVData?.data?.results;
 
-  const urlontheair =
-    MoviesEndPoints.topRated + APIConfig.apiKey + MoviebyOptions.byPageNumber;
-  const fetchtopontheair = {
-    url: urlontheair,
+  const urlontheairTV =
+    MoviesEndPoints.ontheair + APIConfig.apiKey + MoviebyOptions.byPageNumber;
+  const fetchtopontheairTV = {
+    url: urlontheairTV,
     key: "ontheairHooks",
   };
   const { data: ontheairData, isLoading: ontheairLoading } =
-    OnFetchAxios(fetchtopontheair);
-  const ontheair = ontheairData?.data?.results;
+    OnFetchAxios(fetchtopontheairTV);
+  const ontheairTV = ontheairData?.data?.results;
 
-  const urlUpcomingMovies =
-    MoviesEndPoints.upcoming + APIConfig.apiKey + MoviebyOptions.byPageNumber;
-  const fetchUpcomingMovies = {
-    url: urlUpcomingMovies,
-    key: "UpcomingMoviesHooks",
+  const urlTopRatedTV =
+    MoviesEndPoints.topratedtv + APIConfig.apiKey + MoviebyOptions.byPageNumber;
+  const fetchtopRatedTV = {
+    url: urlTopRatedTV,
+    key: "topRatedHooks",
   };
-  const { data: UpcomingMoviesrData, isLoading: UpcomingLoading } =
-    OnFetchAxios(fetchUpcomingMovies);
-  const UpcomingData = UpcomingMoviesrData?.data?.results;
+  const { data: topRatedData, isLoading: topRatedLoading } =
+    OnFetchAxios(fetchtopRatedTV);
+  const topRatedTV = topRatedData?.data?.results;
 
-  const urlNowPlaying =
-    MoviesEndPoints.nowPlaying + APIConfig.apiKey + MoviebyOptions.byPageNumber;
-  const fetchNowPlayingMovies = {
-    url: urlNowPlaying,
-    key: "NowPlayingMoviesHooks",
+  const urlArivingToday = MoviesEndPoints.airingtoday + APIConfig.apiKey;
+  const fetchArivingToday = {
+    url: urlArivingToday,
+    key: "arivingTodayHooks",
   };
-  const { data: nowPlayingMoviesrData, isLoading: nowPlayingLoading } =
-    OnFetchAxios(fetchNowPlayingMovies);
-  const nowPlayingData = nowPlayingMoviesrData?.data?.results;
+  const { data: arivingTodayData, isLoading: arivingTodayLoading } =
+    OnFetchAxios(fetchArivingToday);
+  const arivingTodaytv = arivingTodayData?.data?.results;
   if (isLoading) return null;
   // if (popularLoading) return null;
   // if (topRatedLoading) return null;
   // if (UpcomingLoading) return null;
   // if (nowPlayingLoading) return null;
 
+  console.log("tvshow", ketqua);
   return (
     <>
       <div
@@ -74,32 +74,32 @@ const TVShowPage = () => {
       <div className="movie-slider" id="popular-slider">
         <SliderContainer
           loading={popularLoading}
-          items={popularData}
-          movieCategoryTitle="Popular"
+          items={popularTV}
+          movieCategoryTitle="Popular Show"
         />
       </div>
 
       <div className="movie-slider">
         <SliderContainer
           loading={ontheairLoading}
-          items={ontheair}
+          items={ontheairTV}
           movieCategoryTitle="On The Air"
         />
       </div>
 
       <div className="movie-slider">
         <SliderContainer
-          loading={UpcomingLoading}
-          items={UpcomingData}
-          movieCategoryTitle="Upcoming "
+          loading={topRatedLoading}
+          items={topRatedTV}
+          movieCategoryTitle="Top Rated "
         />
       </div>
 
       <div className="movie-slider" style={{ margin: "1%" }}>
         <SliderContainer
-          items={nowPlayingData}
-          loading={nowPlayingLoading}
-          movieCategoryTitle="Now Playing"
+          items={arivingTodaytv}
+          loading={arivingTodayLoading}
+          movieCategoryTitle="Ariving Today"
         />
       </div>
     </>

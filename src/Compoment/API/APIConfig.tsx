@@ -49,7 +49,7 @@ export const MoviebyOptions: {
   bySpecificPageNumber: (id: number) => string;
 } = {
   byGenreId: (id) => `&with_genres=${id}`,
-  byPageNumber: `&page=${Math.floor(Math.random() * 44 + 1)}`,
+  byPageNumber: `&page=${Math.floor(Math.random() * 33 + 1)}`,
   bySpecificPageNumber: (id) => `&page=${id}`,
 };
 export const MoviesDetailEndPoints = {

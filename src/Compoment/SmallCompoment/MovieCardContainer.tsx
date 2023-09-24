@@ -9,6 +9,7 @@ import Loading from "../Loading/Loading";
 import "./styleMovieCard.css";
 import AddIcon from "@mui/icons-material/Add";
 export interface Movie {
+  name: string;
   id: number;
   title: string;
   original_title: string;
@@ -38,8 +39,15 @@ const CardContainer: React.FC<PropType> = (props) => {
   const [isHover, SetIsHover] = useState<boolean>(false);
   const { movieDetail, loadingCard } = props;
 
-  const { vote_average, title, release_date, id, poster_path, genre_ids } =
-    movieDetail;
+  const {
+    vote_average,
+    title,
+    release_date,
+    id,
+    poster_path,
+    genre_ids,
+    name,
+  } = movieDetail;
 
   const genreData: genreDataType[] = genreList?.genres;
 
@@ -105,7 +113,7 @@ const CardContainer: React.FC<PropType> = (props) => {
               onMouseLeave={handleMouseLeave}
             >
               <div className="content-content-hide">
-                <h4>{title}</h4>
+                <h4>{title || name}</h4>
                 <h5>{release_date}</h5>
               </div>
 
@@ -120,7 +128,7 @@ const CardContainer: React.FC<PropType> = (props) => {
               </div>
 
               <div className="genre-content-hide">
-                {genreNames.map((item) => {
+                {genreNames?.slice(0, 2).map((item) => {
                   return (
                     <ButtonContainer
                       variant="contained"
@@ -131,6 +139,7 @@ const CardContainer: React.FC<PropType> = (props) => {
                         maxHeight: "30px",
                         minWidth: "30px",
                         minHeight: "30px",
+                        marginLeft: "1%",
                       }}
                       genre={item}
                     />

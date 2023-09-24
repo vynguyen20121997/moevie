@@ -23,6 +23,7 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import "./style2.css";
 import CardContainer from "./MovieCardContainer";
 export interface Movie {
+  name: string;
   id: number;
   title: string;
   original_title: string;
@@ -57,24 +58,26 @@ const SliderContainer: React.FC<PropType> = (props) => {
   return (
     <>
       <div className="button1">
-        <div className="left">
-          <Button
-            variant="outlined"
-            sx={{
-              borderBottomLeftRadius: "15px",
-              borderTopLeftRadius: "15px",
-              margin: "0",
-            }}
-          >
-            <h3 style={{ margin: "0", padding: "0 50px" }}>
-              {movieCategoryTitle}
-            </h3>
-          </Button>
-          <Button>
-            See all
-            <NavigateNextIcon />
-          </Button>
-        </div>
+        <Link to={`/category/${movieCategoryTitle}`}>
+          <div className="left">
+            <Button
+              variant="outlined"
+              sx={{
+                borderBottomLeftRadius: "15px",
+                borderTopLeftRadius: "15px",
+                margin: "0",
+              }}
+            >
+              <h3 style={{ margin: "0", padding: "0 50px" }}>
+                {movieCategoryTitle}
+              </h3>
+            </Button>
+            <Button>
+              See all
+              <NavigateNextIcon />
+            </Button>
+          </div>
+        </Link>
 
         <div className="right">
           <Button onClick={onPrevButtonClick} disabled={prevBtnDisabled}>

@@ -70,6 +70,7 @@ const MovieDetailPage = () => {
     name: string;
   }
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   const params = useParams();
   const idMovie: string | undefined = params.movieId;
   const urlByDetail = MoviesDetailEndPoints.details(idMovie) + APIConfig.apiKey;
@@ -118,8 +119,6 @@ const MovieDetailPage = () => {
     genres,
     production_countries,
   } = movieDetail;
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
   const countryList = movieDetail.production_countries;
   const imgUrl = APIConfig.w500Image(poster_path);
@@ -127,6 +126,19 @@ const MovieDetailPage = () => {
   const genresList = movieDetail.genres;
   const videoNe = videoData && videoData[0];
   const urlVideo = `https://www.youtube.com/embed/${videoNe?.key}`;
+
+  // const login :boolean = JSON.parse(localStorage?.getItem("login") || "");
+
+  // if (!login) {
+  // Người dùng chưa đăng nhập, điều hướng đến trang đăng nhập
+  //   navigate(`/login`);
+  // } else {
+  // Người dùng đã đăng nhập, chạy hàm setOpen()
+  //     setOpen(true);
+  //   }
+  // };
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   return (
     <>
       <div
