@@ -7,8 +7,7 @@ import {
 } from "../Compoment/API/APIConfig";
 import { OnFetchAxios } from "../Compoment/API/OnfetchAxios";
 import SliderContainer from "../Compoment/SmallCompoment/SliderContainer";
-// import Test from "../Test/test";
-
+import "./HomePageStyle.css";
 const HomePage = () => {
   const urlHeroSlider =
     MoviesEndPoints.popular + APIConfig.apiKey + MoviebyOptions.byPageNumber;
@@ -66,33 +65,42 @@ const HomePage = () => {
 
   return (
     <>
-      <div style={{ boxShadow: " grey 0px 1px 50px -10px", width: "100%" }}>
+      <div
+        className="heroSlider"
+        style={{ boxShadow: " grey 0px 1px 50px -10px", width: "100%" }}
+      >
         <HeroSlider items={ketqua} loading={isLoading} />
       </div>
-      <div>
-        <div style={{ margin: "1%" }}>
-          <SliderContainer
-            loading={popularLoading}
-            items={popularData}
-            movieCategoryTitle="Popular"
-          />
-        </div>
+
+      <div
+        className="movie-slider"
+        id="popular-slider"
+        style={{ margin: "1%" }}
+      >
+        <SliderContainer
+          loading={popularLoading}
+          items={popularData}
+          movieCategoryTitle="Popular"
+        />
       </div>
-      <div style={{ margin: "1%" }}>
+
+      <div className="movie-slider" style={{ margin: "1%" }}>
         <SliderContainer
           loading={topRatedLoading}
           items={topRatedData}
           movieCategoryTitle="Top Rated "
         />
       </div>
-      <div style={{ margin: "1%" }}>
+
+      <div className="movie-slider" style={{ margin: "1%" }}>
         <SliderContainer
           loading={UpcomingLoading}
           items={UpcomingData}
           movieCategoryTitle="Upcoming "
         />
       </div>
-      <div style={{ margin: "1%" }}>
+
+      <div className="movie-slider" style={{ margin: "1%" }}>
         <SliderContainer
           items={nowPlayingData}
           loading={nowPlayingLoading}

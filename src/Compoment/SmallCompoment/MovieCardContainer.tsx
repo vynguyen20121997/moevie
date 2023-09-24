@@ -40,17 +40,17 @@ const CardContainer: React.FC<PropType> = (props) => {
   //   const memoizedGenreList = useMemo(() => genreList, [genreList]);
   //   console.log("genre list", genreData);
 
-  const genreFilter = () => {
-    const result = [];
-    for (const genreId of genre_ids) {
-      const element = genreData.find((item) => item.id === genreId);
-      if (element) {
-        result.push({ name: element.name, id: element.id });
-      }
-    }
-    return result;
-  };
-  const genreNames = genreFilter();
+  // const genreFilter = () => {
+  //   const result = [];
+  //   for (const genreId of genre_ids) {
+  //     const element = genreData?.find((item) => item.id === genreId);
+  //     if (element) {
+  //       result.push({ name: element.name, id: element.id });
+  //     }
+  //   }
+  //   return result;
+  // };
+  // const genreNames = genreFilter();
   //   console.log("loc giday", genreNames);
 
   const handleMouseEnter = () => {
@@ -118,7 +118,7 @@ const CardContainer: React.FC<PropType> = (props) => {
               </div>
 
               <div className="genre">
-                {genreNames.map((i) => {
+                {/* {genreNames.map((i) => {
                   return (
                     <ButtonContainer
                       variant="contained"
@@ -133,7 +133,7 @@ const CardContainer: React.FC<PropType> = (props) => {
                       genre={i}
                     />
                   );
-                })}
+                })} */}
               </div>
 
               <div className="content-btn-hide">

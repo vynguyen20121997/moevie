@@ -78,7 +78,7 @@ const HeroSlider: React.FC<PropType> = (props) => {
   if (loading) return <Loading />;
 
   return (
-    <div className="App">
+    <div>
       <div className="embla">
         <div className="btn1">
           <Fab
