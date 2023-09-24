@@ -1,3 +1,6 @@
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
 .detailpage-body {
     width: 100%;
     height: 100%;
@@ -38,7 +41,10 @@
     width: 40%;
     color: white;
 }
-
+.middle-detail{
+    display: none;
+        
+        }
 #watch-button {
     border-radius: 30px;
     width: 200px;
@@ -116,4 +122,139 @@
 }
 .detail-cast-block{
     margin-left:2%;
+}
+
+}
+
+@media only screen and (max-width: 600px) {
+    .detailpage-body {
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-attachment: scroll;
+    }
+    
+    .detail-page {
+        padding-top: 100px;
+        color: white;
+    }
+    
+    .leftside-detail-page {
+        width: 100%;
+        margin-left: 5%;
+    }
+    
+    .leftside-detail-page img {
+        object-fit: cover;
+        border-radius: 15px;
+        width: 95%;
+    }
+    
+    .left-detail {
+   display: none;
+
+    }
+ 
+    
+    .middleside-detail-page {
+        width: 100%;
+        color: white;
+    }
+    .middle-detail{
+display: flex;
+        justify-content: space-around;
+        width: 100%;
+        margin: 0;
+    }
+    #watch-button {
+        border-radius: 30px;
+        width: 200px;
+        height: 58px;
+        padding: 0;
+        margin-left: 2%;
+    }
+    
+    #other-button {
+        margin-left: 2%
+    }
+    
+    #title {
+        color: white;
+        font-size: 50px;
+        margin-bottom: 0;
+        text-align: center;
+    }
+    
+    #release-date {
+        color: lightgrey;
+        text-align: center;
+
+    }
+    #overview{
+        text-align: center;
+    }
+    .moviedetail-table {
+        margin-top: 5%;
+        font-size: 14px;
+    }
+    
+    .moviedetail-table h1 {
+        margin-top: 5%;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        text-align: center;
+    }
+    
+    .moviedetail-table Button {
+        border-radius: 30px;
+        width: 100px;
+        height: 30px;
+        padding: 0;
+        margin-left: 2%;
+    
+    }
+    
+    .right-detail-page {
+        width: 100%;
+        float: right;
+        max-height: 700px;
+    }
+    
+    .cast-list {
+        width: 100%;
+        height: 100%;
+        overflow: scroll;
+        overflow-x: hidden;
+        scroll-snap-type: y mandatory;
+        -ms-text-overflow-style: none;
+    
+    }
+    
+    .cast-list::-webkit-scrollbar {
+        display: none;
+    }
+    .cast-block{
+        display: flex;
+        margin-bottom:2%;
+        scroll-margin-block:100%;
+        scroll-snap-align:start none;
+    }
+    .img-cast-block img{
+        object-fit: cover;
+        vertical-align: middle;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-right:3%;
+    }
+    .detail-cast-block{
+        margin-left:2%;
+    }
+    
+    
+    
+
+
 }

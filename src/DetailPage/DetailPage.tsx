@@ -160,6 +160,16 @@ const MovieDetailPage = () => {
           <div className="middleside-detail-page">
             <h1 id="title">{original_title}</h1>
             <h4 id="release-date">Release Date: {release_date}</h4>
+            <div className="middle-detail">
+              <h4>
+                {vote_average}
+                <span> rattings</span>
+              </h4>
+              <h4>
+                {vote_count}
+                <span> reviews</span>
+              </h4>
+            </div>
             <div className="buttongroup">
               <Button
                 id="watch-button"
@@ -202,7 +212,7 @@ const MovieDetailPage = () => {
                 <ShareOutlinedIcon />
               </Fab>
             </div>
-            <h4>{overview}</h4>
+            <h4 id="overview">{overview}</h4>
 
             <div className="moviedetail-table">
               <h1>Details</h1>
