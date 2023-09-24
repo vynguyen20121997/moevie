@@ -87,14 +87,7 @@ const Header = ({}: HeaderProps) => {
           </Link>
         </div>
 
-        <div
-          style={{
-            display: "flex",
-            border: "0",
-            margin: "0",
-            marginRight: "5%",
-          }}
-        >
+        <div className="menu-button-group">
           <ButtonGroup variant="text" aria-label="text button group">
             {menuItems.map((item, index) => (
               <Button>

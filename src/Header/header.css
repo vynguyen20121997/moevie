@@ -1,90 +1,91 @@
-.MuiButton-root {
-    min-width: 0;
-}
-.header {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    background: transparent;
-    top: 0;
-    position: fixed;
-    z-index: 99;
-    /* transition: height 0.3s ease, background-color 0.3s ease; */
-}
-.list-element {
-    text-decoration: none;
-    color: #318CE7;
-}
-#mySidenav {
-    height: 100%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    transition: 0.5s;
-    padding-top: 60px;
-    overflow: scroll;
-    overflow-x: hidden;
-    scroll-snap-type: y mandatory;
-    -ms-text-overflow-style: none;
-    scrollbar-width: none;
-}
-#mySidenav::-webkit-scrollbar {
-    display: none;
-}
-.home-sidenav{
-    padding: 2%;
-    margin: 0;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-top: 5%;
-    border-radius: 20px;
-    background-color: rgb(21, 21, 94);
-    padding-left: 5%;
-    justify-content: space-between;
-    min-height: 4.5%;
-width: 80%;
 
-}
-#home-SideNav{
-    display: flex;
-    padding-top: 0;
-    padding-bottom: 0;
-}
-.homebutton {
-    width: 60%;
-    padding: 0;
-}
-
-.closebutton {
-    width: 30%;
-    padding: 15%;
-   margin-top: 2%;
-   margin-left: 10%;
-}
-.closebutton Button{
-    min-width: 0;
-    border-radius: 5px ; 
-    margin: auto;
-}
-#home-mySideNav p {
-    padding: 0;
-    margin: 0;
-    margin-left: 5%;
-    color: aliceblue;
-    font-size: 25px;
-}
-
-#genre-SideNav{
-   padding-bottom: 0;
-   margin-bottom: 0;
-  
-}
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-    .example {background: red;}
+    .MuiButton-root {
+        min-width: 0;
+        font-size: xx-small;
+    }
+    .header {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        background: transparent;
+        top: 0;
+        position: fixed;
+        z-index: 99;
+        /* transition: height 0.3s ease, background-color 0.3s ease; */
+    }
+    .menu-button-group{display: none;}
+    .list-element {
+      display: none;
+    }
+    #mySidenav {
+        height: 100%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        transition: 0.5s;
+        padding-top: 60px;
+        overflow: scroll;
+        overflow-x: hidden;
+        scroll-snap-type: y mandatory;
+        -ms-text-overflow-style: none;
+        scrollbar-width: none;
+    }
+    #mySidenav::-webkit-scrollbar {
+        display: none;
+    }
+    .home-sidenav{
+        padding: 2%;
+        margin: 0;
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: 5%;
+        border-radius: 20px;
+        background-color: rgb(21, 21, 94);
+        padding-left: 5%;
+        justify-content: space-between;
+        min-height: 4.5%;
+    width: 80%;
+    
+    }
+    #home-SideNav{
+        display: flex;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    .homebutton {
+        width: 60%;
+        padding: 0;
+    }
+    
+    .closebutton {
+        width: 30%;
+        padding: 15%;
+       margin-top: 2%;
+       margin-left: 10%;
+    }
+    .closebutton Button{
+        min-width: 0;
+        border-radius: 5px ; 
+        margin: auto;
+    }
+    #home-mySideNav p {
+        padding: 0;
+        margin: 0;
+        margin-left: 5%;
+        color: aliceblue;
+        font-size: 25px;
+    }
+    
+    #genre-SideNav{
+       padding-bottom: 0;
+       margin-bottom: 0;
+      
+    }
   }
   
   /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -104,5 +105,92 @@ width: 80%;
   
   /* Extra large devices (large laptops and desktops, 1200px and up) */
   @media only screen and (min-width: 1200px) {
-    .example {background: pink;}
+    .MuiButton-root {
+        min-width: 0;
+    }
+    .header {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        background: transparent;
+        top: 0;
+        position: fixed;
+        z-index: 99;
+        /* transition: height 0.3s ease, background-color 0.3s ease; */
+    }
+    .menu-button-group{ 
+         display: flex;
+        border: 0;
+        margin: 0;
+        margin-right: 5%;}
+    .list-element {
+        text-decoration: none;
+        color: #318CE7;
+    }
+    #mySidenav {
+        height: 100%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        transition: 0.5s;
+        padding-top: 60px;
+        overflow: scroll;
+        overflow-x: hidden;
+        scroll-snap-type: y mandatory;
+        -ms-text-overflow-style: none;
+        scrollbar-width: none;
+    }
+    #mySidenav::-webkit-scrollbar {
+        display: none;
+    }
+    .home-sidenav{
+        padding: 2%;
+        margin: 0;
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: 5%;
+        border-radius: 20px;
+        background-color: rgb(21, 21, 94);
+        padding-left: 5%;
+        justify-content: space-between;
+        min-height: 4.5%;
+    width: 80%;
+    
+    }
+    #home-SideNav{
+        display: flex;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    .homebutton {
+        width: 60%;
+        padding: 0;
+    }
+    
+    .closebutton {
+        width: 30%;
+        padding: 15%;
+       margin-top: 2%;
+       margin-left: 10%;
+    }
+    .closebutton Button{
+        min-width: 0;
+        border-radius: 5px ; 
+        margin: auto;
+    }
+    #home-mySideNav p {
+        padding: 0;
+        margin: 0;
+        margin-left: 5%;
+        color: aliceblue;
+        font-size: 25px;
+    }
+    
+    #genre-SideNav{
+       padding-bottom: 0;
+       margin-bottom: 0;
+      
+    }
   }
