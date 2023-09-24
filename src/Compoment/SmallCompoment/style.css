@@ -155,7 +155,6 @@
     display: flex;
     height: 100%;
     max-width: 95%;
-    padding-left: 5%;
   }
 .poster{
   width: 30%;
@@ -174,7 +173,6 @@
   position: relative;
   color: white;
   text-align: center;
-  margin-left: 5%;
 }
 .info h1{
   text-align: center;
@@ -196,8 +194,8 @@ padding: 0 10%;
   .embla__navigator {
     display: flex;
     position: absolute;
-   left: 55%;
-   top: 40%;
+   left: 52%;
+   top: 46%;
     z-index: 3;
   }
   .embla__dots {
