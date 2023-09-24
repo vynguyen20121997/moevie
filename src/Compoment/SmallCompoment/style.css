@@ -160,13 +160,14 @@
   position: relative;
   display: flex;
   justify-content: center;
+  margin-left: 12%;
 }
 .info{
   width: 50%;
   position: relative;
   color: white;
-  align-items: center;
   text-align: center;
+  margin-left: 5%;
 }
 .info h1{
   text-align: center;
@@ -186,8 +187,8 @@ padding: 0 10%;
   .embla__navigator {
     display: flex;
     position: absolute;
-   left: 50%;
-   top: 43%;
+   left: 56%;
+   top: 48%;
     z-index: 3;
   }
   .embla__dots {

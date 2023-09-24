@@ -7,10 +7,10 @@
   /* Medium devices (landscape tablets, 768px and up) */
   @media only screen and (min-width: 768px) {
     .heroSlider{
-        height: 30vh;
+        height: 5vh;
        } 
        #popular-slider{
-        padding-top: 5%      }
+        padding-top: 60%}
              } 
   
   /* Large devices (laptops/desktops, 992px and up) */
