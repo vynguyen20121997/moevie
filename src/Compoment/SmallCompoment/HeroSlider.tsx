@@ -41,8 +41,8 @@ const HeroSlider: React.FC<PropType> = (props) => {
     {
       align: "center",
       skipSnaps: false,
-    },
-    [Autoplay()]
+    }
+    // [Autoplay()]
   );
 
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -101,10 +101,7 @@ const HeroSlider: React.FC<PropType> = (props) => {
               }}
             >
               <div className="embla__slide__inner">
-                <div
-                  className="poster"
-                  style={{ marginTop: "10%", position: "relative" }}
-                >
+                <div className="poster">
                   <Link to={`/movies/${i.id}`}>
                     <img
                       onClick={() => {
@@ -136,7 +133,11 @@ const HeroSlider: React.FC<PropType> = (props) => {
         </div>
       </div>{" "}
       <div className="btn2">
-        <Fab color="primary" onClick={scrollNext} disabled={nextBtnDisabled}>
+        <Fab
+          color="primary"
+          onClick={scrollNext}
+          // disabled={nextBtnDisabled}
+        >
           <ChevronRightIcon fontSize="large" />
         </Fab>
       </div>

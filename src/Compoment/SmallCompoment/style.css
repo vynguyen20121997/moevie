@@ -1,10 +1,8 @@
-.embla {
+/* .embla {
     max-width:100%;
     margin-left: auto;
     margin-right: auto;
-  
-    /* filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.1)); */
-  }
+    }
   .embla__viewport {
     overflow: hidden;
   }
@@ -92,7 +90,7 @@
     background: transparent;
     top: 30%;
     right: 3%;
-}
+} */
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
@@ -108,7 +106,6 @@
 
   }
   .embla__container {
-    display: flex;
     user-select: none;
     -webkit-touch-callout: none;
     -khtml-user-select: none;
@@ -134,7 +131,6 @@
     height: 100%;
 }
   .embla__slide__inner {
- 
     height: 100%;
     max-width: 95%;
   }
@@ -609,14 +605,16 @@ padding: 0 10%;
   padding: 0;
 }
 .poster img{
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: cover;
+  max-width: 70%;
+  object-fit: contain;
+  margin-left: 40%;
+  margin-top: 10%;
 }
 .info{
   width: 40%;
   position: relative;
   color: white;
+  padding: 10% 0 ;
 }
 .info h4{
     max-height: 20%,
@@ -647,7 +645,7 @@ padding: 0 10%;
     z-index: 3;
     position: absolute;
     background: transparent;
-    top: 30%;
+    top: 25%;
     left: 3%;
 }
 
@@ -658,7 +656,7 @@ padding: 0 10%;
     z-index: 3;
     position: absolute;
     background: transparent;
-    top: 30%;
-    right: 3%;
+    top:25%;
+    right: 20%;
 }
 }
