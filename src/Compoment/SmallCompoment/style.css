@@ -65,14 +65,15 @@
   text-align: center;
   word-wrap: break-word;
 padding: 0 10%;
+font-size: 25px;
 
 }
 .info h4{
   padding: 0 20%;
   width: 60%;
-  max-height: 10hv;
   font-size: 12px;
-
+  max-height:35%;
+  overflow-y:scroll
 }
 .btn Button {
   align-items: center;
@@ -116,9 +117,7 @@ padding: 0 10%;
     top: 30%;
     right: 3%;
 }
-.btn2{
-  display: flex;
-}
+
 
 }
 
