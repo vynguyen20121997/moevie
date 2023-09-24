@@ -164,13 +164,15 @@ const Header = ({}: HeaderProps) => {
           </div>
 
           <div id="genre-SideNav" className="home-sidenav">
-            <Link to={`/genres`}>
-              <IconButton size="large" edge="start" color="primary">
-                <ExploreIcon fontSize="inherit" />
-                <p>Discovery</p>
-              </IconButton>
-            </Link>
-            <div style={{ marginTop: "0", paddingTop: "0" }}>
+            <div className="home-sidenav-discover">
+              <Link to={`/genres`}>
+                <IconButton size="large" edge="start" color="primary">
+                  <ExploreIcon fontSize="inherit" />
+                  <p>Discovery</p>
+                </IconButton>
+              </Link>
+            </div>
+            <div className="home-sidenav-genre-btn">
               <GenresButton />
             </div>
           </div>

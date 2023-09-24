@@ -39,14 +39,11 @@
         display: none;
     }
     .home-sidenav{
-        padding: 2%;
-        margin: 0;
+     
         margin-left: 5%;
-        margin-right: 5%;
-        margin-top: 5%;
+         margin-top: 5%;
         border-radius: 20px;
         background-color: rgb(21, 21, 94);
-        padding-left: 5%;
         justify-content: space-between;
         min-height: 4.5%;
     width: 80%;
@@ -54,37 +51,33 @@
     }
     #home-SideNav{
         display: flex;
-        padding-top: 0;
-        padding-bottom: 0;
+     
     }
     .homebutton {
         width: 60%;
-        padding: 0;
+       justify-content: center;
+       display: flex;
     }
     
     .closebutton {
         width: 30%;
-        padding: 15%;
-       margin-top: 2%;
-       margin-left: 10%;
+       justify-content: center;
+       display: flex;
     }
     .closebutton Button{
         min-width: 0;
         border-radius: 5px ; 
         margin: auto;
     }
-    #home-mySideNav p {
-        padding: 0;
-        margin: 0;
-        margin-left: 5%;
-        color: aliceblue;
-        font-size: 25px;
+    .home-sidenav-discover{
+
+display: flex;
+justify-content: center;
     }
-    
-    #genre-SideNav{
-       padding-bottom: 0;
-       margin-bottom: 0;
-      
+  
+  .home-sidenav-genre-btn{
+  
+    padding: 0 15%;
     }
   }
   
@@ -146,17 +139,13 @@
         display: none;
     }
     .home-sidenav{
-        padding: 2%;
-        margin: 0;
         margin-left: 5%;
-        margin-right: 5%;
         margin-top: 5%;
-        border-radius: 20px;
-        background-color: rgb(21, 21, 94);
-        padding-left: 5%;
-        justify-content: space-between;
-        min-height: 4.5%;
-    width: 80%;
+       border-radius: 20px;
+       background-color: rgb(21, 21, 94);
+       justify-content: space-between;
+       min-height: 4.5%;
+   width: 80%;
     
     }
     #home-SideNav{
@@ -166,31 +155,28 @@
     }
     .homebutton {
         width: 60%;
-        padding: 0;
+       justify-content: center;
+       display: flex;
     }
     
     .closebutton {
         width: 30%;
-        padding: 15%;
-       margin-top: 2%;
-       margin-left: 10%;
+       justify-content: center;
+       display: flex;
     }
     .closebutton Button{
         min-width: 0;
         border-radius: 5px ; 
         margin: auto;
     }
-    #home-mySideNav p {
-        padding: 0;
-        margin: 0;
-        margin-left: 5%;
-        color: aliceblue;
-        font-size: 25px;
-    }
-    
-    #genre-SideNav{
-       padding-bottom: 0;
-       margin-bottom: 0;
-      
-    }
+    .home-sidenav-discover{
+
+        display: flex;
+        justify-content: center;
+            }
+          
+          .home-sidenav-genre-btn{
+          
+            padding: 0 15%;
+            }
   }
