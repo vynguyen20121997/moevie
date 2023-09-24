@@ -41,8 +41,7 @@ const HeroSlider: React.FC<PropType> = (props) => {
     {
       align: "center",
       skipSnaps: false,
-    }
-    // [Autoplay()]
+    }[Autoplay()]
   );
 
   const [selectedIndex, setSelectedIndex] = useState(0);
