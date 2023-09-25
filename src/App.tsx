@@ -19,7 +19,6 @@ interface MovieItem {
   id: number;
   title?: string;
   poster_path: string;
-  quantity: number;
 }
 export const GenreListContext = createContext<any[]>([]);
 function App(): JSX.Element {
@@ -30,10 +29,9 @@ function App(): JSX.Element {
     const itemIndex = movies?.findIndex((item) => item.id === id);
     console.log(itemIndex);
     if (itemIndex === -1) {
-      setSavedItem([...movies, { name, id, poster_path, quantity: 1 }]);
+      setSavedItem([...movies, { name, id, poster_path }]);
     } else {
-      movies[itemIndex].quantity += 1;
-      setSavedItem(movies);
+      // return alert("You already added")
     }
   };
   useEffect(() => {

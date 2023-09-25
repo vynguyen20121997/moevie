@@ -163,7 +163,7 @@ const CardContainer: React.FC<PropType> = (props) => {
                   size="small"
                   color="primary"
                   className="play-btn-content-btn-hide"
-                  // onClick={() => addToCart({ title, name, id, poster_path })}
+                  // onClick={() => addToSave({ title, name, id, poster_path })}
                 >
                   <AddIcon />
                 </Fab>
