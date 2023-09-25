@@ -12,6 +12,7 @@ import axios from "axios";
 import { APIConfig, MoviesEndPoints } from "./Compoment/API/APIConfig";
 import TVShowPage from "./HomePage/TvPage";
 import MovieTVListPageDetail from "./Genres Page/Movie&TVListPageDetail";
+import "./App.css";
 const queryClient = new QueryClient();
 interface MovieItem {
   name: string;
@@ -21,38 +22,27 @@ interface MovieItem {
   quantity: number;
 }
 export const GenreListContext = createContext<any[]>([]);
-
 function App(): JSX.Element {
   const [genreList, setGenreList] = useState<any>([]);
-  const [addItem, setAddItem] = useState<MovieItem[]>([]);
-
-  const addToCart = ({ title, name, id, poster_path }: MovieItem) => {
-    const products = [...addItem];
-    const itemIndex = products?.findIndex((item) => item.id === id);
+  const [savedItem, setSavedItem] = useState<MovieItem[]>([]);
+  const addToSave = ({ title, name, id, poster_path }: MovieItem) => {
+    const movies = [...savedItem];
+    const itemIndex = movies?.findIndex((item) => item.id === id);
     console.log(itemIndex);
     if (itemIndex === -1) {
-      setAddItem([...products, { name, id, poster_path, quantity: 1 }]);
+      setSavedItem([...movies, { name, id, poster_path, quantity: 1 }]);
     } else {
-      products[itemIndex].quantity += 1;
-      setAddItem(products);
+      movies[itemIndex].quantity += 1;
+      setSavedItem(movies);
     }
   };
-
   useEffect(() => {
     axios.get(`${MoviesEndPoints.genre}${APIConfig.apiKey}`).then((res) => {
       setGenreList(res.data);
     });
   }, []);
-
   return (
-    <div
-      className="App"
-      style={{
-        backgroundColor: "black",
-        width: "100%",
-        minHeight: " 100vh",
-      }}
-    >
+    <div className="App">
       <GenreListContext.Provider value={genreList}>
         <QueryClientProvider client={queryClient}>
           <BrowserRouter>
@@ -68,7 +58,6 @@ function App(): JSX.Element {
                 element={<MovieTVListPageDetail />}
               />
               <Route path="/register" element={<RegisterPage />} />
-              {/* <Route path="/test" element={<Media />} /> */}
             </Routes>
             <Footer />
           </BrowserRouter>
@@ -77,5 +66,4 @@ function App(): JSX.Element {
     </div>
   );
 }
-
 export default App;

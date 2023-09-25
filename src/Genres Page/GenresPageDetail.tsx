@@ -13,7 +13,8 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import "./genresStyle.css";
 import { AxiosResponse } from "axios";
-export interface Movie {
+import "./genresStyle.css";
+interface Movie {
   name: string;
   id: number;
   title: string;
@@ -36,7 +37,6 @@ const GenresPageDetail = () => {
   const params: { genreId: string } = useParams() as { genreId: string };
   const idGenre = params.genreId;
   const idGenreNumber = parseInt(idGenre);
-
   const newUrl =
     MoviesEndPoints.discover +
     APIConfig.apiKey +
@@ -48,7 +48,6 @@ const GenresPageDetail = () => {
   });
   const newData = apiData?.data.results;
   const movieByGenreData: Movie[] = newData && newData;
-
   // const loadMore = async () => {
   //   const newUrl =
   //     MoviesEndPoints.discover +
@@ -59,33 +58,21 @@ const GenresPageDetail = () => {
   //     url: newUrl,
   //     key: "newUrl",
   //   });
-
   //   if (apiData) {
   //     setMovieData([...movieData, ...apiData.data.results]);
   //     setPage(page + 1);
   //   }
   // };
-
-  // // Gọi hàm loadMore thủ công khi component được mount.
   // useEffect(() => {
   //   loadMore();
   // }, movieByGenreData);
-
   return (
     <div>
       <div>
-        <div style={{ paddingTop: "5%", paddingLeft: "10%" }}>
+        <div className="category-genre">
           {/* <h1 style={{ color: "white" }}>{nameGenre && nameGenre.name}</h1> */}
         </div>
-        <div
-          className="moviecard"
-          style={{
-            marginLeft: "3%",
-            padding: "5%",
-            display: "grid",
-            gridTemplateColumns: " auto auto auto auto auto",
-          }}
-        >
+        <div className="moviecard">
           {movieByGenreData?.map((item) => {
             return <CardContainer movieDetail={item} loadingCard={isLoading} />;
           })}
@@ -110,5 +97,4 @@ const GenresPageDetail = () => {
     </div>
   );
 };
-
 export default GenresPageDetail;

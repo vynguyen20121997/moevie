@@ -22,6 +22,7 @@ import { Button, IconButton, OutlinedInput } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import LocalPostOfficeRoundedIcon from "@mui/icons-material/LocalPostOfficeRounded";
 import { useNavigate } from "react-router-dom";
+
 const signupFormValidationScheme = yup.object().shape({
   fullname: yup.string().required("Fullname is required"),
   email: yup
@@ -59,12 +60,9 @@ const RegisterPage = () => {
     },
     validationSchema: signupFormValidationScheme,
   });
-
   const { handleSubmit, values, handleChange, errors, resetForm } = formik;
   const [showPassword, setShowPassword] = React.useState(false);
-
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-
   const handleMouseDownPassword = (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {

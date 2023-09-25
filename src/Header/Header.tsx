@@ -44,7 +44,6 @@ const Header = ({}: HeaderProps) => {
   const [sidenav, setSideNav] = useState<boolean>(false);
   // const values = JSON.parse(localStorage?.getItem("values") || "");
   // const login = JSON.parse(localStorage?.getItem("login") || "");
-  // console.log("trave gi day", login);
   const [matches, setMatches] = useState(
     window.matchMedia("(max-width: 600px)").matches
   );

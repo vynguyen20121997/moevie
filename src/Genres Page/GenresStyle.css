@@ -7,3 +7,13 @@
     justify-content: center;
     align-items: center;
 }
+.category-genre{
+    padding-top: 5%;
+     padding-left: 10%;
+}
+.moviecard{
+    margin-left: 3%;
+    padding: 5%;
+    display:grid;
+    grid-template-columns:  auto auto auto auto auto;
+}

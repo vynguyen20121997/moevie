@@ -123,8 +123,9 @@ const MovieDetailPage = () => {
   //     setOpen(true);
   //   }
   // };
-  const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const handleOpen = () => setOpen(true);
+
   return (
     <>
       <div

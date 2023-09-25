@@ -9,7 +9,6 @@ interface genreDataType {
 export const GenresButton = () => {
   const genreList: any = useContext(GenreListContext);
   const genreListData: genreDataType[] = genreList?.genres;
-  console.log("daata nhận ve", genreListData);
   return (
     <>
       {genreListData &&

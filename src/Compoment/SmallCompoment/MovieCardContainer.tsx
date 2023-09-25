@@ -43,7 +43,7 @@ interface ButtonPropType {
   variant?: "text" | "contained" | "outlined";
 }
 const CardContainer: React.FC<PropType> = (props) => {
-  // const addToCart: (movie: MovieItem) => void = useContext(GenreListContext);
+  // const addToSave: (movie: MovieItem) => void = useContext(GenreListContext);
   const genreList: any = useContext(GenreListContext);
   const [isHover, SetIsHover] = useState<boolean>(false);
   const { movieDetail, loadingCard } = props;
@@ -132,7 +132,7 @@ const CardContainer: React.FC<PropType> = (props) => {
                 {genreNames?.slice(0, 2).map((item) => {
                   return (
                     <ButtonContainer
-                      variant="contained"
+                      variant="outlined"
                       size="small"
                       stylebutton={{
                         maxWidth: "80px",
