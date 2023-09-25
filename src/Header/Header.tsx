@@ -74,7 +74,7 @@ const Header = ({}: HeaderProps) => {
             />
           </Link>
           <Link to="/">
-            <Button>
+            <Button style={{ marginTop: "-35%", padding: "0" }}>
               <h3>MOVIE WORLD</h3>
             </Button>
           </Link>

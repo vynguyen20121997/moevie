@@ -21,6 +21,7 @@ import "@fontsource/roboto/700.css";
 import CardMedia from "@mui/material/CardMedia";
 import { OnFetchAxios } from "../Compoment/API/OnfetchAxios";
 import { MoviesDetailEndPoints } from "../Compoment/API/APIConfig";
+import { Link } from "@mui/icons-material";
 interface movieObject {
   id: number;
   title: string;
@@ -201,9 +202,10 @@ const MovieDetailPage = () => {
                   />
                 </Box>
               </Modal>
-
-              <Fab id="other-button">
-                <BookmarkBorderOutlinedIcon />
+              <Fab>
+                <BookmarkBorderOutlinedIcon
+                /* onClick={() => addToSave({ title, name, id, poster_path })} */
+                />
               </Fab>
               <Fab id="other-button">
                 <ShareOutlinedIcon />
@@ -224,7 +226,9 @@ const MovieDetailPage = () => {
                         {genresList &&
                           genresList.map((i) => (
                             <TableCell style={{ color: "white" }} align="right">
-                              <Button variant="outlined">{i.name}</Button>
+                              <Link>
+                                <Button variant="outlined">{i.name}</Button>
+                              </Link>
                               {/* <ButtonContainer variant="outlined" genre={i} /> */}
                             </TableCell>
                           ))}
