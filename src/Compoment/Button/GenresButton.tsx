@@ -1,18 +1,15 @@
-import React, { useState, useEffect } from "react";
-// import { OnfetchGenresList } from '../API/OnfetchGenresList'
-import { APIConfig } from "../API/APIConfig";
+import React, { useState, useEffect, useContext } from "react";
 import { Button, ButtonPropsVariantOverrides } from "@mui/material";
 import { Link } from "react-router-dom";
-import useGenreList from "../Data-Hooks/GenresListHooks";
-
+import { GenreListContext } from "../../App";
+interface genreDataType {
+  id: number;
+  name: string;
+}
 export const GenresButton = () => {
-  interface genreObject {
-    id: number;
-    name: string;
-  }
-  const { data: genreList } = useGenreList();
-  const genreListData: genreObject[] = genreList?.data?.genres;
-
+  const genreList: any = useContext(GenreListContext);
+  const genreListData: genreDataType[] = genreList?.genres;
+  console.log("daata nhận ve", genreListData);
   return (
     <>
       {genreListData &&

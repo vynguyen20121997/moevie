@@ -7,10 +7,9 @@ import MovieDetailPage from "./DetailPage/DetailPage";
 import Footer from "./Footer/Footer";
 import GenresPage from "./Genres Page/GenresPage";
 import GenresPageDetail from "./Genres Page/GenresPageDetail";
-import RegisterPage from "./Compoment/RegisterPage/RegisterPage";
+import RegisterPage from "./RegisterPage/RegisterPage";
 import axios from "axios";
 import { APIConfig, MoviesEndPoints } from "./Compoment/API/APIConfig";
-import Media from "./Compoment/Loading/Loading";
 import TVShowPage from "./HomePage/TvPage";
 import MovieTVListPageDetail from "./Genres Page/Movie&TVListPageDetail";
 const queryClient = new QueryClient();
@@ -54,8 +53,7 @@ function App(): JSX.Element {
         minHeight: " 100vh",
       }}
     >
-      {" "}
-      <GenreListContext.Provider value={[genreList, addToCart]}>
+      <GenreListContext.Provider value={genreList}>
         <QueryClientProvider client={queryClient}>
           <BrowserRouter>
             <Header />

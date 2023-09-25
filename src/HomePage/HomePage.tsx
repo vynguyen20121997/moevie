@@ -17,7 +17,6 @@ const HomePage = () => {
   };
   const { data: heroSliderData, isLoading } = OnFetchAxios(fetchOptions);
   const ketqua = heroSliderData?.data?.results;
-
   const urlpopularMovies =
     MoviesEndPoints.popular + APIConfig.apiKey + MoviebyOptions.byPageNumber;
   const fetchPopularMovies = {
@@ -27,7 +26,6 @@ const HomePage = () => {
   const { data: popularMoviesrData, isLoading: popularLoading } =
     OnFetchAxios(fetchPopularMovies);
   const popularData = popularMoviesrData?.data?.results;
-
   const urltopRatedMovies =
     MoviesEndPoints.topRated + APIConfig.apiKey + MoviebyOptions.byPageNumber;
   const fetchtopRatedMovies = {
@@ -37,7 +35,6 @@ const HomePage = () => {
   const { data: topRatedMoviesrData, isLoading: topRatedLoading } =
     OnFetchAxios(fetchtopRatedMovies);
   const topRatedData = topRatedMoviesrData?.data?.results;
-
   const urlUpcomingMovies =
     MoviesEndPoints.upcoming + APIConfig.apiKey + MoviebyOptions.byPageNumber;
   const fetchUpcomingMovies = {
@@ -47,7 +44,6 @@ const HomePage = () => {
   const { data: UpcomingMoviesrData, isLoading: UpcomingLoading } =
     OnFetchAxios(fetchUpcomingMovies);
   const UpcomingData = UpcomingMoviesrData?.data?.results;
-
   const urlNowPlaying =
     MoviesEndPoints.nowPlaying + APIConfig.apiKey + MoviebyOptions.byPageNumber;
   const fetchNowPlayingMovies = {
@@ -57,12 +53,6 @@ const HomePage = () => {
   const { data: nowPlayingMoviesrData, isLoading: nowPlayingLoading } =
     OnFetchAxios(fetchNowPlayingMovies);
   const nowPlayingData = nowPlayingMoviesrData?.data?.results;
-  if (isLoading) return null;
-  // if (popularLoading) return null;
-  // if (topRatedLoading) return null;
-  // if (UpcomingLoading) return null;
-  // if (nowPlayingLoading) return null;
-
   return (
     <>
       <div

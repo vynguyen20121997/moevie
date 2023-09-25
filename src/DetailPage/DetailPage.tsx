@@ -13,7 +13,6 @@ import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import "./style3.css";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
@@ -21,54 +20,49 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import CardMedia from "@mui/material/CardMedia";
 import { OnFetchAxios } from "../Compoment/API/OnfetchAxios";
-// import { ButtonContainer } from "../Compoment/Button/GenresButton";
-// import { Movie } from "../Compoment/SmallCompoment/SliderContainer";
-import { MoviebyOptions } from "../Compoment/API/APIConfig";
-import { MoviesEndPoints } from "../Compoment/API/APIConfig";
 import { MoviesDetailEndPoints } from "../Compoment/API/APIConfig";
-
+interface movieObject {
+  id: number;
+  title: string;
+  original_title: string;
+  overview: string;
+  poster_path: string;
+  backdrop_path: string;
+  vote_count: number;
+  vote_average: number;
+  release_date: string;
+  popularity: number;
+  original_language: string;
+  imdb_id: string;
+  runtime: number;
+  name: string;
+  genres: [
+    {
+      id: number;
+      name: string;
+    }
+  ];
+  production_countries: [{ name: string }];
+}
+interface creditObject {
+  adult: boolean;
+  cast_id: number;
+  character: string;
+  credit_id: string;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  name: string;
+  order: number;
+  original_name: string;
+  popularity: number;
+  profile_path: string;
+}
+interface genreObject {
+  id: number;
+  name: string;
+}
 const MovieDetailPage = () => {
-  interface movieObject {
-    id: number;
-    title: string;
-    original_title: string;
-    overview: string;
-    poster_path: string;
-    backdrop_path: string;
-    vote_count: number;
-    vote_average: number;
-    release_date: string;
-    popularity: number;
-    original_language: string;
-    imdb_id: string;
-    runtime: number;
-    name: string;
-    genres: [
-      {
-        id: number;
-        name: string;
-      }
-    ];
-    production_countries: [{ name: string }];
-  }
-  interface creditObject {
-    adult: boolean;
-    cast_id: number;
-    character: string;
-    credit_id: string;
-    gender: number;
-    id: number;
-    known_for_department: string;
-    name: string;
-    order: number;
-    original_name: string;
-    popularity: number;
-    profile_path: string;
-  }
-  interface genreObject {
-    id: number;
-    name: string;
-  }
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const params = useParams();
@@ -80,7 +74,6 @@ const MovieDetailPage = () => {
   };
   const { data: movieDetailData, isLoading: detailLoading } =
     OnFetchAxios(fetchOptions);
-
   const urlByCredit = MoviesDetailEndPoints.credits(idMovie) + APIConfig.apiKey;
   const CreditfetchOptions = {
     url: urlByCredit,
@@ -88,7 +81,6 @@ const MovieDetailPage = () => {
   };
   const { data: movieCredit, isLoading: creditLoading } =
     OnFetchAxios(CreditfetchOptions);
-
   const urlByVideo = MoviesDetailEndPoints.video(idMovie) + APIConfig.apiKey;
   const videofetchOptions = {
     url: urlByVideo,
@@ -103,7 +95,6 @@ const MovieDetailPage = () => {
   const movieDetail: movieObject = movieDetailData?.data;
   const cast: creditObject[] = movieCredit?.data.cast;
   // const genreListData: genreObject[] = genreList?.data?.genres;
-
   const {
     overview,
     release_date,
@@ -119,21 +110,16 @@ const MovieDetailPage = () => {
     genres,
     production_countries,
   } = movieDetail;
-
   const countryList = movieDetail.production_countries;
   const imgUrl = APIConfig.w500Image(poster_path);
   const backgroundUrl = APIConfig.originalImage(backdrop_path);
   const genresList = movieDetail.genres;
   const videoNe = videoData && videoData[0];
   const urlVideo = `https://www.youtube.com/embed/${videoNe?.key}`;
-
   // const login :boolean = JSON.parse(localStorage?.getItem("login") || "");
-
   // if (!login) {
-  // Người dùng chưa đăng nhập, điều hướng đến trang đăng nhập
   //   navigate(`/login`);
   // } else {
-  // Người dùng đã đăng nhập, chạy hàm setOpen()
   //     setOpen(true);
   //   }
   // };

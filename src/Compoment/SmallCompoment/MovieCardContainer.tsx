@@ -43,11 +43,10 @@ interface ButtonPropType {
   variant?: "text" | "contained" | "outlined";
 }
 const CardContainer: React.FC<PropType> = (props) => {
-  const addToCart: (movie: MovieItem) => void = useContext(GenreListContext);
+  // const addToCart: (movie: MovieItem) => void = useContext(GenreListContext);
   const genreList: any = useContext(GenreListContext);
   const [isHover, SetIsHover] = useState<boolean>(false);
   const { movieDetail, loadingCard } = props;
-
   const {
     vote_average,
     title,
@@ -57,9 +56,7 @@ const CardContainer: React.FC<PropType> = (props) => {
     genre_ids,
     name,
   } = movieDetail;
-
   const genreData: genreDataType[] = genreList?.genres;
-
   const genreFilter = () => {
     const result = [];
     for (const genreId of genre_ids) {
@@ -71,22 +68,18 @@ const CardContainer: React.FC<PropType> = (props) => {
     return result;
   };
   const genreNames = genreFilter();
-
   const handleMouseEnter = () => {
     SetIsHover(true);
   };
   const handleMouseLeave = () => {
     SetIsHover(false);
   };
-
   const ratingfixed = vote_average / 2;
-
   const boxStyle = {
     scale: isHover ? "1" : "",
     boxShadow: isHover ? "0px 10px 20px 2px rgba(0, 200, 255, 0.7)" : "",
     transform: isHover ? "translateY(-5px)" : "",
   };
-
   const onHoverDisplaying: CSS.Properties = {
     display: isHover ? "block" : "",
     position: "absolute",
@@ -96,7 +89,6 @@ const CardContainer: React.FC<PropType> = (props) => {
     height: "270px",
     color: "white",
   };
-
   return (
     <>
       {loadingCard ? (

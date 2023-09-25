@@ -8,15 +8,8 @@ import useEmblaCarousel, {
   EmblaEventType,
   UseEmblaCarouselType,
 } from "embla-carousel-react";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { Link, useNavigate } from "react-router-dom";
-import { APIConfig } from "../API/APIConfig";
 import Button from "@mui/material/Button";
-import Rating from "@mui/material/Rating";
-import Fab from "@mui/material/Fab";
-import AddIcon from "@mui/icons-material/Add";
-import type * as CSS from "csstype";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
@@ -36,7 +29,6 @@ export interface Movie {
   popularity: number;
   genre_ids: [number];
 }
-
 interface PropType {
   loading: boolean;
   items: Movie[];
@@ -46,9 +38,7 @@ interface PropType {
 const SliderContainer: React.FC<PropType> = (props) => {
   const { options, items, movieCategoryTitle, loading } = props;
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
-
   const onButtonClick = useCallback((emblaApi: EmblaCarouselType) => {}, []);
-
   const {
     prevBtnDisabled,
     nextBtnDisabled,
@@ -78,7 +68,6 @@ const SliderContainer: React.FC<PropType> = (props) => {
             </Button>
           </div>
         </Link>
-
         <div className="right">
           <Button onClick={onPrevButtonClick} disabled={prevBtnDisabled}>
             <ArrowBackIosNewIcon />
@@ -88,7 +77,6 @@ const SliderContainer: React.FC<PropType> = (props) => {
           </Button>
         </div>
       </div>
-
       <div className="embla_slider">
         <div className="embla__viewport_slider" ref={emblaRef}>
           <div className="embla__container_slider">
@@ -101,48 +89,39 @@ const SliderContainer: React.FC<PropType> = (props) => {
     </>
   );
 };
-
 export default SliderContainer;
-
-type UsePrevNextButtonsType = {
+interface UsePrevNextButtonsType {
   prevBtnDisabled: boolean;
   nextBtnDisabled: boolean;
   onPrevButtonClick: () => void;
   onNextButtonClick: () => void;
-};
-
+}
 export const usePrevNextButtons = (
   emblaApi: EmblaCarouselType | undefined,
   onButtonClick?: (emblaApi: EmblaCarouselType) => void
 ): UsePrevNextButtonsType => {
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
   const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
-
   const onPrevButtonClick = useCallback(() => {
     if (!emblaApi) return;
     emblaApi.scrollPrev();
     if (onButtonClick) onButtonClick(emblaApi);
   }, [emblaApi, onButtonClick]);
-
   const onNextButtonClick = useCallback(() => {
     if (!emblaApi) return;
     emblaApi.scrollNext();
     if (onButtonClick) onButtonClick(emblaApi);
   }, [emblaApi, onButtonClick]);
-
   const onSelect = useCallback((emblaApi: EmblaCarouselType) => {
     setPrevBtnDisabled(!emblaApi.canScrollPrev());
     setNextBtnDisabled(!emblaApi.canScrollNext());
   }, []);
-
   useEffect(() => {
     if (!emblaApi) return;
-
     onSelect(emblaApi);
     emblaApi.on("reInit", onSelect);
     emblaApi.on("select", onSelect);
   }, [emblaApi, onSelect]);
-
   return {
     prevBtnDisabled,
     nextBtnDisabled,

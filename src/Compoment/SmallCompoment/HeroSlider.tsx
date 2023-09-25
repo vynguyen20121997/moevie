@@ -1,12 +1,6 @@
 import * as React from "react";
 import { useCallback, useEffect, useState } from "react";
-import useEmblaCarousel, {
-  EmblaCarouselType,
-  EmblaOptionsType,
-  EmblaPluginType,
-  EmblaEventType,
-  UseEmblaCarouselType,
-} from "embla-carousel-react";
+import useEmblaCarousel, { EmblaCarouselType } from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import "./style.css";
 import Fab from "@mui/material/Fab";
@@ -16,7 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { APIConfig } from "../API/APIConfig";
 import Button from "@mui/material/Button";
 import Loading from "../Loading/Loading";
-export interface Movie {
+interface Movie {
   name: string;
   id: number;
   title: string;
@@ -29,7 +23,6 @@ export interface Movie {
   release_date: string;
   popularity: number;
 }
-
 type PropType = {
   loading: boolean;
   items: Movie[];
@@ -51,12 +44,10 @@ const HeroSlider: React.FC<PropType> = (props) => {
   // const [emblaRef, emblaApi] = useEmblaCarousel(options);
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
   const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
-
   const scrollTo = useCallback(
     (index: number) => embla && embla.scrollTo(index),
     [embla]
   );
-
   const scrollPrev = useCallback(() => embla && embla.scrollPrev(), [embla]);
   const scrollNext = useCallback(() => embla && embla.scrollNext(), [embla]);
   const onSelect = useCallback(() => {

@@ -7,14 +7,14 @@ import {
 } from "../Compoment/API/APIConfig";
 import SliderContainer from "../Compoment/SmallCompoment/SliderContainer";
 import { OnFetchAxios } from "../Compoment/API/OnfetchAxios";
-import { urlCreatingGenreAPI } from "../Compoment/API/APIServies";
+import { UrlCreatingGenreAPI } from "../Compoment/API/APIServies";
 
 interface genreHookObject {
   url: string;
   key: string;
 }
 const GenresPage = () => {
-  const result: genreHookObject[] | null = urlCreatingGenreAPI();
+  const result: genreHookObject[] | null = UrlCreatingGenreAPI();
 
   const actionMovie = result?.find((item) => item.key === "action");
   const { data: action, isLoading: actionLoading } = OnFetchAxios(
