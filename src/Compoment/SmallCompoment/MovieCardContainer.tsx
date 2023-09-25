@@ -31,7 +31,7 @@ interface MovieItem {
   quantity: number;
 }
 interface PropType {
-  movieItem: MovieItem;
+  movieItem?: MovieItem;
   movieDetail: Movie;
   loadingCard: boolean;
 }
@@ -171,7 +171,7 @@ const CardContainer: React.FC<PropType> = (props) => {
                   size="small"
                   color="primary"
                   className="play-btn-content-btn-hide"
-                  onClick={() => addToCart({ title, name, id, poster_path })}
+                  // onClick={() => addToCart({ title, name, id, poster_path })}
                 >
                   <AddIcon />
                 </Fab>

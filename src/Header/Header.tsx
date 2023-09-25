@@ -29,17 +29,14 @@ interface HeaderProps {}
 const menuItems = [
   {
     title: "HOME",
-    // icon: <HomeIcon />,
     path: "/",
   },
   {
     title: "MOVIES",
-    // icon: <HomeIcon />,
     path: "/",
   },
   {
     title: "TV SHOW",
-    // icon: <HomeIcon />,
     path: "/tvshow",
   },
 ];
@@ -51,7 +48,6 @@ const Header = ({}: HeaderProps) => {
   const [matches, setMatches] = useState(
     window.matchMedia("(max-width: 600px)").matches
   );
-
   useEffect(() => {
     window
       .matchMedia("(max-width: 600px)")
@@ -60,28 +56,18 @@ const Header = ({}: HeaderProps) => {
   const onOpenSideNav = () => {
     setSideNav(true);
   };
-
   const onCloseSideNav = () => {
     setSideNav(false);
   };
-
   const displaySidenav = {
     width: sidenav && matches ? "100%" : sidenav ? "23%" : "0",
     padding: "0",
   };
-
   return (
     <>
       <div className="header">
-        <div
-          style={{
-            display: "flex",
-            border: "0",
-            margin: "0",
-          }}
-        >
+        <div className="logo-header">
           <Link to="/">
-            {" "}
             <img
               width="80px"
               src="https://i.ibb.co/K9NfKFW/wired-gradient-62-film.png"
@@ -94,7 +80,6 @@ const Header = ({}: HeaderProps) => {
             </Button>
           </Link>
         </div>
-
         <div className="menu-button-group">
           <ButtonGroup variant="text" aria-label="text button group">
             {menuItems.map((item, index) => (
