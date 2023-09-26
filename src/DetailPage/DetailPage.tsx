@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Button } from "@mui/material";
 import { Params, useParams, useNavigate } from "react-router-dom";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
@@ -22,6 +22,7 @@ import CardMedia from "@mui/material/CardMedia";
 import { OnFetchAxios } from "../Compoment/API/OnfetchAxios";
 import { MoviesDetailEndPoints } from "../Compoment/API/APIConfig";
 import { Link } from "@mui/icons-material";
+import { GenreListContext } from "../App";
 interface movieObject {
   id: number;
   title: string;
@@ -63,10 +64,18 @@ interface genreObject {
   id: number;
   name: string;
 }
+interface MovieItem {
+  name: string;
+  id: number;
+  title?: string;
+  poster_path: string;
+}
 const MovieDetailPage = () => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const params = useParams();
+  const addToSave: (movie: MovieItem) => void = useContext(GenreListContext);
+
   const idMovie: string | undefined = params.movieId;
   const urlByDetail = MoviesDetailEndPoints.details(idMovie) + APIConfig.apiKey;
   const fetchOptions = {
@@ -95,8 +104,9 @@ const MovieDetailPage = () => {
   const videoData = video?.data.results;
   const movieDetail: movieObject = movieDetailData?.data;
   const cast: creditObject[] = movieCredit?.data.cast;
-  // const genreListData: genreObject[] = genreList?.data?.genres;
   const {
+    id,
+    title,
     overview,
     release_date,
     vote_count,
@@ -204,7 +214,7 @@ const MovieDetailPage = () => {
               </Modal>
               <Fab>
                 <BookmarkBorderOutlinedIcon
-                /* onClick={() => addToSave({ title, name, id, poster_path })} */
+                  onClick={() => addToSave({ title, name, id, poster_path })}
                 />
               </Fab>
               <Fab id="other-button">

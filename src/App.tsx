@@ -22,22 +22,14 @@ interface MovieItem {
   id: number;
   title?: string;
   poster_path: string;
-  quantity?: number;
 }
 
-type AddToSaveType = ({
-  title,
-  name,
-  id,
-  poster_path,
-  quantity,
-}: MovieItem) => void;
+type AddToSaveType = ({ title, name, id, poster_path }: MovieItem) => void;
 
 export const GenreListContext = createContext<AddToSaveType>(() => {});
 function App(): JSX.Element {
   const [savedItem, setSavedItem] = useState<MovieItem[]>([]);
-
-  const addToSave = ({ title, name, id, poster_path, quantity }: MovieItem) => {
+  const addToSave = ({ title, name, id, poster_path }: MovieItem) => {
     const movies = [...savedItem];
     const itemIndex = movies?.findIndex((item) => item.id === id);
     console.log(itemIndex);
@@ -47,6 +39,7 @@ function App(): JSX.Element {
       // return alert("You already added")
     }
   };
+  console.log("thêm gì vô vậy ?", savedItem);
 
   return (
     <div className="App">

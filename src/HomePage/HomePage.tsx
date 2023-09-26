@@ -30,6 +30,7 @@ const HomePage = () => {
     url: urlpopularMovies,
     key: "popularMoviesHooks",
   };
+
   const { data: popularMoviesrData, isLoading: popularLoading } =
     OnFetchAxios(fetchPopularMovies);
   const popularData = popularMoviesrData?.data?.results;
@@ -71,7 +72,7 @@ const HomePage = () => {
 
       <div className="movie-slider" id="popular-slider">
         <SliderContainer
-          loading={popularLoading}
+          loading={true}
           items={popularData}
           movieCategoryTitle="popular"
           genreData={genreList}

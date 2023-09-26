@@ -98,87 +98,83 @@ const CardContainer: React.FC<PropType> = (props) => {
   };
   return (
     <>
-      {loadingCard ? (
-        <Loading />
-      ) : (
-        <Link to={`/movies/${id}`}>
+      <Link to={`/movies/${id}`}>
+        <div
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className="movie-card"
+          style={boxStyle}
+        >
+          <img
+            style={{ opacity: isHover ? "0.5" : "" }}
+            src={APIConfig.w500Image(poster_path)}
+            alt=""
+          />
+
           <div
+            className="hide"
+            style={onHoverDisplaying}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            className="movie-card"
-            style={boxStyle}
           >
-            <img
-              style={{ opacity: isHover ? "0.5" : "" }}
-              src={APIConfig.w500Image(poster_path)}
-              alt=""
-            />
+            <div className="content-content-hide">
+              <h4>{title || name}</h4>
+              <h5>{release_date}</h5>
+            </div>
 
-            <div
-              className="hide"
-              style={onHoverDisplaying}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div className="content-content-hide">
-                <h4>{title || name}</h4>
-                <h5>{release_date}</h5>
-              </div>
+            <div className="rating-content-hide">
+              <Rating
+                name="customized-10"
+                size="small"
+                readOnly
+                value={ratingfixed}
+              />
+              <h5> {vote_average}/10</h5>
+            </div>
 
-              <div className="rating-content-hide">
-                <Rating
-                  name="customized-10"
-                  size="small"
-                  readOnly
-                  value={ratingfixed}
-                />
-                <h5> {vote_average}/10</h5>
-              </div>
+            <div className="genre-content-hide">
+              {genreNames?.slice(0, 2).map((item) => {
+                return (
+                  <ButtonContainer
+                    variant="outlined"
+                    size="small"
+                    stylebutton={{
+                      maxWidth: "80px",
+                      fontSize: "10px",
+                      maxHeight: "30px",
+                      minWidth: "30px",
+                      minHeight: "30px",
+                      marginLeft: "1%",
+                    }}
+                    genre={item}
+                  />
+                );
+              })}
+            </div>
 
-              <div className="genre-content-hide">
-                {genreNames?.slice(0, 2).map((item) => {
-                  return (
-                    <ButtonContainer
-                      variant="outlined"
-                      size="small"
-                      stylebutton={{
-                        maxWidth: "80px",
-                        fontSize: "10px",
-                        maxHeight: "30px",
-                        minWidth: "30px",
-                        minHeight: "30px",
-                        marginLeft: "1%",
-                      }}
-                      genre={item}
-                    />
-                  );
-                })}
-              </div>
-
-              <div className="content-btn-hide">
-                <Link to={`/movies/${id}`}>
-                  <Button
-                    variant="contained"
-                    size="large"
-                    className="play-btn-content-btn-hide"
-                  >
-                    WATCH NOW
-                  </Button>
-                </Link>
-                <Fab
-                  style={{ marginLeft: "3%" }}
-                  size="small"
-                  color="primary"
+            <div className="content-btn-hide">
+              <Link to={`/movies/${id}`}>
+                <Button
+                  variant="contained"
+                  size="large"
                   className="play-btn-content-btn-hide"
-                  onClick={() => addToSave({ title, name, id, poster_path })}
                 >
-                  <AddIcon />
-                </Fab>
-              </div>
+                  WATCH NOW
+                </Button>
+              </Link>
+              <Fab
+                style={{ marginLeft: "3%" }}
+                size="small"
+                color="primary"
+                className="play-btn-content-btn-hide"
+                onClick={() => addToSave({ title, name, id, poster_path })}
+              >
+                <AddIcon />
+              </Fab>
             </div>
           </div>
-        </Link>
-      )}
+        </div>
+      </Link>
     </>
   );
 };

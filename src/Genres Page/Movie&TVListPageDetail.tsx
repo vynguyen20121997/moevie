@@ -6,7 +6,7 @@ import {
   MoviebyOptions,
   MoviesEndPoints,
 } from "../Compoment/API/APIConfig";
-import { OnFetchAxios } from "../Compoment/API/OnfetchAxios";
+import { OnFetchAxios, OnFetchGenreList } from "../Compoment/API/OnfetchAxios";
 import Typography from "@mui/material/Typography";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
@@ -25,12 +25,18 @@ export interface Movie {
   popularity: number;
   genre_ids: [number];
 }
+interface genreDataType {
+  id: number;
+  name: string;
+}
 const MovieTVListPageDetail = () => {
   const [movieData, setMovieData] = useState([]);
   const [page, setPage] = useState(1);
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
   };
+  const { data: genreListData } = OnFetchGenreList();
+  const genreList: genreDataType[] = genreListData?.data.genres;
   const params: { type: string } = useParams() as { type: string };
   const { type } = params;
   const uppercasedType = type.toUpperCase();
@@ -83,7 +89,13 @@ const MovieTVListPageDetail = () => {
           }}
         >
           {movieByGenreData?.map((item) => {
-            return <CardContainer movieDetail={item} loadingCard={isLoading} />;
+            return (
+              <CardContainer
+                movieDetail={item}
+                loadingCard={isLoading}
+                genreData={[]}
+              />
+            );
           })}
         </div>
         <div className="pagtination">
