@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
@@ -79,17 +77,6 @@ const Header = ({}: HeaderProps) => {
   const displaySidenav = {
     width: sidenav && matches ? "100%" : sidenav ? "23%" : "0",
     padding: "0",
-  };
-  const style = {
-    position: "absolute" as "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-    p: 4,
   };
   return (
     <>
@@ -202,11 +189,14 @@ const Header = ({}: HeaderProps) => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-            <Box sx={style}>
-              {favoriteData?.map((item: MovieItem) => (
-                <CardContainer movieDetail={item} />
-              ))}
-            </Box>
+            <div className="modal_box">
+              <h2>Your Favorite Movie</h2>
+              <div className="fav_movie">
+                {favoriteData?.map((item: MovieItem) => (
+                  <CardContainer movieDetail={item} />
+                ))}
+              </div>
+            </div>
           </Modal>
         </div>
       </div>

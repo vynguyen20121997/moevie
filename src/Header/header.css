@@ -1,5 +1,25 @@
-
-
+.modal_box{
+    overflow-y: scroll;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    height: 700px;
+    border: 2px solid #000;
+    box-shadow: 24;
+    background-color: cadetblue;
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory;
+    -ms-text-overflow-style: none;
+}
+.modal_box::-webkit-scrollbar {
+    display: none;
+}
+.fav_movie{
+    display: flex;  
+  flex-wrap: wrap;   
+}
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     .MuiButton-root {
