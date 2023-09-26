@@ -75,6 +75,11 @@ font-size: 25px;
   max-height:35%;
   overflow-y:scroll
 }
+
+.btn{
+  margin-top: 2%;
+}
+
 .btn Button {
   align-items: center;
   text-align: center;
@@ -425,6 +430,9 @@ padding: 0 10%;
   max-height: 10hv;
 
 }
+.btn{
+  margin-top: 2%;
+}
 .btn Button {
   align-items: center;
   text-align: center;
@@ -533,6 +541,9 @@ padding: 0 10%;
 .info h4{
     max-height: 20%,
     
+}
+.btn{
+  margin-top: 2%;
 }
 
   .embla__navigator {

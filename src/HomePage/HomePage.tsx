@@ -67,7 +67,7 @@ const HomePage = () => {
         className="heroSlider"
         style={{ boxShadow: " grey 0px 1px 50px -10px", width: "100%" }}
       >
-        <HeroSlider items={ketqua} loading={isLoading} />
+        <HeroSlider items={ketqua} genreData={genreList} loading={isLoading} />
       </div>
 
       <div className="movie-slider" id="popular-slider">

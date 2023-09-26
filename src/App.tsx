@@ -36,10 +36,11 @@ function App(): JSX.Element {
     if (itemIndex === -1) {
       setSavedItem([...movies, { name, id, poster_path }]);
     } else {
-      // return alert("You already added")
+      return alert("You already added");
     }
   };
   console.log("thêm gì vô vậy ?", savedItem);
+  localStorage.setItem("favorite", JSON.stringify(savedItem));
 
   return (
     <div className="App">

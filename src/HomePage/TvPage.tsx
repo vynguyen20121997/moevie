@@ -66,15 +66,13 @@ const TVShowPage = () => {
   // if (topRatedLoading) return null;
   // if (UpcomingLoading) return null;
   // if (nowPlayingLoading) return null;
-
-  console.log("tvshow", ketqua);
   return (
     <>
       <div
         className="heroSlider"
         style={{ boxShadow: " grey 0px 1px 50px -10px", width: "100%" }}
       >
-        <HeroSlider items={ketqua} loading={isLoading} />
+        <HeroSlider items={ketqua} loading={isLoading} genreData={genreList} />
       </div>
 
       <div className="movie-slider" id="popular-slider">

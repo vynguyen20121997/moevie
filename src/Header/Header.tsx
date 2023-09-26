@@ -9,15 +9,12 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import HomeIcon from "@mui/icons-material/Home";
 import CloseIcon from "@mui/icons-material/Close";
-import Typography from "@mui/material/Typography";
 import { Fab } from "@mui/material";
 import ExploreIcon from "@mui/icons-material/Explore";
 import "./header.css";
-import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
 import GenresButton from "../Compoment/Button/GenresButton";
 import { Dropdown } from "@mui/base/Dropdown";
@@ -25,6 +22,10 @@ import { Menu } from "@mui/base/Menu";
 import { MenuButton } from "@mui/base/MenuButton";
 import { menuItemClasses } from "@mui/base/MenuItem";
 import { styled } from "@mui/system";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
 interface HeaderProps {}
 const menuItems = [
   {
@@ -44,9 +45,13 @@ const Header = ({}: HeaderProps) => {
   const [sidenav, setSideNav] = useState<boolean>(false);
   // const values = JSON.parse(localStorage?.getItem("values") || "");
   // const login = JSON.parse(localStorage?.getItem("login") || "");
+  const favoriteData = JSON.parse(localStorage?.getItem("favorite") || "");
+  console.log("yeu thich", favoriteData);
   const [matches, setMatches] = useState(
     window.matchMedia("(max-width: 600px)").matches
   );
+  const [open, setOpen] = useState(false);
+
   useEffect(() => {
     window
       .matchMedia("(max-width: 600px)")
@@ -58,9 +63,22 @@ const Header = ({}: HeaderProps) => {
   const onCloseSideNav = () => {
     setSideNav(false);
   };
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const displaySidenav = {
     width: sidenav && matches ? "100%" : sidenav ? "23%" : "0",
     padding: "0",
+  };
+  const style = {
+    position: "absolute" as "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
   };
   return (
     <>
@@ -106,7 +124,15 @@ const Header = ({}: HeaderProps) => {
             </TriggerButton>
             <Menu slots={{ listbox: StyledListbox }}>
               <StyledMenuItem>
-                <Link to={`/register`}>Create an Account</Link>
+                <Link style={{ textDecoration: "none" }} to={`/register`}>
+                  Create an Account
+                </Link>
+              </StyledMenuItem>
+              <StyledMenuItem
+                style={{ textDecoration: "none" }}
+                onClick={handleOpen}
+              >
+                Favorite
               </StyledMenuItem>
               <StyledMenuItem
                 onClick={() => {
@@ -159,6 +185,14 @@ const Header = ({}: HeaderProps) => {
               <GenresButton />
             </div>
           </div>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}></Box>
+          </Modal>
         </div>
       </div>
     </>
