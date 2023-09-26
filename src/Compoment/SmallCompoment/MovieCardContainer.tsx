@@ -21,7 +21,7 @@ export interface Movie {
   vote_average: number;
   release_date: string;
   popularity: number;
-  genre_ids: [number];
+  genre_ids: number[];
 }
 
 interface MovieItem {
@@ -50,9 +50,17 @@ interface genreDataType {
     }
   ];
 }
-
+export interface MovieObject {
+  vote_average: number;
+  title: string;
+  release_date: string;
+  id: number;
+  poster_path: string;
+  genre_ids: number[];
+  name: string;
+}
 const CardContainer: React.FC<PropType> = (props) => {
-  const addToSave: (movie: MovieItem) => void = useContext(GenreListContext);
+  const addToSave: (movie: MovieObject) => void = useContext(GenreListContext);
   const [isHover, SetIsHover] = useState<boolean>(false);
   const { movieDetail, loadingCard, genreData } = props;
   const {
@@ -167,7 +175,17 @@ const CardContainer: React.FC<PropType> = (props) => {
               size="small"
               color="primary"
               className="play-btn-content-btn-hide"
-              onClick={() => addToSave({ title, name, id, poster_path })}
+              onClick={() =>
+                addToSave({
+                  vote_average,
+                  title,
+                  release_date,
+                  id,
+                  poster_path,
+                  genre_ids,
+                  name,
+                })
+              }
             >
               <AddIcon />
             </Fab>

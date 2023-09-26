@@ -26,6 +26,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import { APIConfig } from "../Compoment/API/APIConfig";
 interface HeaderProps {}
 const menuItems = [
   {
@@ -41,10 +42,16 @@ const menuItems = [
     path: "/tvshow",
   },
 ];
+interface MovieItem {
+  name: string;
+  id: number;
+  title?: string;
+  poster_path: string;
+}
 const Header = ({}: HeaderProps) => {
   const [sidenav, setSideNav] = useState<boolean>(false);
-  // const values = JSON.parse(localStorage?.getItem("values") || "");
-  // const login = JSON.parse(localStorage?.getItem("login") || "");
+  const values = JSON.parse(localStorage?.getItem("values") || "");
+  const login = JSON.parse(localStorage?.getItem("login") || "");
   const favoriteData = JSON.parse(localStorage?.getItem("favorite") || "");
   console.log("yeu thich", favoriteData);
   const [matches, setMatches] = useState(
@@ -191,7 +198,11 @@ const Header = ({}: HeaderProps) => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-            <Box sx={style}></Box>
+            <Box sx={style}>
+              {favoriteData?.map((item: MovieItem) => (
+                <></>
+              ))}
+            </Box>
           </Modal>
         </div>
       </div>

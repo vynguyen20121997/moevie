@@ -23,8 +23,24 @@ interface MovieItem {
   title?: string;
   poster_path: string;
 }
-
-type AddToSaveType = ({ title, name, id, poster_path }: MovieItem) => void;
+export interface MovieObject {
+  vote_average: number;
+  title: string;
+  release_date: string;
+  id: number;
+  poster_path: string;
+  genre_ids: number[];
+  name: string;
+}
+type AddToSaveType = ({
+  vote_average,
+  title,
+  release_date,
+  id,
+  poster_path,
+  genre_ids,
+  name,
+}: MovieObject) => void;
 
 export const GenreListContext = createContext<AddToSaveType>(() => {});
 function App(): JSX.Element {

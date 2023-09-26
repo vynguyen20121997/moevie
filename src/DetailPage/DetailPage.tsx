@@ -60,21 +60,20 @@ interface creditObject {
   popularity: number;
   profile_path: string;
 }
-interface genreObject {
+export interface MovieObject {
+  vote_average: number;
+  title: string;
+  release_date: string;
   id: number;
-  name: string;
-}
-interface MovieItem {
-  name: string;
-  id: number;
-  title?: string;
   poster_path: string;
+  genre_ids: number[];
+  name: string;
 }
 const MovieDetailPage = () => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const params = useParams();
-  const addToSave: (movie: MovieItem) => void = useContext(GenreListContext);
+  const addToSave: (movie: MovieObject) => void = useContext(GenreListContext);
 
   const idMovie: string | undefined = params.movieId;
   const urlByDetail = MoviesDetailEndPoints.details(idMovie) + APIConfig.apiKey;
@@ -121,21 +120,23 @@ const MovieDetailPage = () => {
     genres,
     production_countries,
   } = movieDetail;
+  const genreArray: number[] = genres?.map((i) => i.id);
+  console.log("mang genre", genreArray);
   const countryList = movieDetail.production_countries;
   const imgUrl = APIConfig.w500Image(poster_path);
   const backgroundUrl = APIConfig.originalImage(backdrop_path);
   const genresList = movieDetail.genres;
   const videoNe = videoData && videoData[0];
   const urlVideo = `https://www.youtube.com/embed/${videoNe?.key}`;
-  // const login :boolean = JSON.parse(localStorage?.getItem("login") || "");
-  // if (!login) {
-  //   navigate(`/login`);
-  // } else {
-  //     setOpen(true);
-  //   }
-  // };
+  const login :boolean = JSON.parse(localStorage?.getItem("login") || "");  
   const handleClose = () => setOpen(false);
-  const handleOpen = () => setOpen(true);
+  if (!login) {
+    navigate(`/login`);
+  } else {
+      setOpen(true);
+    }
+  };
+  // const handleOpen = () => setOpen(true);
 
   return (
     <>
@@ -214,7 +215,17 @@ const MovieDetailPage = () => {
               </Modal>
               <Fab>
                 <BookmarkBorderOutlinedIcon
-                  onClick={() => addToSave({ title, name, id, poster_path })}
+                  onClick={() =>
+                    addToSave({
+                      vote_average,
+                      title,
+                      release_date,
+                      id,
+                      poster_path,
+                      genreArray,
+                      name,
+                    })
+                  }
                 />
               </Fab>
               <Fab id="other-button">
