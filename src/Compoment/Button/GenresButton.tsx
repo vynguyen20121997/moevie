@@ -2,13 +2,22 @@ import React, { useState, useEffect, useContext } from "react";
 import { Button, ButtonPropsVariantOverrides } from "@mui/material";
 import { Link } from "react-router-dom";
 import { GenreListContext } from "../../App";
-interface genreDataType {
+import { OnFetchGenreList } from "../API/OnfetchAxios";
+interface genreData {
   id: number;
   name: string;
 }
+interface genreDataType {
+  genres: [
+    {
+      id: number;
+      name: string;
+    }
+  ];
+}
 export const GenresButton = () => {
-  const genreList: any = useContext(GenreListContext);
-  const genreListData: genreDataType[] = genreList?.genres;
+  const { data: genreList } = OnFetchGenreList();
+  const genreListData: genreData[] = genreList?.data.genres;
   return (
     <>
       {genreListData &&

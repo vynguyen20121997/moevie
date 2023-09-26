@@ -8,7 +8,14 @@ import {
 import { OnFetchAxios } from "../Compoment/API/OnfetchAxios";
 import SliderContainer from "../Compoment/SmallCompoment/SliderContainer";
 import "./HomePageStyle.css";
+import { OnFetchGenreList } from "../Compoment/API/OnfetchAxios";
+interface genreDataType {
+  id: number;
+  name: string;
+}
 const HomePage = () => {
+  const { data: genreListData } = OnFetchGenreList();
+  const genreList: genreDataType[] = genreListData?.data.genres;
   const urlHeroSlider =
     MoviesEndPoints.popular + APIConfig.apiKey + MoviebyOptions.byPageNumber;
   const fetchOptions = {
@@ -67,6 +74,7 @@ const HomePage = () => {
           loading={popularLoading}
           items={popularData}
           movieCategoryTitle="popular"
+          genreData={genreList}
         />
       </div>
 
@@ -75,6 +83,7 @@ const HomePage = () => {
           loading={topRatedLoading}
           items={topRatedData}
           movieCategoryTitle="toprated "
+          genreData={genreList}
         />
       </div>
 
@@ -83,6 +92,7 @@ const HomePage = () => {
           loading={UpcomingLoading}
           items={UpcomingData}
           movieCategoryTitle="upcoming "
+          genreData={genreList}
         />
       </div>
 
@@ -91,6 +101,7 @@ const HomePage = () => {
           items={nowPlayingData}
           loading={nowPlayingLoading}
           movieCategoryTitle="nowplaying"
+          genreData={genreList}
         />
       </div>
     </>

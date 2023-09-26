@@ -6,16 +6,20 @@ import {
   MoviesEndPoints,
 } from "../Compoment/API/APIConfig";
 import SliderContainer from "../Compoment/SmallCompoment/SliderContainer";
-import { OnFetchAxios } from "../Compoment/API/OnfetchAxios";
+import { OnFetchAxios, OnFetchGenreList } from "../Compoment/API/OnfetchAxios";
 import { UrlCreatingGenreAPI } from "../Compoment/API/APIServies";
-
+interface genreDataType {
+  id: number;
+  name: string;
+}
 interface genreHookObject {
   url: string;
   key: string;
 }
 const GenresPage = () => {
   const result: genreHookObject[] | null = UrlCreatingGenreAPI();
-
+  const { data: genreListData } = OnFetchGenreList();
+  const genreList: genreDataType[] = genreListData?.data.genres;
   const actionMovie = result?.find((item) => item.key === "action");
   const { data: action, isLoading: actionLoading } = OnFetchAxios(
     actionMovie ?? {
@@ -60,20 +64,6 @@ const GenresPage = () => {
     }
   );
   const horrorData = horror?.data?.results;
-
-  //       const { data: comedy } = OnfetchGenresHook(35);
-  //       const { data: documentary } = OnfetchGenresHook(99);
-  //       const { data: drama } = OnfetchGenresHook(18);
-  //       const { data: family } = OnfetchGenresHook(10402);
-  //       const { data: fantasy } = OnfetchGenresHook(36);
-  //       const { data: horror } = OnfetchGenresHook(27);
-  //       const { data: history } = OnfetchGenresHook(36);
-  //       const { data: romance } = OnfetchGenresHook(10749);
-
-  //       // const hehe = () => {
-  //       //   const dataMoviebyGenre = genres.map((i) => {
-  //       //   const { data } = OnfetchGenresHook(i.id);})
-
   return (
     <div
       style={{
@@ -86,6 +76,7 @@ const GenresPage = () => {
           loading={actionLoading}
           items={actionData}
           movieCategoryTitle="Action"
+          genreData={genreList}
         />
       </div>
 
@@ -94,6 +85,7 @@ const GenresPage = () => {
           loading={adventureLoading}
           items={adventurenData}
           movieCategoryTitle="Adventure"
+          genreData={genreList}
         />
       </div>
       <div className="genresSlider">
@@ -101,6 +93,7 @@ const GenresPage = () => {
           loading={animationLoading}
           items={animationData}
           movieCategoryTitle="Animation"
+          genreData={genreList}
         />
       </div>
       <div className="genresSlider">
@@ -108,6 +101,7 @@ const GenresPage = () => {
           loading={crimeLoading}
           items={crimeData}
           movieCategoryTitle="Crime"
+          genreData={genreList}
         />
       </div>
       <div className="genresSlider">
@@ -115,6 +109,7 @@ const GenresPage = () => {
           loading={horrorLoading}
           items={horrorData}
           movieCategoryTitle="Horror"
+          genreData={genreList}
         />
       </div>
     </div>

@@ -58,14 +58,11 @@ const MovieTVListPageDetail = () => {
   //     url: newUrl,
   //     key: "newUrl",
   //   });
-
   //   if (apiData) {
   //     setMovieData([...movieData, ...apiData.data.results]);
   //     setPage(page + 1);
   //   }
   // };
-
-  // // Gọi hàm loadMore thủ công khi component được mount.
   // useEffect(() => {
   //   loadMore();
   // }, movieByGenreData);

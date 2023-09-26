@@ -8,6 +8,7 @@ import { ButtonContainer } from "../Button/GenresButton";
 import Loading from "../Loading/Loading";
 import "./styleMovieCard.css";
 import AddIcon from "@mui/icons-material/Add";
+import { OnFetchGenreList } from "../API/OnfetchAxios";
 export interface Movie {
   name: string;
   id: number;
@@ -28,25 +29,32 @@ interface MovieItem {
   id: number;
   title?: string;
   poster_path: string;
-  quantity: number;
+  quantity?: number;
 }
 interface PropType {
   movieItem?: MovieItem;
   movieDetail: Movie;
   loadingCard: boolean;
+  genreData: genreData[];
 }
-interface genreDataType {
+interface genreData {
   id: number;
   name: string;
 }
-interface ButtonPropType {
-  variant?: "text" | "contained" | "outlined";
+
+interface genreDataType {
+  genres: [
+    {
+      id: number;
+      name: string;
+    }
+  ];
 }
+
 const CardContainer: React.FC<PropType> = (props) => {
-  // const addToSave: (movie: MovieItem) => void = useContext(GenreListContext);
-  const genreList: any = useContext(GenreListContext);
+  const addToSave: (movie: MovieItem) => void = useContext(GenreListContext);
   const [isHover, SetIsHover] = useState<boolean>(false);
-  const { movieDetail, loadingCard } = props;
+  const { movieDetail, loadingCard, genreData } = props;
   const {
     vote_average,
     title,
@@ -56,7 +64,6 @@ const CardContainer: React.FC<PropType> = (props) => {
     genre_ids,
     name,
   } = movieDetail;
-  const genreData: genreDataType[] = genreList?.genres;
   const genreFilter = () => {
     const result = [];
     for (const genreId of genre_ids) {
@@ -163,7 +170,7 @@ const CardContainer: React.FC<PropType> = (props) => {
                   size="small"
                   color="primary"
                   className="play-btn-content-btn-hide"
-                  // onClick={() => addToSave({ title, name, id, poster_path })}
+                  onClick={() => addToSave({ title, name, id, poster_path })}
                 >
                   <AddIcon />
                 </Fab>

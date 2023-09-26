@@ -5,10 +5,16 @@ import {
   MoviebyOptions,
   MoviesEndPoints,
 } from "../Compoment/API/APIConfig";
-import { OnFetchAxios } from "../Compoment/API/OnfetchAxios";
+import { OnFetchAxios, OnFetchGenreList } from "../Compoment/API/OnfetchAxios";
 import SliderContainer from "../Compoment/SmallCompoment/SliderContainer";
 import "./TvPage.css";
+interface genreDataType {
+  id: number;
+  name: string;
+}
 const TVShowPage = () => {
+  const { data: genreListData } = OnFetchGenreList();
+  const genreList: genreDataType[] = genreListData?.data.genres;
   const urlAiringToday = MoviesEndPoints.airingtoday + APIConfig.apiKey;
   const fetchOptions = {
     url: urlAiringToday,
@@ -73,6 +79,7 @@ const TVShowPage = () => {
 
       <div className="movie-slider" id="popular-slider">
         <SliderContainer
+          genreData={genreList}
           loading={popularLoading}
           items={popularTV}
           movieCategoryTitle="Popular Show"
@@ -81,6 +88,7 @@ const TVShowPage = () => {
 
       <div className="movie-slider">
         <SliderContainer
+          genreData={genreList}
           loading={ontheairLoading}
           items={ontheairTV}
           movieCategoryTitle="On The Air"
@@ -89,6 +97,7 @@ const TVShowPage = () => {
 
       <div className="movie-slider">
         <SliderContainer
+          genreData={genreList}
           loading={topRatedLoading}
           items={topRatedTV}
           movieCategoryTitle="Top Rated "
@@ -97,6 +106,7 @@ const TVShowPage = () => {
 
       <div className="movie-slider" style={{ margin: "1%" }}>
         <SliderContainer
+          genreData={genreList}
           items={arivingTodaytv}
           loading={arivingTodayLoading}
           movieCategoryTitle="Ariving Today"

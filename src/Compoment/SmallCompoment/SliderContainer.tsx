@@ -29,14 +29,19 @@ export interface Movie {
   popularity: number;
   genre_ids: [number];
 }
+interface genreData {
+  id: number;
+  name: string;
+}
 interface PropType {
   loading: boolean;
   items: Movie[];
   options?: EmblaOptionsType;
   movieCategoryTitle: string;
+  genreData: genreData[];
 }
 const SliderContainer: React.FC<PropType> = (props) => {
-  const { options, items, movieCategoryTitle, loading } = props;
+  const { options, items, movieCategoryTitle, loading, genreData } = props;
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
   const onButtonClick = useCallback((emblaApi: EmblaCarouselType) => {}, []);
   const {
@@ -81,7 +86,13 @@ const SliderContainer: React.FC<PropType> = (props) => {
         <div className="embla__viewport_slider" ref={emblaRef}>
           <div className="embla__container_slider">
             {items?.map((item, index) => {
-              return <CardContainer movieDetail={item} loadingCard={loading} />;
+              return (
+                <CardContainer
+                  movieDetail={item}
+                  loadingCard={loading}
+                  genreData={genreData}
+                />
+              );
             })}
           </div>
         </div>

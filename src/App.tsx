@@ -1,6 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./Header/Header";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+  QueryClient,
+  QueryClientProvider,
+  UseQueryResult,
+  useQuery,
+} from "@tanstack/react-query";
 import React, { createContext, useEffect, useState } from "react";
 import HomePage from "./HomePage/HomePage";
 import MovieDetailPage from "./DetailPage/DetailPage";
@@ -8,8 +13,6 @@ import Footer from "./Footer/Footer";
 import GenresPage from "./Genres Page/GenresPage";
 import GenresPageDetail from "./Genres Page/GenresPageDetail";
 import RegisterPage from "./RegisterPage/RegisterPage";
-import axios from "axios";
-import { APIConfig, MoviesEndPoints } from "./Compoment/API/APIConfig";
 import TVShowPage from "./HomePage/TvPage";
 import MovieTVListPageDetail from "./Genres Page/Movie&TVListPageDetail";
 import "./App.css";
@@ -19,12 +22,22 @@ interface MovieItem {
   id: number;
   title?: string;
   poster_path: string;
+  quantity?: number;
 }
-export const GenreListContext = createContext<any[]>([]);
+
+type AddToSaveType = ({
+  title,
+  name,
+  id,
+  poster_path,
+  quantity,
+}: MovieItem) => void;
+
+export const GenreListContext = createContext<AddToSaveType>(() => {});
 function App(): JSX.Element {
-  const [genreList, setGenreList] = useState<any>([]);
   const [savedItem, setSavedItem] = useState<MovieItem[]>([]);
-  const addToSave = ({ title, name, id, poster_path }: MovieItem) => {
+
+  const addToSave = ({ title, name, id, poster_path, quantity }: MovieItem) => {
     const movies = [...savedItem];
     const itemIndex = movies?.findIndex((item) => item.id === id);
     console.log(itemIndex);
@@ -34,14 +47,10 @@ function App(): JSX.Element {
       // return alert("You already added")
     }
   };
-  useEffect(() => {
-    axios.get(`${MoviesEndPoints.genre}${APIConfig.apiKey}`).then((res) => {
-      setGenreList(res.data);
-    });
-  }, []);
+
   return (
     <div className="App">
-      <GenreListContext.Provider value={genreList}>
+      <GenreListContext.Provider value={addToSave}>
         <QueryClientProvider client={queryClient}>
           <BrowserRouter>
             <Header />
