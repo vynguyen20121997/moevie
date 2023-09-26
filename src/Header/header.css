@@ -9,14 +9,14 @@
      overflow-x: hidden;
     scroll-snap-type: y mandatory;
     -ms-text-overflow-style: none;
-    background: rgba(0,0,0,0.5);
+    background: rgba(18, 3, 100, 0.548);
     border-radius: 50px;
  
 }
 .modal_box::-webkit-scrollbar {
     display: none;
 }
-.modal_box h2{
+.modal_box h1{
     color: white;
     text-align: center;
 }

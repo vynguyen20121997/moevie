@@ -66,7 +66,6 @@ function App(): JSX.Element {
       return alert("You already added");
     }
   };
-  console.log("thêm gì vô vậy ?", savedItem);
   localStorage.setItem("favorite", JSON.stringify(savedItem));
 
   return (

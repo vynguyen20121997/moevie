@@ -42,8 +42,8 @@ const HeroSlider: React.FC<PropType> = (props) => {
     {
       align: "center",
       skipSnaps: false,
-    }
-    // [Autoplay()]
+    },
+    [Autoplay()]
   );
 
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -132,14 +132,14 @@ const HeroSlider: React.FC<PropType> = (props) => {
                         {genreNames?.slice(0, 4).map((item) => {
                           return (
                             <ButtonContainer
-                              variant="outlined"
+                              variant="contained"
                               size="medium"
                               stylebutton={{
                                 maxWidth: "80px",
                                 fontSize: "12px",
                                 maxHeight: "40px",
                                 minWidth: "30px",
-                                minHeight: "30px",
+                                minHeight: "20px",
                                 marginLeft: "2%",
                               }}
                               genre={item}

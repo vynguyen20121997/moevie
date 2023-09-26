@@ -190,7 +190,7 @@ const Header = ({}: HeaderProps) => {
             aria-describedby="modal-modal-description"
           >
             <div className="modal_box">
-              <h2>Your Favorite Movie</h2>
+              <h1>Your Favorite Movie</h1>
               <div className="fav_movie">
                 {favoriteData?.map((item: MovieItem) => (
                   <CardContainer movieDetail={item} />
