@@ -120,23 +120,23 @@ const MovieDetailPage = () => {
     genres,
     production_countries,
   } = movieDetail;
-  const genreArray: number[] = genres?.map((i) => i.id);
-  console.log("mang genre", genreArray);
+  const genre_ids: number[] = genres?.map((i) => i.id);
   const countryList = movieDetail.production_countries;
   const imgUrl = APIConfig.w500Image(poster_path);
   const backgroundUrl = APIConfig.originalImage(backdrop_path);
   const genresList = movieDetail.genres;
   const videoNe = videoData && videoData[0];
   const urlVideo = `https://www.youtube.com/embed/${videoNe?.key}`;
-  const login :boolean = JSON.parse(localStorage?.getItem("login") || "");  
+  const login: boolean = JSON.parse(localStorage?.getItem("login") || "");
   const handleClose = () => setOpen(false);
-  if (!login) {
-    navigate(`/login`);
-  } else {
+
+  const handleOpen = () => {
+    if (!login) {
+      navigate(`/login`);
+    } else {
       setOpen(true);
     }
   };
-  // const handleOpen = () => setOpen(true);
 
   return (
     <>
@@ -222,7 +222,7 @@ const MovieDetailPage = () => {
                       release_date,
                       id,
                       poster_path,
-                      genreArray,
+                      genre_ids,
                       name,
                     })
                   }
