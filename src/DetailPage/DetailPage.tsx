@@ -23,6 +23,7 @@ import { OnFetchAxios } from "../Compoment/API/OnfetchAxios";
 import { MoviesDetailEndPoints } from "../Compoment/API/APIConfig";
 import { Link } from "@mui/icons-material";
 import { GenreListContext } from "../App";
+import { ButtonContainer } from "../Compoment/Button/GenresButton";
 interface movieObject {
   id: number;
   title: string;
@@ -125,11 +126,12 @@ const MovieDetailPage = () => {
   const imgUrl = APIConfig.w500Image(poster_path);
   const backgroundUrl = APIConfig.originalImage(backdrop_path);
   const genresList = movieDetail.genres;
+  console.log("genre cua phim", genresList);
   const videoNe = videoData && videoData[0];
   const urlVideo = `https://www.youtube.com/embed/${videoNe?.key}`;
-  const login: boolean = JSON.parse(localStorage?.getItem("login") || "");
+  // const login: boolean = JSON.parse(localStorage?.getItem("login") || "");
   const handleClose = () => setOpen(false);
-
+  const login = true;
   const handleOpen = () => {
     if (!login) {
       navigate(`/login`);
@@ -137,7 +139,6 @@ const MovieDetailPage = () => {
       setOpen(true);
     }
   };
-
   return (
     <>
       <div
@@ -213,7 +214,7 @@ const MovieDetailPage = () => {
                   />
                 </Box>
               </Modal>
-              <Fab>
+              <Fab style={{ marginLeft: "2%" }}>
                 <BookmarkBorderOutlinedIcon
                   onClick={() =>
                     addToSave({
@@ -247,10 +248,7 @@ const MovieDetailPage = () => {
                         {genresList &&
                           genresList.map((i) => (
                             <TableCell style={{ color: "white" }} align="right">
-                              <Link>
-                                <Button variant="outlined">{i.name}</Button>
-                              </Link>
-                              {/* <ButtonContainer variant="outlined" genre={i} /> */}
+                              <ButtonContainer variant="outlined" genre={i} />
                             </TableCell>
                           ))}
                       </TableRow>

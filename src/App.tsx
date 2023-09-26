@@ -44,13 +44,24 @@ type AddToSaveType = ({
 
 export const GenreListContext = createContext<AddToSaveType>(() => {});
 function App(): JSX.Element {
-  const [savedItem, setSavedItem] = useState<MovieItem[]>([]);
-  const addToSave = ({ title, name, id, poster_path }: MovieItem) => {
+  const [savedItem, setSavedItem] = useState<MovieObject[]>([]);
+  const addToSave = ({
+    vote_average,
+    title,
+    release_date,
+    id,
+    poster_path,
+    genre_ids,
+    name,
+  }: MovieObject) => {
     const movies = [...savedItem];
     const itemIndex = movies?.findIndex((item) => item.id === id);
     console.log(itemIndex);
     if (itemIndex === -1) {
-      setSavedItem([...movies, { name, id, poster_path }]);
+      setSavedItem([
+        ...movies,
+        { vote_average, title, release_date, id, poster_path, genre_ids, name },
+      ]);
     } else {
       return alert("You already added");
     }

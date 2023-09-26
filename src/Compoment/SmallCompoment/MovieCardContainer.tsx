@@ -13,14 +13,14 @@ export interface Movie {
   name: string;
   id: number;
   title: string;
-  original_title: string;
-  overview: string;
+  original_title?: string;
+  overview?: string;
   poster_path: string;
-  backdrop_path: string;
-  vote_count: number;
+  backdrop_path?: string;
+  vote_count?: number;
   vote_average: number;
   release_date: string;
-  popularity: number;
+  popularity?: number;
   genre_ids: number[];
 }
 
@@ -34,22 +34,14 @@ interface MovieItem {
 interface PropType {
   movieItem?: MovieItem;
   movieDetail: Movie;
-  loadingCard: boolean;
-  genreData: genreData[];
+  loadingCard?: boolean;
+  genreData?: genreData[];
 }
 interface genreData {
   id: number;
   name: string;
 }
 
-interface genreDataType {
-  genres: [
-    {
-      id: number;
-      name: string;
-    }
-  ];
-}
 export interface MovieObject {
   vote_average: number;
   title: string;

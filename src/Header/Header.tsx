@@ -27,6 +27,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { APIConfig } from "../Compoment/API/APIConfig";
+import CardContainer from "../Compoment/SmallCompoment/MovieCardContainer";
 interface HeaderProps {}
 const menuItems = [
   {
@@ -45,13 +46,16 @@ const menuItems = [
 interface MovieItem {
   name: string;
   id: number;
-  title?: string;
+  title: string;
   poster_path: string;
+  vote_average: number;
+  release_date: string;
+  genre_ids: number[];
 }
 const Header = ({}: HeaderProps) => {
   const [sidenav, setSideNav] = useState<boolean>(false);
-  const values = JSON.parse(localStorage?.getItem("values") || "");
-  const login = JSON.parse(localStorage?.getItem("login") || "");
+  // const values = JSON.parse(localStorage?.getItem("values") || "");
+  // const login = JSON.parse(localStorage?.getItem("login") || "");
   const favoriteData = JSON.parse(localStorage?.getItem("favorite") || "");
   console.log("yeu thich", favoriteData);
   const [matches, setMatches] = useState(
@@ -200,7 +204,7 @@ const Header = ({}: HeaderProps) => {
           >
             <Box sx={style}>
               {favoriteData?.map((item: MovieItem) => (
-                <></>
+                <CardContainer movieDetail={item} />
               ))}
             </Box>
           </Modal>
