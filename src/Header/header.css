@@ -5,16 +5,20 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 70%;
-    height: 700px;
-    border: 2px solid #000;
-    box-shadow: 24;
-    background-color: cadetblue;
-    overflow-x: hidden;
+    height: 750px;
+     overflow-x: hidden;
     scroll-snap-type: y mandatory;
     -ms-text-overflow-style: none;
+    background: rgba(0,0,0,0.5);
+    border-radius: 50px;
+ 
 }
 .modal_box::-webkit-scrollbar {
     display: none;
+}
+.modal_box h2{
+    color: white;
+    text-align: center;
 }
 .fav_movie{
     display: flex;  
