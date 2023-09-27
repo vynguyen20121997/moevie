@@ -16,30 +16,13 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import "./style2.css";
 import CardContainer from "./MovieCardContainer";
 import { Loading } from "../Loading/Loading";
-export interface Movie {
-  name: string;
-  id: number;
-  title: string;
-  original_title: string;
-  overview: string;
-  poster_path: string;
-  backdrop_path: string;
-  vote_count: number;
-  vote_average: number;
-  release_date: string;
-  popularity: number;
-  genre_ids: [number];
-}
-interface genreData {
-  id: number;
-  name: string;
-}
+import { Movie, genreDataType } from "../Type/InterfaceType";
 interface PropType {
   loading: boolean;
   items: Movie[];
   options?: EmblaOptionsType;
   movieCategoryTitle: string;
-  genreData: genreData[];
+  genreData: genreDataType[];
 }
 const SliderContainer: React.FC<PropType> = (props) => {
   const { options, items, movieCategoryTitle, loading, genreData } = props;
@@ -52,7 +35,6 @@ const SliderContainer: React.FC<PropType> = (props) => {
     onNextButtonClick,
   } = usePrevNextButtons(emblaApi, onButtonClick);
   if (loading) return <Loading />;
-
   return (
     <>
       <div className="button1">

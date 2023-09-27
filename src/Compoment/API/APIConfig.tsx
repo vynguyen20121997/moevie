@@ -1,5 +1,4 @@
 import React from "react";
-
 export const APIConfig: {
   baseUrl: string;
   apiKey: string;
@@ -18,7 +17,6 @@ export const APIConfig: {
   w200Image: (imgPath: string) => `https://image.tmdb.org/t/p/w200/${imgPath}`,
   w100Image: (imgPath: string) => `https://image.tmdb.org/t/p/w100/${imgPath}`,
 };
-
 export const MoviesEndPoints: {
   nowplaying: string;
   popular: string;
@@ -42,14 +40,13 @@ export const MoviesEndPoints: {
   genre: "https://api.themoviedb.org/3/genre/movie/list",
   discover: "https://api.themoviedb.org/3/discover/movie",
 };
-
 export const MoviebyOptions: {
   byGenreId: (id: number) => string;
   byPageNumber: string;
   bySpecificPageNumber: (id: number) => string;
 } = {
   byGenreId: (id) => `&with_genres=${id}`,
-  byPageNumber: `&page=${Math.floor(Math.random() * 33 + 1)}`,
+  byPageNumber: `&page=${Math.floor(Math.random() * 22 + 1)}`,
   bySpecificPageNumber: (id) => `&page=${id}`,
 };
 export const MoviesDetailEndPoints = {

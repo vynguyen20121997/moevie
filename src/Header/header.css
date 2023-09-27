@@ -9,7 +9,7 @@
      overflow-x: hidden;
     scroll-snap-type: y mandatory;
     -ms-text-overflow-style: none;
-    background: rgba(18, 3, 100, 0.548);
+    background: rgba(0, 17, 255, 0.342);
     border-radius: 50px;
  
 }
@@ -17,7 +17,8 @@
     display: none;
 }
 .modal_box h1{
-    color: white;
+    background-color: rgba(30, 5, 255, 0.74);
+    color: rgb(255, 247, 247);
     text-align: center;
 }
 .fav_movie{

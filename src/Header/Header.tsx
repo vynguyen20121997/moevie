@@ -10,7 +10,6 @@ import "@fontsource/roboto/700.css";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import HomeIcon from "@mui/icons-material/Home";
 import CloseIcon from "@mui/icons-material/Close";
-import { Fab } from "@mui/material";
 import ExploreIcon from "@mui/icons-material/Explore";
 import "./header.css";
 import MenuItem from "@mui/material/MenuItem";
@@ -20,12 +19,10 @@ import { Menu } from "@mui/base/Menu";
 import { MenuButton } from "@mui/base/MenuButton";
 import { menuItemClasses } from "@mui/base/MenuItem";
 import { styled } from "@mui/system";
-import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { APIConfig } from "../Compoment/API/APIConfig";
 import CardContainer from "../Compoment/SmallCompoment/MovieCardContainer";
+import { MovieObjectForApp } from "../Compoment/Type/InterfaceType";
 interface HeaderProps {}
 const menuItems = [
   {
@@ -41,20 +38,10 @@ const menuItems = [
     path: "/tvshow",
   },
 ];
-interface MovieItem {
-  name: string;
-  id: number;
-  title: string;
-  poster_path: string;
-  vote_average: number;
-  release_date: string;
-  genre_ids: number[];
-}
 const Header = ({}: HeaderProps) => {
   const [sidenav, setSideNav] = useState<boolean>(false);
 
-  // const values = JSON.parse(localStorage?.getItem("values") || "");
-  // const login = JSON.parse(localStorage?.getItem("login") || "");
+  // const login = JSON.parse(localStorage?.getItem("values") || "");
 
   const favoriteData = JSON.parse(localStorage?.getItem("favorite") || "");
   console.log("yeu thich", favoriteData);
@@ -62,7 +49,6 @@ const Header = ({}: HeaderProps) => {
     window.matchMedia("(max-width: 600px)").matches
   );
   const [open, setOpen] = useState(false);
-
   useEffect(() => {
     window
       .matchMedia("(max-width: 600px)")
@@ -194,7 +180,7 @@ const Header = ({}: HeaderProps) => {
             <div className="modal_box">
               <h1>Your Favorite Movie</h1>
               <div className="fav_movie">
-                {favoriteData?.map((item: MovieItem) => (
+                {favoriteData?.map((item: MovieObjectForApp) => (
                   <CardContainer movieDetail={item} />
                 ))}
               </div>

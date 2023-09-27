@@ -3,6 +3,9 @@
   .heroSlider{
     height: 500px;
    } 
+   .movie-slider{
+    margin: 1%
+   }
 }
 
 
@@ -12,6 +15,9 @@
   .heroSlider{
     height: 500px;
    } 
+   .movie-slider{
+    margin: 1%
+   }
   }
   
   /* Medium devices (landscape tablets, 768px and up) */
@@ -19,7 +25,9 @@
     .heroSlider{
         height: 600px;
        } 
-      
+       .movie-slider{
+        margin: 1%
+       }
              } 
   
   /* Large devices (laptops/desktops, 992px and up) */
@@ -27,7 +35,9 @@
     .heroSlider{
         height: 600px;
        }  
-   
+       .movie-slider{
+        margin: 1%
+       }
     }
   
   /* Extra large devices (large laptops and desktops, 1200px and up) */
@@ -37,5 +47,7 @@
        };
        .movie-slider{
         height: 70vh;
+        margin: 1%
        }
+     
   }

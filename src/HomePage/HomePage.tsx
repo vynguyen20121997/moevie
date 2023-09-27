@@ -9,10 +9,7 @@ import { OnFetchAxios } from "../Compoment/API/OnfetchAxios";
 import SliderContainer from "../Compoment/SmallCompoment/SliderContainer";
 import "./HomePageStyle.css";
 import { OnFetchGenreList } from "../Compoment/API/OnfetchAxios";
-interface genreDataType {
-  id: number;
-  name: string;
-}
+import { genreDataType } from "../Compoment/Type/InterfaceType";
 const HomePage = () => {
   const { data: genreListData } = OnFetchGenreList();
   const genreList: genreDataType[] = genreListData?.data.genres;
@@ -70,7 +67,11 @@ const HomePage = () => {
         <HeroSlider items={ketqua} genreData={genreList} loading={isLoading} />
       </div>
 
-      <div className="movie-slider" id="popular-slider">
+      <div
+        className="movie-slider"
+        id="popular-slider"
+        style={{ margin: "1%" }}
+      >
         <SliderContainer
           loading={popularLoading}
           items={popularData}
@@ -97,7 +98,7 @@ const HomePage = () => {
         />
       </div>
 
-      <div className="movie-slider" style={{ margin: "1%" }}>
+      <div className="movie-slider">
         <SliderContainer
           items={nowPlayingData}
           loading={nowPlayingLoading}

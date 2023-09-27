@@ -9,39 +9,13 @@ import Loading from "../Loading/Loading";
 import "./styleMovieCard.css";
 import AddIcon from "@mui/icons-material/Add";
 import { OnFetchGenreList } from "../API/OnfetchAxios";
-export interface Movie {
-  name: string;
-  id: number;
-  title: string;
-  original_title?: string;
-  overview?: string;
-  poster_path: string;
-  backdrop_path?: string;
-  vote_count?: number;
-  vote_average: number;
-  release_date: string;
-  popularity?: number;
-  genre_ids: number[];
-}
-
-interface MovieItem {
-  name: string;
-  id: number;
-  title?: string;
-  poster_path: string;
-  quantity?: number;
-}
+import { Movie, MovieItem, genreDataType } from "../Type/InterfaceType";
 interface PropType {
   movieItem?: MovieItem;
   movieDetail: Movie;
   loadingCard?: boolean;
-  genreData?: genreData[];
+  genreData?: genreDataType[];
 }
-interface genreData {
-  id: number;
-  name: string;
-}
-
 export interface MovieObject {
   vote_average: number;
   title: string;

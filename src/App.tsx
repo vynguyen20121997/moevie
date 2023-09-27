@@ -15,36 +15,16 @@ import GenresPageDetail from "./Genres Page/GenresPageDetail";
 import RegisterPage from "./RegisterPage/RegisterPage";
 import TVShowPage from "./HomePage/TvPage";
 import MovieTVListPageDetail from "./Genres Page/Movie&TVListPageDetail";
+import Alert from "@mui/material/Alert";
 import "./App.css";
+import {
+  AddToSaveType,
+  MovieObjectForApp,
+} from "./Compoment/Type/InterfaceType";
 const queryClient = new QueryClient();
-interface MovieItem {
-  name: string;
-  id: number;
-  title?: string;
-  poster_path: string;
-}
-export interface MovieObject {
-  vote_average: number;
-  title: string;
-  release_date: string;
-  id: number;
-  poster_path: string;
-  genre_ids: number[];
-  name: string;
-}
-type AddToSaveType = ({
-  vote_average,
-  title,
-  release_date,
-  id,
-  poster_path,
-  genre_ids,
-  name,
-}: MovieObject) => void;
-
 export const GenreListContext = createContext<AddToSaveType>(() => {});
 function App(): JSX.Element {
-  const [savedItem, setSavedItem] = useState<MovieObject[]>([]);
+  const [savedItem, setSavedItem] = useState<MovieObjectForApp[]>([]);
   const addToSave = ({
     vote_average,
     title,
@@ -53,7 +33,7 @@ function App(): JSX.Element {
     poster_path,
     genre_ids,
     name,
-  }: MovieObject) => {
+  }: MovieObjectForApp) => {
     const movies = [...savedItem];
     const itemIndex = movies?.findIndex((item) => item.id === id);
     console.log(itemIndex);
@@ -63,9 +43,14 @@ function App(): JSX.Element {
         { vote_average, title, release_date, id, poster_path, genre_ids, name },
       ]);
     } else {
-      return alert("You already added");
+      return alert(
+        // <Alert variant="outlined" severity="error">
+        "You Already Added"
+        // </Alert>
+      );
     }
   };
+  console.log("favo", savedItem);
   localStorage.setItem("favorite", JSON.stringify(savedItem));
 
   return (

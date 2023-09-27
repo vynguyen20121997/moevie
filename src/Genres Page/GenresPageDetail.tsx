@@ -14,24 +14,7 @@ import Stack from "@mui/material/Stack";
 import "./genresStyle.css";
 import { AxiosResponse } from "axios";
 import "./genresStyle.css";
-interface Movie {
-  name: string;
-  id: number;
-  title: string;
-  original_title: string;
-  overview: string;
-  poster_path: string;
-  backdrop_path: string;
-  vote_count: number;
-  vote_average: number;
-  release_date: string;
-  popularity: number;
-  genre_ids: [number];
-}
-interface genreDataType {
-  id: number;
-  name: string;
-}
+import { Movie, genreDataType } from "../Compoment/Type/InterfaceType";
 const GenresPageDetail = () => {
   const [movieData, setMovieData] = useState([]);
   const [page, setPage] = useState(1);

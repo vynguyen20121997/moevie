@@ -21,7 +21,7 @@ export const Loading = () => {
 
 export default function HeroSliderLoading() {
   return (
-    <Card sx={{ maxWidth: 2000 }}>
+    <Card sx={{ maxWidth: 2000, marginTop: 30, m: 2 }}>
       <Skeleton variant="rectangular" width={2000} height={700} />
     </Card>
   );

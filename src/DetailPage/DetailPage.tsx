@@ -24,52 +24,11 @@ import { MoviesDetailEndPoints } from "../Compoment/API/APIConfig";
 import { Link } from "@mui/icons-material";
 import { GenreListContext } from "../App";
 import { ButtonContainer } from "../Compoment/Button/GenresButton";
-interface movieObject {
-  id: number;
-  title: string;
-  original_title: string;
-  overview: string;
-  poster_path: string;
-  backdrop_path: string;
-  vote_count: number;
-  vote_average: number;
-  release_date: string;
-  popularity: number;
-  original_language: string;
-  imdb_id: string;
-  runtime: number;
-  name: string;
-  genres: [
-    {
-      id: number;
-      name: string;
-    }
-  ];
-  production_countries: [{ name: string }];
-}
-interface creditObject {
-  adult: boolean;
-  cast_id: number;
-  character: string;
-  credit_id: string;
-  gender: number;
-  id: number;
-  known_for_department: string;
-  name: string;
-  order: number;
-  original_name: string;
-  popularity: number;
-  profile_path: string;
-}
-export interface MovieObject {
-  vote_average: number;
-  title: string;
-  release_date: string;
-  id: number;
-  poster_path: string;
-  genre_ids: number[];
-  name: string;
-}
+import {
+  MovieObject,
+  creditObject,
+  movieObject,
+} from "../Compoment/Type/InterfaceType";
 const MovieDetailPage = () => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();

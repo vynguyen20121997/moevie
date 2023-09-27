@@ -8,10 +8,7 @@ import {
 import { OnFetchAxios, OnFetchGenreList } from "../Compoment/API/OnfetchAxios";
 import SliderContainer from "../Compoment/SmallCompoment/SliderContainer";
 import "./TvPage.css";
-interface genreDataType {
-  id: number;
-  name: string;
-}
+import { genreDataType } from "../Compoment/Type/InterfaceType";
 const TVShowPage = () => {
   const { data: genreListData } = OnFetchGenreList();
   const genreList: genreDataType[] = genreListData?.data.genres;
@@ -62,10 +59,6 @@ const TVShowPage = () => {
     OnFetchAxios(fetchArivingToday);
   const arivingTodaytv = arivingTodayData?.data?.results;
   if (isLoading) return null;
-  // if (popularLoading) return null;
-  // if (topRatedLoading) return null;
-  // if (UpcomingLoading) return null;
-  // if (nowPlayingLoading) return null;
   return (
     <>
       <div

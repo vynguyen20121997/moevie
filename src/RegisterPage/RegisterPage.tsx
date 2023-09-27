@@ -37,7 +37,7 @@ const signupFormValidationScheme = yup.object().shape({
 const RegisterPage = () => {
   const [login, setLogin] = useState<boolean>(false);
   const navigate = useNavigate();
-
+  localStorage.setItem("loginStatus", JSON.stringify(login));
   const formik: any = useFormik({
     initialValues: {
       fullname: "",
