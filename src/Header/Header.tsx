@@ -52,8 +52,10 @@ interface MovieItem {
 }
 const Header = ({}: HeaderProps) => {
   const [sidenav, setSideNav] = useState<boolean>(false);
+
   // const values = JSON.parse(localStorage?.getItem("values") || "");
   // const login = JSON.parse(localStorage?.getItem("login") || "");
+
   const favoriteData = JSON.parse(localStorage?.getItem("favorite") || "");
   console.log("yeu thich", favoriteData);
   const [matches, setMatches] = useState(

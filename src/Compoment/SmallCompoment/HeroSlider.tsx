@@ -9,8 +9,8 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { Link, useNavigate } from "react-router-dom";
 import { APIConfig } from "../API/APIConfig";
 import Button from "@mui/material/Button";
-import Loading from "../Loading/Loading";
 import { ButtonContainer } from "../Button/GenresButton";
+import HeroSliderLoading from "../Loading/Loading";
 interface Movie {
   genre_ids: [number];
   name: string;
@@ -74,7 +74,7 @@ const HeroSlider: React.FC<PropType> = (props) => {
     embla.on("select", onSelect);
     onSelectButton(embla);
   }, [embla, setScrollSnaps, onSelect]);
-  if (loading) return <Loading />;
+  if (loading) return <HeroSliderLoading />;
 
   return (
     <div className="embla">

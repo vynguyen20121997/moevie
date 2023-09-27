@@ -7,7 +7,6 @@ import {
   MoviesEndPoints,
 } from "../Compoment/API/APIConfig";
 import { OnFetchAxios, OnFetchGenreList } from "../Compoment/API/OnfetchAxios";
-import Typography from "@mui/material/Typography";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import "./genresStyle.css";
@@ -40,10 +39,35 @@ const MovieTVListPageDetail = () => {
   const params: { type: string } = useParams() as { type: string };
   const { type } = params;
   const uppercasedType = type.toUpperCase();
-
-  // MoviesEndPoints.`${params.type}` +s
+  console.log("parram gif day", type);
+  const filterEndPoint = (type: string) => {
+    switch (type) {
+      case "nowplaying":
+        return "https://api.themoviedb.org/3/movie/now_playing";
+      case "toprated":
+        return "https://api.themoviedb.org/3/movie/top_rated";
+      case "popular":
+        return "https://api.themoviedb.org/3/movie/popular";
+      case "upcoming":
+        return "https://api.themoviedb.org/3/movie/upcoming";
+      case "airingtoday":
+        return "https://api.themoviedb.org/3/tv/airing_today";
+      case "ontheair":
+        return "https://api.themoviedb.org/3/tv/on_the_air";
+      case "populartv":
+        return "https://api.themoviedb.org/3/tv/popular";
+      case "topratedtv":
+        return "https://api.themoviedb.org/3/tv/top_rated";
+      case "genre":
+        return "https://api.themoviedb.org/3/genre/movie/list";
+      case "discover":
+        return "https://api.themoviedb.org/3/discover";
+      default:
+        return null;
+    }
+  };
   const newUrl =
-    MoviesEndPoints.popular +
+    filterEndPoint(type) +
     APIConfig.apiKey +
     MoviebyOptions.bySpecificPageNumber(page);
 

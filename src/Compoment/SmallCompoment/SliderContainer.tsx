@@ -15,6 +15,7 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import "./style2.css";
 import CardContainer from "./MovieCardContainer";
+import { Loading } from "../Loading/Loading";
 export interface Movie {
   name: string;
   id: number;
@@ -50,6 +51,8 @@ const SliderContainer: React.FC<PropType> = (props) => {
     onPrevButtonClick,
     onNextButtonClick,
   } = usePrevNextButtons(emblaApi, onButtonClick);
+  if (loading) return <Loading />;
+
   return (
     <>
       <div className="button1">

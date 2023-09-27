@@ -20,7 +20,7 @@ export const APIConfig: {
 };
 
 export const MoviesEndPoints: {
-  nowPlaying: string;
+  nowplaying: string;
   popular: string;
   topRated: string;
   upcoming: string;
@@ -31,7 +31,7 @@ export const MoviesEndPoints: {
   genre: string;
   discover: string;
 } = {
-  nowPlaying: "https://api.themoviedb.org/3/movie/now_playing",
+  nowplaying: "https://api.themoviedb.org/3/movie/now_playing",
   topRated: "https://api.themoviedb.org/3/movie/top_rated",
   popular: "https://api.themoviedb.org/3/movie/popular",
   upcoming: "https://api.themoviedb.org/3/movie/upcoming",

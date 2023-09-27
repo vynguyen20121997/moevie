@@ -46,7 +46,7 @@ const RegisterPage = () => {
     },
     onSubmit: (values) => {
       setLogin(true);
-      console.log("Submit values:", login);
+      // console.log("Submit values:", login);
       localStorage.setItem("values", JSON.stringify(values));
       localStorage.setItem("loginStatus", JSON.stringify(login));
 

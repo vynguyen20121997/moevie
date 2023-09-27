@@ -53,7 +53,7 @@ const HomePage = () => {
     OnFetchAxios(fetchUpcomingMovies);
   const UpcomingData = UpcomingMoviesrData?.data?.results;
   const urlNowPlaying =
-    MoviesEndPoints.nowPlaying + APIConfig.apiKey + MoviebyOptions.byPageNumber;
+    MoviesEndPoints.nowplaying + APIConfig.apiKey + MoviebyOptions.byPageNumber;
   const fetchNowPlayingMovies = {
     url: urlNowPlaying,
     key: "NowPlayingMoviesHooks",
@@ -72,7 +72,7 @@ const HomePage = () => {
 
       <div className="movie-slider" id="popular-slider">
         <SliderContainer
-          loading={true}
+          loading={popularLoading}
           items={popularData}
           movieCategoryTitle="popular"
           genreData={genreList}

@@ -8,17 +8,21 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Skeleton from "@mui/material/Skeleton";
+import Stack from "@mui/material/Stack";
+import Box from "@mui/material/Box";
 
-interface MediaProps {
-  loading?: boolean;
-}
-
-function Loading(props: MediaProps) {
+export const Loading = () => {
   return (
-    <Card sx={{ maxWidth: 200, m: 2 }}>
-      <Skeleton sx={{ height: 270 }} animation="wave" variant="rectangular" />
+    <Card sx={{ marginTop: 30, maxWidth: 2000, m: 2 }}>
+      <Skeleton sx={{ height: 260 }} animation="wave" variant="rectangular" />
+    </Card>
+  );
+};
+
+export default function HeroSliderLoading() {
+  return (
+    <Card sx={{ maxWidth: 2000 }}>
+      <Skeleton variant="rectangular" width={2000} height={700} />
     </Card>
   );
 }
-
-export default Loading;
