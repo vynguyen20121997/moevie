@@ -50,9 +50,7 @@ function App(): JSX.Element {
       );
     }
   };
-  console.log("favo", savedItem);
   localStorage.setItem("favorite", JSON.stringify(savedItem));
-
   return (
     <div className="App">
       <GenreListContext.Provider value={addToSave}>

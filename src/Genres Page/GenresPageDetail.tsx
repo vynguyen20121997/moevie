@@ -7,14 +7,11 @@ import {
   MoviesEndPoints,
 } from "../Compoment/API/APIConfig";
 import { OnFetchAxios, OnFetchGenreList } from "../Compoment/API/OnfetchAxios";
-import { Rating } from "@mui/material";
-import Typography from "@mui/material/Typography";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import "./genresStyle.css";
-import { AxiosResponse } from "axios";
-import "./genresStyle.css";
 import { Movie, genreDataType } from "../Compoment/Type/InterfaceType";
+
 const GenresPageDetail = () => {
   const [movieData, setMovieData] = useState([]);
   const [page, setPage] = useState(1);

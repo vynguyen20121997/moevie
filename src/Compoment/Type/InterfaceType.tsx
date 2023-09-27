@@ -91,3 +91,7 @@ export type AddToSaveType = ({
   genre_ids,
   name,
 }: MovieObject) => void;
+export interface genreHookObject {
+  url: string;
+  key: string;
+}

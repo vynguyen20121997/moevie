@@ -1,23 +1,27 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Button, ButtonPropsVariantOverrides } from "@mui/material";
 import { Link } from "react-router-dom";
-import { GenreListContext } from "../../App";
 import { OnFetchGenreList } from "../API/OnfetchAxios";
-interface genreData {
+interface genreObject {
   id: number;
   name: string;
 }
-interface genreDataType {
-  genres: [
-    {
-      id: number;
-      name: string;
-    }
-  ];
+interface ButtonPropType {
+  genre: genreObject;
+  variant?: "text" | "contained" | "outlined";
+  size?: string;
+  stylebutton?: {
+    maxWidth?: string;
+    fontSize?: string;
+    minWidth?: string;
+    maxHeight?: string;
+    minHeight?: string;
+    marginLeft?: string;
+  };
 }
 export const GenresButton = () => {
   const { data: genreList } = OnFetchGenreList();
-  const genreListData: genreData[] = genreList?.data.genres;
+  const genreListData: genreObject[] = genreList?.data.genres;
   return (
     <>
       {genreListData &&
@@ -41,27 +45,7 @@ export const GenresButton = () => {
     </>
   );
 };
-
 export default GenresButton;
-
-interface genreObject {
-  id: number;
-  name: string;
-}
-interface ButtonPropType {
-  genre: genreObject;
-  variant?: "text" | "contained" | "outlined";
-  size?: string;
-  stylebutton?: {
-    maxWidth?: string;
-    fontSize?: string;
-    minWidth?: string;
-    maxHeight?: string;
-    minHeight?: string;
-    marginLeft?: string;
-  };
-}
-
 export const ButtonContainer: React.FC<ButtonPropType> = (props) => {
   const { genre, variant, size, stylebutton } = props;
   const { name, id: genreId } = genre;

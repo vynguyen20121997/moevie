@@ -85,15 +85,15 @@ const MovieDetailPage = () => {
   const imgUrl = APIConfig.w500Image(poster_path);
   const backgroundUrl = APIConfig.originalImage(backdrop_path);
   const genresList = movieDetail.genres;
-  console.log("genre cua phim", genresList);
   const videoNe = videoData && videoData[0];
   const urlVideo = `https://www.youtube.com/embed/${videoNe?.key}`;
-  // const login: boolean = JSON.parse(localStorage?.getItem("login") || "");
+  const login: boolean = JSON.parse(localStorage?.getItem("loginStatus") || "");
   const handleClose = () => setOpen(false);
-  const login = true;
+  // const login = true;
   const handleOpen = () => {
     if (!login) {
-      navigate(`/login`);
+      alert("You not login Yet");
+      navigate(`/register`);
     } else {
       setOpen(true);
     }

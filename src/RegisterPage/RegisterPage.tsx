@@ -35,9 +35,10 @@ const signupFormValidationScheme = yup.object().shape({
     .required("Password is required"),
 });
 const RegisterPage = () => {
-  const [login, setLogin] = useState<boolean>(false);
   const navigate = useNavigate();
+  const [login, setLogin] = useState<boolean>(false);
   localStorage.setItem("loginStatus", JSON.stringify(login));
+  console.log("trang thai dang nhap", login);
   const formik: any = useFormik({
     initialValues: {
       fullname: "",
@@ -46,7 +47,7 @@ const RegisterPage = () => {
     },
     onSubmit: (values) => {
       setLogin(true);
-      // console.log("Submit values:", login);
+      console.log("Submit values:", login);
       localStorage.setItem("values", JSON.stringify(values));
       localStorage.setItem("loginStatus", JSON.stringify(login));
 
@@ -164,5 +165,4 @@ const RegisterPage = () => {
     </div>
   );
 };
-
 export default RegisterPage;

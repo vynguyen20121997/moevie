@@ -29,8 +29,9 @@
 }
 
 .left-detail {
-    margin-left: 50%;
-    width: 30%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
 }
 
 .left-detail span {

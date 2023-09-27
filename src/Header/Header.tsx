@@ -41,10 +41,9 @@ const menuItems = [
 const Header = ({}: HeaderProps) => {
   const [sidenav, setSideNav] = useState<boolean>(false);
 
-  // const login = JSON.parse(localStorage?.getItem("values") || "");
-
+  // const login = JSON.parse(localStorage?.getItem("loginStatus") || "");
+  // console.log("truyeefn qua header", login);
   const favoriteData = JSON.parse(localStorage?.getItem("favorite") || "");
-  console.log("yeu thich", favoriteData);
   const [matches, setMatches] = useState(
     window.matchMedia("(max-width: 600px)").matches
   );

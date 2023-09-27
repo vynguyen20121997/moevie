@@ -1,21 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./genresStyle.css";
-import {
-  APIConfig,
-  MoviebyOptions,
-  MoviesEndPoints,
-} from "../Compoment/API/APIConfig";
 import SliderContainer from "../Compoment/SmallCompoment/SliderContainer";
 import { OnFetchAxios, OnFetchGenreList } from "../Compoment/API/OnfetchAxios";
 import { UrlCreatingGenreAPI } from "../Compoment/API/APIServies";
-interface genreDataType {
-  id: number;
-  name: string;
-}
-interface genreHookObject {
-  url: string;
-  key: string;
-}
+import {
+  genreDataType,
+  genreHookObject,
+} from "../Compoment/Type/InterfaceType";
 const GenresPage = () => {
   const result: genreHookObject[] | null = UrlCreatingGenreAPI();
   const { data: genreListData } = OnFetchGenreList();
@@ -28,7 +19,6 @@ const GenresPage = () => {
     }
   );
   const actionData = action?.data?.results;
-
   const adventureMovie = result?.find((item) => item.key === "adventure");
   const { data: adventure, isLoading: adventureLoading } = OnFetchAxios(
     adventureMovie ?? {
@@ -37,7 +27,6 @@ const GenresPage = () => {
     }
   );
   const adventurenData = adventure?.data?.results;
-
   const animationMovie = result?.find((item) => item.key === "animation");
   const { data: animation, isLoading: animationLoading } = OnFetchAxios(
     animationMovie ?? {
@@ -46,7 +35,6 @@ const GenresPage = () => {
     }
   );
   const animationData = animation?.data?.results;
-
   const crimeMovie = result?.find((item) => item.key === "crime");
   const { data: crime, isLoading: crimeLoading } = OnFetchAxios(
     crimeMovie ?? {
@@ -55,7 +43,6 @@ const GenresPage = () => {
     }
   );
   const crimeData = crime?.data?.results;
-
   const horrorMovie = result?.find((item) => item.key === "horror");
   const { data: horror, isLoading: horrorLoading } = OnFetchAxios(
     horrorMovie ?? {
@@ -79,7 +66,6 @@ const GenresPage = () => {
           genreData={genreList}
         />
       </div>
-
       <div className="genresSlider">
         <SliderContainer
           loading={adventureLoading}
@@ -115,5 +101,4 @@ const GenresPage = () => {
     </div>
   );
 };
-
 export default GenresPage;
