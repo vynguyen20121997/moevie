@@ -87,9 +87,9 @@ const MovieDetailPage = () => {
   const genresList = movieDetail.genres;
   const videoNe = videoData && videoData[0];
   const urlVideo = `https://www.youtube.com/embed/${videoNe?.key}`;
-  const login: boolean = JSON.parse(localStorage?.getItem("loginStatus") || "");
+  // const login: boolean = JSON.parse(localStorage?.getItem("loginStatus") || "");
   const handleClose = () => setOpen(false);
-  // const login = true;
+  const login = true;
   const handleOpen = () => {
     if (!login) {
       alert("You not login Yet");
