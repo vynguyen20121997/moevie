@@ -1,5 +1,5 @@
 import React from "react";
-import "./genresStyle.css";
+import "./GenresStyle.css";
 import SliderContainer from "../Compoment/SmallCompoment/SliderContainer";
 import { OnFetchAxios, OnFetchGenreList } from "../Compoment/API/OnfetchAxios";
 import { UrlCreatingGenreAPI } from "../Compoment/API/APIServies";

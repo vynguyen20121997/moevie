@@ -9,7 +9,7 @@ import {
 import { OnFetchAxios, OnFetchGenreList } from "../Compoment/API/OnfetchAxios";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import "./genresStyle.css";
+import "./GenresStyle.css";
 export interface Movie {
   name: string;
   id: number;
