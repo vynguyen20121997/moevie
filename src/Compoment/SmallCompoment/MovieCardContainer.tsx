@@ -110,7 +110,7 @@ const CardContainer: React.FC<PropType> = (props) => {
             {genreNames?.slice(0, 2).map((item) => {
               return (
                 <ButtonContainer
-                  variant="outlined"
+                  variant="contained"
                   size="small"
                   stylebutton={{
                     maxWidth: "80px",

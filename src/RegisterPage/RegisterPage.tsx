@@ -38,16 +38,15 @@ const RegisterPage = () => {
   const navigate = useNavigate();
   const [login, setLogin] = useState<boolean>(false);
   localStorage.setItem("loginStatus", JSON.stringify(login));
-  console.log("trang thai dang nhap", login);
   const formik: any = useFormik({
     initialValues: {
       fullname: "",
       email: "",
       password: "",
     },
-    onSubmit: (values) => {
+
+    onSubmit: async (values) => {
       setLogin(true);
-      console.log("Submit values:", login);
       localStorage.setItem("values", JSON.stringify(values));
       localStorage.setItem("loginStatus", JSON.stringify(login));
 
