@@ -1,39 +1,39 @@
-import React, { useEffect, useState, useContext } from "react";
-import { Button } from "@mui/material";
-import { Params, useParams, useNavigate } from "react-router-dom";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
-import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import PlayArrowOutlinedIcon from "@mui/icons-material/PlayArrowOutlined";
-import { APIConfig } from "../Compoment/API/APIConfig";
+import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
+import { Button } from "@mui/material";
+import Box from "@mui/material/Box";
+import CardMedia from "@mui/material/CardMedia";
 import Fab from "@mui/material/Fab";
+import Modal from "@mui/material/Modal";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
-import "./style3.css";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
-import "@fontsource/roboto/300.css";
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/700.css";
-import CardMedia from "@mui/material/CardMedia";
-import { OnFetchAxios } from "../Compoment/API/OnfetchAxios";
-import { MoviesDetailEndPoints } from "../Compoment/API/APIConfig";
-import { Link } from "@mui/icons-material";
+import { useContext, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { GenreListContext } from "../App";
+import { APIConfig, MoviesDetailEndPoints } from "../Compoment/API/APIConfig";
+import { OnFetchAxios } from "../Compoment/API/OnfetchAxios";
 import { ButtonContainer } from "../Compoment/Button/GenresButton";
 import {
   MovieObject,
   creditObject,
   movieObject,
 } from "../Compoment/Type/InterfaceType";
+import "./style3.css";
+import { useSelector } from "react-redux";
 const MovieDetailPage = () => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const params = useParams();
   const addToSave: (movie: MovieObject) => void = useContext(GenreListContext);
+  const currentUser = useSelector((state: any) => state.auth.currentUser);
 
   const idMovie: string | undefined = params.movieId;
   const urlByDetail = MoviesDetailEndPoints.details(idMovie) + APIConfig.apiKey;
@@ -73,12 +73,9 @@ const MovieDetailPage = () => {
     poster_path,
     original_title,
     imdb_id,
-    original_language,
     name,
     backdrop_path,
-    runtime,
     genres,
-    production_countries,
   } = movieDetail;
   const genre_ids: number[] = genres?.map((i) => i.id);
   const countryList = movieDetail.production_countries;
@@ -87,13 +84,12 @@ const MovieDetailPage = () => {
   const genresList = movieDetail.genres;
   const videoNe = videoData && videoData[0];
   const urlVideo = `https://www.youtube.com/embed/${videoNe?.key}`;
-  // const login: boolean = JSON.parse(localStorage?.getItem("loginStatus") || "");
   const handleClose = () => setOpen(false);
-  const login = true;
+
   const handleOpen = () => {
-    if (!login) {
+    if (!currentUser) {
       alert("You not login Yet");
-      navigate(`/register`);
+      navigate(`/login`);
     } else {
       setOpen(true);
     }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
@@ -23,6 +23,7 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import CardContainer from "../Compoment/SmallCompoment/MovieCardContainer";
 import { MovieObjectForApp } from "../Compoment/Type/InterfaceType";
+import { useSelector } from "react-redux";
 interface HeaderProps {}
 const menuItems = [
   {
@@ -40,10 +41,18 @@ const menuItems = [
 ];
 const Header = ({}: HeaderProps) => {
   const [sidenav, setSideNav] = useState<boolean>(false);
+  const currentUser = useSelector((state: any) => state.auth.currentUser);
+  function getFavoriteData() {
+    const favoriteData = localStorage.getItem("favorite") || "";
+    if (favoriteData) {
+      return JSON.parse(favoriteData);
+    }
+    return null;
+  }
+  const favoriteData = getFavoriteData();
 
-  // const login = JSON.parse(localStorage?.getItem("loginStatus") || "");
-  // console.log("truyeefn qua header", login);
-  const favoriteData = JSON.parse(localStorage?.getItem("favorite") || "");
+  // const favoriteData = JSON.parse(localStorage.getItem("favorite") || "");
+  const navigate = useNavigate();
   const [matches, setMatches] = useState(
     window.matchMedia("(max-width: 600px)").matches
   );
@@ -65,6 +74,8 @@ const Header = ({}: HeaderProps) => {
     width: sidenav && matches ? "100%" : sidenav ? "23%" : "0",
     padding: "0",
   };
+  const items = { ...localStorage };
+  console.log("localsotrgate", items);
   return (
     <>
       <div className="header">
@@ -108,24 +119,31 @@ const Header = ({}: HeaderProps) => {
               </IconButton>
             </TriggerButton>
             <Menu slots={{ listbox: StyledListbox }}>
-              <StyledMenuItem>
-                <Link style={{ textDecoration: "none" }} to={`/register`}>
-                  Create an Account
-                </Link>
-              </StyledMenuItem>
-              <StyledMenuItem
-                style={{ textDecoration: "none" }}
-                onClick={handleOpen}
-              >
-                Favorite
-              </StyledMenuItem>
-              <StyledMenuItem
-                onClick={() => {
-                  localStorage.clear();
-                }}
-              >
-                Log out
-              </StyledMenuItem>
+              {!currentUser && (
+                <StyledMenuItem>
+                  <Link style={{ textDecoration: "none" }} to={`/login`}>
+                    Login/Create an Account
+                  </Link>
+                </StyledMenuItem>
+              )}
+              {currentUser && (
+                <>
+                  <StyledMenuItem
+                    style={{ textDecoration: "none" }}
+                    onClick={handleOpen}
+                  >
+                    Favorite
+                  </StyledMenuItem>
+                  <StyledMenuItem
+                    onClick={() => {
+                      localStorage.clear();
+                      navigate(`/`);
+                    }}
+                  >
+                    Log out
+                  </StyledMenuItem>{" "}
+                </>
+              )}
             </Menu>
           </Dropdown>
 

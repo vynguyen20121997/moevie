@@ -1,5 +1,4 @@
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import AccountCircle from "@mui/icons-material/AccountCircle";
 import LocalPostOfficeRoundedIcon from "@mui/icons-material/LocalPostOfficeRounded";
 import { Button, IconButton } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
@@ -10,11 +9,11 @@ import { useFormik } from "formik";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
-import "./style4.css";
 import AuthAPI from "../Compoment/BE_API/AuthAPI";
+import { useDispatch } from "react-redux";
+import { setCurrentUser } from "../Compoment/redux/auth/authSlice";
 
 const signupFormValidationScheme = yup.object().shape({
-  fullname: yup.string().required("Fullname is required"),
   email: yup
     .string()
     .email("Email does not valid format")
@@ -24,13 +23,14 @@ const signupFormValidationScheme = yup.object().shape({
     .min(6, "Password must be at least 6 characters")
     .required("Password is required"),
 });
-const RegisterPage = () => {
+const LoginPage = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  const dispatch = useDispatch();
+
   const formik: any = useFormik({
     initialValues: {
-      fullname: "",
       email: "",
       password: "",
     },
@@ -39,18 +39,25 @@ const RegisterPage = () => {
       try {
         setLoading(true);
         setErrorMessage(null);
-        await AuthAPI.register(values);
+        const response = await AuthAPI.login(values);
+        const accessToken = response.data.accessToken;
+        if (accessToken) {
+          localStorage.setItem("accessToken", JSON.stringify(accessToken));
+          const currentUserData = await AuthAPI.fetchCurrentUser(accessToken);
+          dispatch(setCurrentUser(currentUserData));
+        }
       } catch (error: any) {
         setErrorMessage(error.data?.message);
+        console.log("eror", error);
       } finally {
         setLoading(false);
-        alert("Signup successfully");
+        alert("Login successfully");
         resetForm({
           fullname: "",
           email: "",
           password: "",
         });
-        navigate(`/login`);
+        navigate(`/`);
       }
     },
     validationSchema: signupFormValidationScheme,
@@ -64,37 +71,10 @@ const RegisterPage = () => {
     event.preventDefault();
   };
   return (
-    <div className="signup-wrapper">
+    <div className="signin-wrapper">
       <form className="signup-form-container" onSubmit={handleSubmit}>
         <div>
-          <h1>Create an account</h1>
-          <div className="form-control">
-            <FormControl
-              sx={{ marginTop: "4%", width: "100%" }}
-              variant="standard"
-            >
-              {errorMessage && <p> {errorMessage}</p>}
-              <InputLabel htmlFor="standard-adornment-password">
-                Fullname
-              </InputLabel>
-              <Input
-                id="fullname"
-                name="fullname"
-                value={values.fullname}
-                onChange={handleChange}
-                startAdornment={
-                  <InputAdornment position="start">
-                    <IconButton>
-                      <AccountCircle />
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
-              {errors.fullname && (
-                <p className="error-message">{errors.fullname}</p>
-              )}
-            </FormControl>
-          </div>
+          <h1>Login</h1>
           <div className="form-control">
             <FormControl
               sx={{ marginTop: "4%", width: "100%" }}
@@ -154,10 +134,15 @@ const RegisterPage = () => {
             <Button variant="outlined" type="submit">
               Submit
             </Button>
+          </div>{" "}
+          <div className="register-btn" style={{ marginTop: "5%" }}>
+            <Button variant="outlined" onClick={() => navigate(`/register`)}>
+              Dont Have An Account Yet?
+            </Button>
           </div>
         </div>
       </form>
     </div>
   );
 };
-export default RegisterPage;
+export default LoginPage;

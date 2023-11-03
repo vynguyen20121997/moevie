@@ -2,16 +2,20 @@ import api from "./axiosInstance";
 
 const AuthAPI = {
   register: (body: any) => {
-    const url = "/register";
+    const url = "https://web-xem-phim.onrender.com/user/register";
     return api.post(url, body);
   },
   login: (body: any) => {
-    const url = "/login";
+    const url = "https://web-xem-phim.onrender.com/user/login";
     return api.post(url, body);
   },
-  fetchCurrentUser: () => {
-    const url = "/auth";
-    return api.post(url);
+  fetchCurrentUser: (body: any) => {
+    const url = "https://web-xem-phim.onrender.com/user/current-user";
+    return api.get(url, {
+      headers: {
+        "access-token": body,
+      },
+    });
   },
 };
 export default AuthAPI;

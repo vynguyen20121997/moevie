@@ -7,10 +7,13 @@ import {
   genreDataType,
   genreHookObject,
 } from "../Compoment/Type/InterfaceType";
+
 const GenresPage = () => {
   const result: genreHookObject[] | null = UrlCreatingGenreAPI();
+
   const { data: genreListData } = OnFetchGenreList();
-  const genreList: genreDataType[] = genreListData?.data.genres;
+  const genreList: genreDataType[] = genreListData && genreListData.data.genres;
+
   const actionMovie = result?.find((item) => item.key === "action");
   const { data: action, isLoading: actionLoading } = OnFetchAxios(
     actionMovie ?? {

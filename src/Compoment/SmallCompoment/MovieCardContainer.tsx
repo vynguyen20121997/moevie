@@ -1,15 +1,14 @@
-import React, { useState, useContext, useMemo } from "react";
-import { APIConfig } from "../API/APIConfig";
-import { Button, Fab, Rating } from "@mui/material";
-import { Link } from "react-router-dom";
-import type * as CSS from "csstype";
-import { GenreListContext } from "../../App";
-import { ButtonContainer } from "../Button/GenresButton";
-import Loading from "../Loading/Loading";
-import "./styleMovieCard.css";
 import AddIcon from "@mui/icons-material/Add";
-import { OnFetchGenreList } from "../API/OnfetchAxios";
+import { Button, Fab, Rating } from "@mui/material";
+import type * as CSS from "csstype";
+import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
+import { GenreListContext } from "../../App";
+import { APIConfig } from "../API/APIConfig";
+import { ButtonContainer } from "../Button/GenresButton";
 import { Movie, MovieItem, genreDataType } from "../Type/InterfaceType";
+import "./styleMovieCard.css";
+import { useSelector } from "react-redux";
 interface PropType {
   movieItem?: MovieItem;
   movieDetail: Movie;
@@ -49,6 +48,8 @@ const CardContainer: React.FC<PropType> = (props) => {
     return result;
   };
   const genreNames = genreFilter();
+  const currentUser = useSelector((state: any) => state.auth.currentUser);
+
   const handleMouseEnter = () => {
     SetIsHover(true);
   };
@@ -136,25 +137,27 @@ const CardContainer: React.FC<PropType> = (props) => {
                 WATCH NOW
               </Button>
             </Link>
-            <Fab
-              style={{ marginLeft: "3%" }}
-              size="small"
-              color="primary"
-              className="play-btn-content-btn-hide"
-              onClick={() =>
-                addToSave({
-                  vote_average,
-                  title,
-                  release_date,
-                  id,
-                  poster_path,
-                  genre_ids,
-                  name,
-                })
-              }
-            >
-              <AddIcon />
-            </Fab>
+            {currentUser && (
+              <Fab
+                style={{ marginLeft: "3%" }}
+                size="small"
+                color="primary"
+                className="play-btn-content-btn-hide"
+                onClick={() =>
+                  addToSave({
+                    vote_average,
+                    title,
+                    release_date,
+                    id,
+                    poster_path,
+                    genre_ids,
+                    name,
+                  })
+                }
+              >
+                <AddIcon />
+              </Fab>
+            )}
           </div>
         </div>
       </div>

@@ -1,16 +1,16 @@
-import * as React from "react";
-import { useCallback, useEffect, useState } from "react";
-import useEmblaCarousel, { EmblaCarouselType } from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
-import "./style.css";
-import Fab from "@mui/material/Fab";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import Button from "@mui/material/Button";
+import Fab from "@mui/material/Fab";
+import Autoplay from "embla-carousel-autoplay";
+import useEmblaCarousel, { EmblaCarouselType } from "embla-carousel-react";
+import * as React from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { APIConfig } from "../API/APIConfig";
-import Button from "@mui/material/Button";
 import { ButtonContainer } from "../Button/GenresButton";
 import HeroSliderLoading from "../Loading/Loading";
+import "./style.css";
 interface Movie {
   genre_ids: [number];
   name: string;
@@ -48,7 +48,6 @@ const HeroSlider: React.FC<PropType> = (props) => {
 
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<Array<number>>([]);
-  // const [emblaRef, emblaApi] = useEmblaCarousel(options);
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
   const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
   const scrollTo = useCallback(
@@ -81,7 +80,7 @@ const HeroSlider: React.FC<PropType> = (props) => {
       <div className="btn1">
         <Fab
           onClick={scrollPrev}
-          // disabled={prevBtnDisabled}
+          //  disabled={prevBtnDisabled}
           color="primary"
         >
           <ChevronLeftIcon fontSize="large" />
@@ -168,15 +167,11 @@ const HeroSlider: React.FC<PropType> = (props) => {
         </div>
       </div>{" "}
       <div className="btn2">
-        <Fab
-          color="primary"
-          onClick={scrollNext}
-          // disabled={nextBtnDisabled}
-        >
+        <Fab color="primary" onClick={scrollNext} disabled={nextBtnDisabled}>
           <ChevronRightIcon fontSize="large" />
         </Fab>
       </div>
-      <div className="embla__navigator">
+      {/* <div className="embla__navigator">
         {scrollSnaps.map((_, index) => (
           <div
             className="embla__dots"
@@ -188,7 +183,7 @@ const HeroSlider: React.FC<PropType> = (props) => {
             onClick={() => scrollTo(index)}
           />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

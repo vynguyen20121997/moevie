@@ -1,7 +1,7 @@
 import axios from "axios";
 import { TOKEN_TYPES } from "../untils/constants";
 
-const BASE_API_URL = "http://localhost:8080/api/v1";
+const BASE_API_URL = "https://web-xem-phim.onrender.com";
 
 const api = axios.create({
   baseURL: BASE_API_URL,
@@ -10,7 +10,7 @@ const api = axios.create({
 
 // Attach accessToken to request headers
 api.interceptors.request.use((config) => {
-  const accessToken = localStorage.getItem(TOKEN_TYPES.ACCESS_TOKEN);
+  const accessToken = localStorage.getItem("accessToken");
 
   if (accessToken) {
     config.headers["x-access-token"] = accessToken;

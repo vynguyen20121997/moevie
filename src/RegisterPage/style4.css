@@ -1,14 +1,22 @@
 .signup-wrapper {
-    height: 100vh;
+    height: 90vh;
     display: grid;
     place-items: center;
     display: flex;
     justify-content: center;
   }
-  
+  .signin-wrapper {
+    height: 90vh;
+    display: grid;
+    place-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+
   .signup-wrapper h1 {
     margin-bottom: 24px;
-    
+
   }
   .signup-form-container {
     width: 400px;
@@ -18,23 +26,21 @@
     justify-content: center;
     display: flex;
     height: 45%;
-    
-
   }
   .signup-form-container h2{
     color: black;
   }
-  
+
   .form-control {
     margin-bottom: 16px;
     width: 100%;
   }
-  
+
   .form-control label {
     display: block;
     margin-bottom: 8px;
   }
-  
+
   .form-control input {
     width: 100%;
     outline: none;
@@ -42,7 +48,7 @@
     border-radius: 4px;
     padding: 10px 12px;
   }
-  
+
   .btn-submit {
     width: 100%;
     border-radius: 8px;
@@ -51,7 +57,7 @@
     outline: none;
     cursor: pointer;
   }
-  
+
   .error-message {
     color: rgb(242, 113, 113);
     font-size: 12px;
